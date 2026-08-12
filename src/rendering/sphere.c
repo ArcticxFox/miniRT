@@ -1,30 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_rt.h                                          :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/12 18:57:24 by ejones           ###   ########.fr       */
+/*   Created: 2026/08/09 16:59:59 by ejones            #+#    #+#             */
+/*   Updated: 2026/08/09 17:00:00 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_RT_H
-# define MINI_RT_H
-
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <math.h>
-# include <stdbool.h>
-
-# include "../MacroLibX/includes/mlx.h"
-# include "../MacroLibX/includes/mlx_extended.h"
-
-# include "struct.h"
-# include "window.h"
-
-void	render_sphere(mlx_t *mlx, t_camera camera, t_sphere sp);
-
-#endif

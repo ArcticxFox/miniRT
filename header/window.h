@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_rt.h                                          :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/12 18:57:24 by ejones           ###   ########.fr       */
+/*   Created: 2026/08/09 16:51:26 by ejones            #+#    #+#             */
+/*   Updated: 2026/08/09 16:53:48 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_RT_H
-# define MINI_RT_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <math.h>
-# include <stdbool.h>
+#include "mini_rt.h"
 
-# include "../MacroLibX/includes/mlx.h"
-# include "../MacroLibX/includes/mlx_extended.h"
+void	init_window(mlx_t *mlx, mlx_window_create_info *info);
 
-# include "struct.h"
-# include "window.h"
-
-void	render_sphere(mlx_t *mlx, t_camera camera, t_sphere sp);
+void	key_hook(int key, void* param);
+void	window_hook(int event, void* param);
 
 #endif

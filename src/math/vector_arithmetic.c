@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:11:37 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/07 13:50:35 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/09 18:03:25 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,20 @@ t_vec normalize(t_vec v)
 	return v;
 }
 
-double	lenght(t_vec vec)
+double	vec_lenght(t_vec vec)
 {
 	return (sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
+}
+
+t_vec	ray_at(t_ray ray, double t)
+{
+	t_vec	result;
+
+	result.x = ray.origin.x + t * ray.dir.x;
+	result.y = ray.origin.y + t * ray.dir.y;
+	result.z = ray.origin.z + t * ray.dir.z;
+
+	return (result);
 }
 
 
