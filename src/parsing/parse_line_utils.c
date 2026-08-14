@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:21:29 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/11 15:35:28 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/14 15:09:00 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,48 @@ int	find_input_type(char *string)
 	return (0);
 }
 
-char	**parse_coords(char *str)
-{
-
-}
-
 char	**split_multi_comma(char *str)
 {
 	int		i;
-	int		count;
-	char	**rgb;
+	int		len;
+	char	**res;
 
+	if (!str)
+		return (NULL);
+	len = ft_strlen(str);
 	i = 0;
-	count = 0;
-	while (str[i] && (ft_isdigit(str[i]) || str[i] == ','))
+	if (str[0] == ',' || str[len - 1] == ',')
+		return (NULL);
+	while (str[i])
 	{
-		if (str[i] == ',' && ft_isdigit(str[i + 1]))
-			count++;
+		if (str[i] == ',' && str[i + 1] == ',')
+			return (NULL);
 		i++;
 	}
-	if (count == 2)
+	res = ft_split(str, ',');
+	if (!res)
+		return (NULL);
+	return (res);
+}
+
+int	valid_number(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	if (str[0] == '+' || str[0] == '-')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
 	{
-		rgb = ft_split(str, ',');
-		if (!rgb)
-			return (NULL);
-		return (rgb);
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
 	}
-	return (NULL);
+	return (1);
 }
 
 int	parse_colours(char *str, t_data *minirt)
@@ -88,9 +103,9 @@ int	parse_colours(char *str, t_data *minirt)
 	if (!colours)
 		return (1);
 	i = 0;
-	while (i < 3)
+	while (colours[i])
 	{
-		if (check_alpha(colours[i]))
+		if (!valid_number(colours[i]))
 		{
 			ft_free_array(colours);
 			return (1);

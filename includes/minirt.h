@@ -6,6 +6,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "libft.h"
+# include <limits.h>
+# include <float.h>
 
 typedef struct s_cylinder
 {
@@ -69,7 +71,10 @@ int		check_alpha(char *string);
 int		find_input_type(char *string);
 char	**split_multi_comma(char *str);
 int		parse_colours(char *str, t_data *minirt);
+int		valid_number(char *str);
+int		valid_float_number(char *str);
 
 int	amb_parse(char **split, t_data *minirt);
+int	cam_parse(char **split, t_data *minirt);
 
 #endif

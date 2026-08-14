@@ -54,6 +54,68 @@ int	input_parsing(int ac, char **av)
 	return (0);
 }
 
+void	print_everything(t_data *minirt)
+{
+	char c;
+
+	c = 0;
+	printf("RATIO = %f\n", minirt->ambient_light->ratio);
+	for (int i = 0; i != 3; i++){
+		switch (i)
+		{
+		case 0:
+			c = 'R';
+			break;
+		case 1:
+			c = 'G';
+			break;
+		case 2:
+			c = 'B';
+			break;
+		default:
+			break;
+		}
+		printf("%c = %d\n", c, minirt->ambient_light->RGB[i]);
+	}
+	c = 0;
+	for (int i = 0; i != 3; i++){
+		switch (i)
+		{
+		case 0:
+			c = 'x';
+			break;
+		case 1:
+			c = 'y';
+			break;
+		case 2:
+			c = 'z';
+			break;
+		default:
+			break;
+		}
+		printf("viewpoint %c = %f\n", c, minirt->camera->viewpoint[i]);
+	}
+	c = 0;
+	for (int i = 0; i != 3; i++){
+		switch (i)
+		{
+		case 0:
+			c = '3';
+			break;
+		case 1:
+			c = 'd';
+			break;
+		case 2:
+			c = 'n';
+			break;
+		default:
+			break;
+		}
+		printf("NOV %c = %f\n", c, minirt->camera->threed_NOV[i]);
+	}
+	return ;
+}
+
 int	program_setup(int ac, char **av, t_data *minirt)
 {
 	int	err_num;
@@ -71,5 +133,6 @@ int	program_setup(int ac, char **av, t_data *minirt)
 	{
 		return (err_num);
 	}
+	print_everything(minirt);
 	return (0);
 }

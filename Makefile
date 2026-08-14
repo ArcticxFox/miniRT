@@ -6,7 +6,7 @@ LIBFT := src/my_libft/libft.a
 
 SRC_DIR := src
 
-SRC := main.c parsing/program_setup.c parsing/parse_line.c parsing/parse_line_utils.c parsing/amb_parse.c
+SRC := main.c parsing/program_setup.c parsing/parse_line.c parsing/parse_line_utils.c parsing/amb_parse.c parsing/cam_parse.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/, $(SRC))
 
