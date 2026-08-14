@@ -42,19 +42,21 @@ static int parse_by_type(char **split, t_data *minirt, int	type)
 		res = amb_parse(split, minirt);
 	if (type == 20)
 		res = cam_parse(split, minirt);
-	if (type == 30)
-		res = amb_parse(split, minirt);
-	if (type == 40)
-		res = amb_parse(split, minirt);
-	if (type == 50)
-		res = amb_parse(split, minirt);
-	if (type == 60)
-		res = amb_parse(split, minirt);
+	// if (type == 30)
+	// 	res = amb_parse(split, minirt);
+	// if (type == 40)
+	// 	res = amb_parse(split, minirt);
+	// if (type == 50)
+	// 	res = amb_parse(split, minirt);
+	// if (type == 60)
+	// 	res = amb_parse(split, minirt);
 	if (res)
 	{
 		printf("fuck\n");
 		return (res);
 	}
+	else
+		printf("consume the cum chalice\n");
 	return (res);
 }
 
@@ -66,7 +68,9 @@ int parse_line(char *line, t_data *minirt)
 	int		marker;
 
 	if (!line)
+	{
 		return (1);
+	}
 	norm_whitespace(line);
 	split = ft_split(line, ' ');
 	if (!split)
