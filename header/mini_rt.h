@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/12 18:57:24 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/15 14:13:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 
 # include "struct.h"
 # include "window.h"
+
+# define	WINDOW_WIDTH	800.0;
+# define	WINDOW_HEIGTH	600.0;
 
 void	render_sphere(mlx_t *mlx, t_camera camera, t_sphere sp);
 

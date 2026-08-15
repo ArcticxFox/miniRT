@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:24:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/12 19:44:30 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/15 14:19:21 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ t_ray	camera_ray(t_camera camera, int x, int y)
 	double	viewport_y;
 	double	ratio_aspect;
 
-	ratio_aspect = 800.0 / 600.0;
-	viewport_x = (2.0 * (x + 0.5) / 800.0 - 1.0) * ratio_aspect;
-	viewport_y = 1.0 - 2.0 * (y + 0.5) / 600.0;
+	ratio_aspect = 1920.0 / 1080.0;
+	viewport_x = (2.0 * (x + 0.5) / 1920.0 - 1.0) * ratio_aspect;
+	viewport_y = 1.0 - 2.0 * (y + 0.5) / 1080.0;
 	ray.origin = camera.origin;
 	ray.dir = add(camera.forward,add(
 		multiply_scalar(camera.right, viewport_x),
@@ -111,13 +111,13 @@ void	render_sphere(mlx_t *mlx, t_camera camera, t_sphere sp)
 	mlx_color	color;
 
 	y = 0;
-	while (y < 600)
+	while (y < 1080)
 	{
 		x = 0;
-		while (x < 800)
+		while (x < 1920)
 		{
-			viewport_x = (2.0 * (x + 0.5) / 800.0 - 1.0) * 800 / 600;
-			viewport_y = 1.0 - 2.0 * (y + 0.5) / 600.0;
+			viewport_x = (2.0 * (x + 0.5) / 1920.0 - 1.0) * 1920 / 1080;
+			viewport_y = 1.0 - 2.0 * (y + 0.5) / 1080.0;
 			ray = camera_ray(camera, x, y);
 			color = ray_color(ray, sp);
 			mlx_set_image_pixel(mlx->mlx, mlx->img, x, y, color);
@@ -125,7 +125,6 @@ void	render_sphere(mlx_t *mlx, t_camera camera, t_sphere sp)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 }
 
 void	render_loop(void *param)
@@ -143,8 +142,8 @@ void	render_loop(void *param)
 	mlx->camera.origin.y,
 	mlx->camera.origin.z
 );
+	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){ {255, 255, 255, 255} });
 	render_sphere(mlx, mlx->camera, mlx->sp);
-
 	mlx_put_image_to_window(
 		mlx->mlx,
 		mlx->win,
@@ -168,7 +167,7 @@ int	main(void)
 	mlx.camera.up = (t_vec){0, 1, 0};
 	mlx.camera.fov = 90.0;
 	sp.center = (t_vec){0, -2, 5};
-	sp.r = 2;
+	sp.r = 1;
 	mlx.sp = sp;
 	mlx.needs_redraw = 1;
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
