@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/15 14:13:24 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/19 19:52:15 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdbool.h>
+# include <float.h>
 
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
@@ -28,6 +29,6 @@
 # define	WINDOW_WIDTH	800.0;
 # define	WINDOW_HEIGTH	600.0;
 
-void	render_sphere(mlx_t *mlx, t_camera camera, t_sphere sp);
+void	render_sphere(mlx_t *mlx, t_camera camera);
 
 #endif

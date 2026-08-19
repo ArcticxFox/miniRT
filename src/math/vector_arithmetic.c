@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:11:37 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/09 18:03:25 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/17 19:38:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ t_vec	sub(t_vec a, t_vec b)
 	a.x -= b.x;
 	a.y -= b.y;
 	a.z -= b.z;
+	return (a);
+}
+
+t_vec	mult(t_vec a, t_vec b)
+{
+	a.x *= b.x;
+	a.y *= b.y;
+	a.z *= b.z;
 	return (a);
 }
 
