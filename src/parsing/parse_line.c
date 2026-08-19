@@ -1,20 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/19 14:21:42 by dlanehar          #+#    #+#             */
+/*   Updated: 2026/08/19 14:27:43 by dlanehar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
-
-//checks that the input is valid for the given identifier. if no identifier, throws an error
-static int	check_type(char **split, int *marker)
-{
-	// int	i;
-	int	type;
-
-	*marker = 0;
-	while (split[*marker] && split[*marker][0] == '\0')
-		(*marker)++;
-	if (!check_alpha(split[*marker]))
-		return (0);
-	type = find_input_type(split[*marker]);
-	*marker += 1;
-	return (type);
-}
 
 //turns all whitespace into spaces to use ft_split
 static void	norm_whitespace(char *line)
@@ -33,40 +29,36 @@ static void	norm_whitespace(char *line)
 	return ;
 }
 
-static int parse_by_type(char **split, t_data *minirt, int	type)
+static t_parse_func	get_parse_func(char **split)
 {
-	int	res;
+	int				i;
+	const t_parser	funcs[] = {
+	{"A", amb_parse},
+	{"C", cam_parse},
+	{"L", light_parse},
+	{"sp", sphere_parse},
+	{"pl", plane_parse},
+	{"cy", cylinder_parse}
+	};
 
-	res = 0;
-	if (type == 10)
-		res = amb_parse(split, minirt);
-	if (type == 20)
-		res = cam_parse(split, minirt);
-	// if (type == 30)
-	// 	res = amb_parse(split, minirt);
-	// if (type == 40)
-	// 	res = amb_parse(split, minirt);
-	// if (type == 50)
-	// 	res = amb_parse(split, minirt);
-	// if (type == 60)
-	// 	res = amb_parse(split, minirt);
-	if (res)
+	i = 0;
+	while (i < 6)
 	{
-		printf("fuck\n");
-		return (res);
+		if (ft_strcmp(split[0], funcs[i].string) == 0)
+			return (funcs[i].func);
+		i++;
 	}
-	else
-		printf("consume the cum chalice\n");
-	return (res);
+	return (NULL);
 }
 
 //parses the line
-int parse_line(char *line, t_data *minirt)
+int	parse_line(char *line, t_data *minirt)
 {
-	char	**split;
-	int		type;
-	int		marker;
+	char			**split;
+	t_parse_func	func;
+	int				ret;
 
+	ret = 1;
 	if (!line)
 	{
 		return (1);
@@ -75,19 +67,9 @@ int parse_line(char *line, t_data *minirt)
 	split = ft_split(line, ' ');
 	if (!split)
 		return (1);
-	int j = 0;
-	while (split[j])
-	{
-		printf("%s\n", split[j]);
-		j++;
-	}
-	type = check_type(split, &marker);
-	if (!type)
-	{
-		ft_free_array(split);
-		return (1);
-	}
-	parse_by_type(split + marker, minirt, type);
+	func = get_parse_func(split);
+	if (func)
+		ret = func(split + 1, minirt);
 	ft_free_array(split);
-	return (1);
+	return (ret);
 }
