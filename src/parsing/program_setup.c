@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   program_setup.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
+/*   Updated: 2026/08/19 14:21:49 by dlanehar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	load_scene_info(char *filename, t_data *minirt)
@@ -9,21 +21,20 @@ int	load_scene_info(char *filename, t_data *minirt)
 	if (fd < 0)
 		return (1);
 	res = get_next_line(fd);
-	printf("%s\n", res);
 	while (res)
 	{
-		if (res[0] == '\0')
+		if (res[0] == '\0' || res[0] == '\n')
 		{
 			free(res);
 			res = get_next_line(fd);
 		}
-		else if (parse_line(res, minirt))
+		else if (parse_line(res, minirt) == 0)
 		{
 			free(res);
 			res = get_next_line(fd);
-			if (res)
-				printf("%s\n", res);
 		}
+		else
+			return (1);
 	}
 	close(fd);
 	return (0);
@@ -54,74 +65,33 @@ int	input_parsing(int ac, char **av)
 	return (0);
 }
 
-void	print_everything(t_data *minirt)
+int	data_init(t_data *minirt)
 {
-	char c;
-
-	c = 0;
-	printf("RATIO = %f\n", minirt->ambient_light->ratio);
-	for (int i = 0; i != 3; i++){
-		switch (i)
-		{
-		case 0:
-			c = 'R';
-			break;
-		case 1:
-			c = 'G';
-			break;
-		case 2:
-			c = 'B';
-			break;
-		default:
-			break;
-		}
-		printf("%c = %d\n", c, minirt->ambient_light->RGB[i]);
-	}
-	c = 0;
-	for (int i = 0; i != 3; i++){
-		switch (i)
-		{
-		case 0:
-			c = 'x';
-			break;
-		case 1:
-			c = 'y';
-			break;
-		case 2:
-			c = 'z';
-			break;
-		default:
-			break;
-		}
-		printf("viewpoint %c = %f\n", c, minirt->camera->viewpoint[i]);
-	}
-	c = 0;
-	for (int i = 0; i != 3; i++){
-		switch (i)
-		{
-		case 0:
-			c = '3';
-			break;
-		case 1:
-			c = 'd';
-			break;
-		case 2:
-			c = 'n';
-			break;
-		default:
-			break;
-		}
-		printf("NOV %c = %f\n", c, minirt->camera->threed_NOV[i]);
-	}
-	return ;
+	ft_bzero(minirt, sizeof(t_data));
+	minirt->sph_cap = 4;
+	minirt->sph_count = 0;
+	minirt->sphere = ft_calloc(minirt->sph_cap, sizeof(t_sphere));
+	if (!minirt->sphere)
+		return (1);
+	minirt->pl_cap = 4;
+	minirt->pl_count = 0;
+	minirt->plane = ft_calloc(minirt->pl_cap, sizeof(t_plane));
+	if (!minirt->plane)
+		return (1);
+	minirt->cyl_cap = 4;
+	minirt->cyl_count = 0;
+	minirt->cylinder = ft_calloc(minirt->cyl_cap, sizeof(t_cylinder));
+	if (!minirt->cylinder)
+		return (1);
+	return (0);
 }
 
 int	program_setup(int ac, char **av, t_data *minirt)
 {
 	int	err_num;
 
-	minirt = ft_calloc(1, sizeof(t_data));
-	if (!minirt)
+	err_num = data_init(minirt);
+	if (err_num)
 		return (1);
 	err_num = input_parsing(ac, av);
 	if (err_num)

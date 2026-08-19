@@ -1,12 +1,16 @@
 NAME := MiniRT
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -g
+CFLAGS := -Wall -Werror -Wextra -g -Wunused-function
 LIBFT := src/my_libft/libft.a
-
 
 SRC_DIR := src
 
-SRC := main.c parsing/program_setup.c parsing/parse_line.c parsing/parse_line_utils.c parsing/amb_parse.c parsing/cam_parse.c
+SRC :=	main.c parsing/program_setup.c parsing/parse_line.c \
+		parsing/parse_line_utils.c parsing/amb_parse.c \
+		parsing/cam_parse.c parsing/light_parse.c \
+		parsing/sphere_parse.c parsing/plane_parse.c \
+		parsing/cyl_parse.c \
+	#	print_all.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/, $(SRC))
 
