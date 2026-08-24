@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/19 19:48:06 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/24 15:36:38 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ typedef struct	s_objects
 	t_pl		pl;
 	t_cy		cy;
 }	t_objects;
+
+typedef struct s_get_root
+{
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+}	t_get_root;
+
 
 typedef struct s_mlx
 {

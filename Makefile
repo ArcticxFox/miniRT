@@ -6,7 +6,7 @@
 #    By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/31 14:11:32 by ejones            #+#    #+#              #
-#    Updated: 2026/08/09 16:59:12 by ejones           ###   ########.fr        #
+#    Updated: 2026/08/22 19:38:39 by ejones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,10 @@ SRC := \
 	main.c \
 	math/vector_arithmetic.c \
 	window/init_window.c \
-	window/event_management.c
+	window/event_management.c \
+	rendering/sphere.c \
+	rendering/plane.c \
+	rendering/cylinder.c
 
 SRC := $(addprefix src/, $(SRC))
 

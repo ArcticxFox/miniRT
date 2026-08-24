@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/19 19:52:15 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/20 15:43:44 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # include "struct.h"
 # include "window.h"
+# include "render_utils.h"
 
 # define	WINDOW_WIDTH	800.0;
 # define	WINDOW_HEIGTH	600.0;
