@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 10:11:31 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 15:36:22 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <float.h>
 # include <math.h>
+# include "parerrors.h"
 
 typedef struct s_cylinder
 {
@@ -80,7 +81,7 @@ typedef struct s_data
 	int			cyl_count;
 }	t_data;
 
-typedef int	(*t_parse_func)(char **split, t_data *minirt);
+typedef t_errors	(*t_parse_func)(char **split, t_data *minirt);
 
 typedef struct s_parser
 {
@@ -88,28 +89,28 @@ typedef struct s_parser
 	t_parse_func	func;
 }	t_parser;
 
-int		program_setup(int ac, char **av, t_data *minirt);
+t_errors	program_setup(int ac, char **av, t_data *minirt);
 
 //============== PARSING ==============
 
-int		parse_line(char *line, t_data *minirt);
+t_errors	parse_line(char *line, t_data *minirt);
 
-char	**split_multi_comma(char *str);
-int		parse_colours(char *str, int *colour_tab);
+char	**split_multi_comma(char *str, t_errors *err);
+t_errors		parse_colours(char *str, int *colour_tab);
 int		valid_number(char *str);
 int		valid_float_number(char *str);
-int		parse_float_array(char **input, double *table, double lower,
+t_errors	parse_float_array(char **input, double *table, double lower,
 			double upper);
-int		parse_int_array(char **input, int *table, int lower, int upper);
-int		parse_coords(char *str, double *table, double lower, double upper);
-void	*ft_realloc(void *ptr, int old_size, int new_size);
+t_errors	parse_int_array(char **input, int *table, int lower, int upper);
+t_errors	parse_coords(char *str, double *table, double lower, double upper);
+void		*ft_realloc(void *ptr, int old_size, int new_size);
 
-int		amb_parse(char **split, t_data *minirt);
-int		cam_parse(char **split, t_data *minirt);
-int		light_parse(char **split, t_data *minirt);
-int		sphere_parse(char **split, t_data *minirt);
-int		plane_parse(char **split, t_data *minirt);
-int		cylinder_parse(char **split, t_data *minirt);
+t_errors	amb_parse(char **split, t_data *minirt);
+t_errors	cam_parse(char **split, t_data *minirt);
+t_errors	light_parse(char **split, t_data *minirt);
+t_errors	sphere_parse(char **split, t_data *minirt);
+t_errors	plane_parse(char **split, t_data *minirt);
+t_errors	cylinder_parse(char **split, t_data *minirt);
 
 void	print_everything(t_data *minirt);
 
