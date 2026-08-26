@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:50:45 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 14:36:17 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 09:26:56 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	sphere_parse(char **split, t_data *minirt)
 		return (1);
 	minirt->sphere[minirt->sph_count].diameter = ft_atof(split[i]);
 	i++;
-	ret = parse_colours(split[i], minirt->sphere[minirt->sph_count].RGB);
+	ret = parse_colours(split[i], minirt->sphere[minirt->sph_count].rgb);
 	if (split[i + 1] != NULL)
 		return (1);
 	minirt->sph_count++;

@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 14:36:48 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 09:26:56 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	plane_parse(char **split, t_data *minirt)
 	if (ret)
 		return (1);
 	i++;
-	ret = parse_nov(split[i], minirt->plane[minirt->pl_count].threed_NOV);
+	ret = parse_nov(split[i], minirt->plane[minirt->pl_count].threed_nov);
 	if (ret)
 		return (1);
 	i++;
-	ret = parse_colours(split[i], minirt->plane[minirt->pl_count].RGB);
+	ret = parse_colours(split[i], minirt->plane[minirt->pl_count].rgb);
 	if (split[i + 1] != NULL)
 		return (1);
 	minirt->pl_count++;

@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:35:17 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 11:47:18 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 09:26:56 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	amb_parse(char **split, t_data *minirt)
 	if (minirt->ambient_light.ratio < 0 || minirt->ambient_light.ratio > 1)
 		return (1);
 	i++;
-	ret = parse_colours(split[i], minirt->ambient_light.RGB);
+	ret = parse_colours(split[i], minirt->ambient_light.rgb);
 	if (split[i + 1] != NULL)
 		return (1);
 	return (ret);

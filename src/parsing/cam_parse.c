@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 12:04:24 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 14:34:32 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 09:27:25 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int	cam_parse(char **split, t_data *minirt)
 	if (ret)
 		return (ret);
 	i++;
-	ret = parse_nov(split[i], minirt->camera.threed_NOV);
+	ret = parse_nov(split[i], minirt->camera.threed_nov);
 	if (ret)
 		return (ret);
 	i++;
 	if (!valid_number(split[i]))
 		return (1);
-	minirt->camera.FOV = ft_atoi(split[i]);
-	if (minirt->camera.FOV < 0 || minirt->camera.FOV > 180)
+	minirt->camera.fov = ft_atoi(split[i]);
+	if (minirt->camera.fov < 0 || minirt->camera.fov > 180)
 		return (1);
 	if (split[i + 1] != NULL)
 		return (1);
