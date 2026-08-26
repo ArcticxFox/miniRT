@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:21:29 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 15:36:14 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 09:21:52 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,97 +34,6 @@ int	parse_coords(char *str, double *table, double lower, double upper)
 	return (ret);
 }
 
-int	parse_int_array(char **input, int *table, int lower, int upper)
-{
-	int		i;
-
-	i = 0;
-	while (input[i])
-	{
-		if (i >= 3)
-			return (1);
-		if (!valid_number(input[i]))
-			return (1);
-		table[i] = ft_atoi(input[i]);
-		if (table[i] < lower || table[i] > upper)
-			return (1);
-		i++;
-	}
-	if (i != 3)
-		return (1);
-	return (0);
-}
-
-int	parse_float_array(char **input, double *table, double lower, double upper)
-{
-	int		i;
-
-	i = 0;
-	while (input[i])
-	{
-		if (i >= 3)
-			return (1);
-		if (!valid_float_number(input[i]))
-			return (1);
-		table[i] = ft_atof(input[i]);
-		if (table[i] < lower || table[i] > upper)
-			return (1);
-		i++;
-	}
-	if (i != 3)
-		return (1);
-	return (0);
-}
-
-int	valid_float_number(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	if (str[0] == '+' || str[0] == '-')
-		i++;
-	if (!str[i])
-		return (0);
-	while (str[i] && str[i] != '.')
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	if (str[i] == '.')
-	{
-		i++;
-		if (!str[i])
-			return (0);
-		while (str[i])
-		{
-			if (!ft_isdigit(str[i]))
-				return (0);
-			i++;
-		}
-	}
-	return (1);
-}
-
-//checks if the given string is all letters
-// int	check_alpha(char *string)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!string)
-// 		return (0);
-// 	while (string[i])
-// 	{
-// 		if (!ft_isalpha(string[i]))
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
-
 char	**split_multi_comma(char *str)
 {
 	int		i;
@@ -148,26 +57,6 @@ char	**split_multi_comma(char *str)
 		return (NULL);
 	return (res);
 }
-
-// int	valid_number(char *str)
-// {
-// 	int	i;
-
-// 	if (!str)
-// 		return (0);
-// 	i = 0;
-// 	if (str[0] == '+' || str[0] == '-')
-// 		i++;
-// 	if (!str[i])
-// 		return (0);
-// 	while (str[i])
-// 	{
-// 		if (!ft_isdigit(str[i]))
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 int	parse_colours(char *str, int *colour_tab)
 {
