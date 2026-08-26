@@ -6,13 +6,13 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 15:35:08 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 10:11:20 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 15:38:08 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	parse_int_array(char **input, int *table, int lower, int upper)
+t_errors	parse_int_array(char **input, int *table, int lower, int upper)
 {
 	int		i;
 
@@ -20,20 +20,20 @@ int	parse_int_array(char **input, int *table, int lower, int upper)
 	while (input[i])
 	{
 		if (i >= 3)
-			return (1);
+			return (MRT_PARSE_LINE_ERR);
 		if (!valid_number(input[i]))
-			return (1);
+			return (MRT_INVALID_NUM);
 		table[i] = ft_atoi(input[i]);
 		if (table[i] < lower || table[i] > upper)
-			return (1);
+			return (MRT_OUT_OF_BOUNDS);
 		i++;
 	}
 	if (i != 3)
 		return (1);
-	return (0);
+	return (MRT_OK);
 }
 
-int	parse_float_array(char **input, double *table, double lower, double upper)
+t_errors	parse_float_array(char **input, double *table, double lower, double upper)
 {
 	int		i;
 
@@ -41,17 +41,17 @@ int	parse_float_array(char **input, double *table, double lower, double upper)
 	while (input[i])
 	{
 		if (i >= 3)
-			return (1);
+			return (MRT_PARSE_LINE_ERR);
 		if (!valid_float_number(input[i]))
-			return (1);
+			return (MRT_INVALID_NUM);
 		table[i] = ft_atof(input[i]);
 		if (table[i] < lower || table[i] > upper)
-			return (1);
+			return (MRT_OUT_OF_BOUNDS);
 		i++;
 	}
 	if (i != 3)
-		return (1);
-	return (0);
+		return (MRT_PARSE_LINE_ERR);
+	return (MRT_OK);
 }
 
 int	valid_number(char *str)

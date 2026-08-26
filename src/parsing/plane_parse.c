@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 10:11:20 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 15:55:27 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	parse_nov(char *str, double *NOV)
 	return (ret);
 }
 
-int	plane_parse(char **split, t_data *minirt)
+t_errors plane_parse(char **split, t_data *minirt)
 {
 	int	i;
 	int	ret;
@@ -32,19 +32,21 @@ int	plane_parse(char **split, t_data *minirt)
 		minirt->plane = ft_realloc(minirt->plane,
 				minirt->pl_count * sizeof(*minirt->plane),
 				minirt->pl_cap * sizeof(*minirt->plane));
+		if (!minirt->plane)
+			return (MRT_MALLOC);
 	}
 	ret = parse_coords(split[i], minirt->plane[minirt->pl_count].coords,
 			-DBL_MAX, DBL_MAX);
-	if (ret)
-		return (1);
+	if (ret != MRT_OK)
+		return (ret);
 	i++;
 	ret = parse_nov(split[i], minirt->plane[minirt->pl_count].threed_nov);
-	if (ret)
-		return (1);
+	if (ret != MRT_OK)
+		return (ret);
 	i++;
 	ret = parse_colours(split[i], minirt->plane[minirt->pl_count].rgb);
 	if (split[i + 1] != NULL)
-		return (1);
+		return (MRT_PARSE_LINE_ERR);
 	minirt->pl_count++;
 	return (ret);
 }
