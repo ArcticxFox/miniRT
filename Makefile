@@ -10,7 +10,9 @@ SRC :=	main.c parsing/program_setup.c parsing/parse_line.c \
 		parsing/cam_parse.c parsing/light_parse.c \
 		parsing/sphere_parse.c parsing/plane_parse.c \
 		parsing/cyl_parse.c \
-	#	print_all.c
+		parsing/number_parsing.c \
+		error_handling/errors.c \
+		print_all.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/, $(SRC))
 
