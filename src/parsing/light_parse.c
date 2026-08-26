@@ -6,11 +6,11 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:01:09 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 14:34:50 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 10:11:20 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parsing.h"
 
 int	light_parse(char **split, t_data *minirt)
 {

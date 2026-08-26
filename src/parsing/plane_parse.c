@@ -6,11 +6,11 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 09:26:56 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 10:11:20 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parsing.h"
 
 static int	parse_nov(char *str, double *NOV)
 {

@@ -6,11 +6,11 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 15:35:08 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 08:38:41 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 10:11:20 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parsing.h"
 
 int	parse_int_array(char **input, int *table, int lower, int upper)
 {

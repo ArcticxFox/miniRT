@@ -6,11 +6,11 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/19 14:27:43 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/08/26 10:11:20 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parsing.h"
 
 //turns all whitespace into spaces to use ft_split
 static void	norm_whitespace(char *line)

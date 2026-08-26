@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "parsing.h"
 
 void	free_all(t_data *minirt)
 {

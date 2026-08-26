@@ -1,5 +1,17 @@
-#ifndef MINIRT_H
-# define MINIRT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
+/*   Updated: 2026/08/26 10:11:31 by dlanehar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -8,28 +20,29 @@
 # include "libft.h"
 # include <limits.h>
 # include <float.h>
+# include <math.h>
 
 typedef struct s_cylinder
 {
 	double	coords[3];
-	double	threed_NOV[3];
+	double	threed_nov[3];
 	double	diameter;
 	double	height;
-	int		RGB[3];
+	int		rgb[3];
 }	t_cylinder;
 
 typedef struct s_plane
 {
 	double	coords[3];
-	double	threed_NOV[3];
-	int		RGB[3];
+	double	threed_nov[3];
+	int		rgb[3];
 }	t_plane;
 
 typedef struct s_sphere
 {
 	double	coords[3];
 	double	diameter;
-	int		RGB[3];
+	int		rgb[3];
 }	t_sphere;
 
 typedef struct s_light
@@ -41,19 +54,19 @@ typedef struct s_light
 typedef struct s_camera
 {
 	double	viewpoint[3];
-	double	threed_NOV[3];
-	double	FOV;
+	double	threed_nov[3];
+	double	fov;
 }	t_camera;
 
 typedef struct s_amb_light
 {
 	double	ratio;
-	int		RGB[3];
+	int		rgb[3];
 }	t_amb_light;
 
 typedef struct s_data
 {
-	t_amb_light ambient_light;
+	t_amb_light	ambient_light;
 	t_camera	camera;
 	t_light		light;
 	t_sphere	*sphere;
@@ -79,14 +92,15 @@ int		program_setup(int ac, char **av, t_data *minirt);
 
 //============== PARSING ==============
 
-int 	parse_line(char *line, t_data *minirt);
+int		parse_line(char *line, t_data *minirt);
 
-// int		check_alpha(char *string);
 char	**split_multi_comma(char *str);
 int		parse_colours(char *str, int *colour_tab);
 int		valid_number(char *str);
 int		valid_float_number(char *str);
-int		parse_float_array(char **input, double *table, double lower, double upper);
+int		parse_float_array(char **input, double *table, double lower,
+			double upper);
+int		parse_int_array(char **input, int *table, int lower, int upper);
 int		parse_coords(char *str, double *table, double lower, double upper);
 void	*ft_realloc(void *ptr, int old_size, int new_size);
 
