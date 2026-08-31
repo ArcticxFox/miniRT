@@ -77,6 +77,10 @@ t_ray	camera_ray(t_camera camera, int x, int y)
 		multiply_scalar(camera.up, viewport_y)
 		)
 	);
+	// add function for rotating the y axis
+	//[ cos(0)   0   sin(0) ]
+	//|    0     1     0    |  x ray.dir
+	//[ -sin(0)  0   cos(0) ]
 	ray.dir = normalize(ray.dir);
 	return (ray);
 }
