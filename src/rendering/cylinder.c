@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:51:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/24 17:14:19 by ejones           ###   ########.fr       */
+/*   Updated: 2026/08/26 15:34:17 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,37 +104,6 @@ bool	check_cylinder_root(t_cy cy, t_ray ray, t_hit *hit, double root, t_vec oc)
 	};
 	return (true);
 }
-
-// bool	hit_cylinder(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax)
-// {
-// 	double	a;
-// 	double	b;
-// 	double	c;
-// 	double	delta;
-// 	double	root;
-// 	t_vec	oc;
-
-// 	oc = sub(ray.origin, cy.center);
-// 	a = dot(ray.dir, ray.dir) - dot(ray.dir, cy.axis_dir) *  dot(ray.dir, cy.axis_dir);
-// 	if (fabs(a) < 1e-8)
-// 		return (false);
-// 	b = dot(ray.dir, oc) - dot(ray.dir, cy.axis_dir) * dot(oc, cy.axis_dir);
-// 	c = dot(oc, oc) - dot(oc, cy.axis_dir) * dot(oc, cy.axis_dir) - cy.r * cy.r;
-// 	delta = b * b - a * c;
-// 	if (delta < 0)
-// 		return (false);
-// 	root = (-b - sqrt(delta)) / a;
-// 	if (root > ray_tmin && root < ray_tmax
-// 		&& check_cylinder_root(cy, ray, hit, root, oc))
-// 		return (true);
-// 	root = (-b + sqrt(delta)) / a;
-// 	if (root > ray_tmin && root < ray_tmax
-// 		&& check_cylinder_root(cy, ray, hit, root, oc))
-// 		return (true);
-// 	if (check_bottom_cap(cy, ray, hit, ray_tmin, ray_tmax))
-// 		return (true);
-// 	return (false);
-// }
 
 bool	get_root(t_cy cy, t_ray ray, bool root_type, double *root)
 {

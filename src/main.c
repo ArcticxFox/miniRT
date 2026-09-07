@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:24:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/24 17:10:25 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/07 19:05:42 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_ray	camera_ray(t_camera camera, int x, int y)
 	viewport_x = (2.0 * (x + 0.5) / 1920.0 - 1.0) * ratio_aspect;
 	viewport_y = 1.0 - 2.0 * (y + 0.5) / 1080.0;
 	ray.origin = camera.origin;
-	ray.dir = add(camera.forward,add(
+	ray.dir = add(camera.forward, add(
 		multiply_scalar(camera.right, viewport_x),
 		multiply_scalar(camera.up, viewport_y)
 		)
@@ -126,6 +126,20 @@ void	render_loop(void *param)
 	mlx->camera.origin.y,
 	mlx->camera.origin.z
 );
+	char	str[15];
+	sprintf(str, "%f", mlx->camera.origin.x);
+	mlx_string_put(mlx->mlx, mlx->win, 5, 5, (mlx_color){ {0, 0, 0, 255} }, "x: ");
+	mlx_string_put(mlx->mlx, mlx->win, 8, 5, (mlx_color){ {0, 0, 0, 255} }, str);
+
+	sprintf(str, "%f", mlx->camera.origin.y);
+	mlx_string_put(mlx->mlx, mlx->win, 5, 7, (mlx_color){ {0, 0, 0, 255} }, "y: ");
+	mlx_string_put(mlx->mlx, mlx->win, 8, 7, (mlx_color){ {0, 0, 0, 255} }, str);
+
+	sprintf(str, "%f", mlx->camera.origin.z);
+	mlx_string_put(mlx->mlx, mlx->win, 5, 9, (mlx_color){ {0, 0, 0, 255} }, "z: ");
+	mlx_string_put(mlx->mlx, mlx->win, 8, 9, (mlx_color){ {0, 0, 0, 255} }, str);
+
+
 	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){ {255, 255, 255, 255} });
 	render_sphere(mlx, mlx->camera);
 	mlx_put_image_to_window(
@@ -152,15 +166,15 @@ int	main(void)
 	mlx.camera.fov = 90.0;
 	mlx.needs_redraw = 1;
 
-	sp.center = (t_vec){0, 2, 5};
+	sp.center = (t_vec){0, 2, -10};
 	sp.r = 1;
 	mlx.sp = sp;
 
 
-	mlx.pl.point_in_py = (t_vec){0, 0, 0};
+	mlx.pl.point_in_py = (t_vec){0, 0, -5};
 
-	mlx.cy.axis_dir = normalize((t_vec){0, 1, 0});
-	mlx.cy.center = (t_vec){3, 4, 0};
+	mlx.cy.axis_dir = normalize((t_vec){-2, 1, 0});
+	mlx.cy.center = (t_vec){6, 2, -15};
 	mlx.cy.r = 2;
 	mlx.cy.h = 10;
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
