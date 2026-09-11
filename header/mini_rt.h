@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/20 15:43:44 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/11 18:27:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include <float.h>
+# include <sys/time.h>
 
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
@@ -27,9 +28,14 @@
 # include "window.h"
 # include "render_utils.h"
 
-# define	WINDOW_WIDTH	800.0;
-# define	WINDOW_HEIGTH	600.0;
+# define	WINDOW_WIDTH	640.0;
+# define	WINDOW_HEIGTH	360.0;
 
-void	render_sphere(mlx_t *mlx, t_camera camera);
+# define	KEY_DOWN		82
+# define	KEY_UP			81
+# define	KEY_LEFT		80
+# define	KEY_RIGHT		79
+
+void	render_scene(mlx_t *mlx, t_camera camera);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/07 19:22:15 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/11 18:56:12 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,41 +34,39 @@ void	y_rotation(mlx_t *mlx)
 	printf("forward x: %f, y: %f, z: %f\n", new_forward.x, new_forward.y, new_forward.z);
 	mlx->camera.right = new_rigt;
 }
-
-void key_hook(int key, void* param)
+void	key_pressed(int key, void* param)
 {
 	mlx_t* mlx = (mlx_t*)param;
 
-	printf("key = %d\n", key);
-	
-	switch(key)
-	{
-		case 19 :
-			y_rotation(mlx);
-		break;
-		case 41 : // ESCAPE
-			mlx_loop_end(mlx->mlx);
-		break;
-		case 79 : // RIGHT KEY
-			mlx->camera.origin = add(mlx->camera.origin, mlx->camera.right);
-			printf("camera x = %f\n", mlx->camera.origin.x);
-		break;
-		case 80 : // LEFT KEY
-			mlx->camera.origin = sub(mlx->camera.origin, mlx->camera.right);
-				printf("camera x = %f\n", mlx->camera.origin.x);
-			break;
-		case 81 : // UP KEY
-			mlx->camera.origin = sub(mlx->camera.origin, mlx->camera.up);
-			printf("camera y = %f\n", mlx->camera.origin.y);
-		break;
-		case 82 : // DOWN KEY
-			mlx->camera.origin = add(mlx->camera.origin, mlx->camera.up);
-			printf("camera y = %f\n", mlx->camera.origin.y);
-		break;
-		default : break;
-	}
-	mlx->needs_redraw = 1;
+	if (key == 41)
+		mlx_loop_end(mlx->mlx);
+	if (key == KEY_RIGHT)
+		mlx->keys.right = true;
+	if (key == KEY_LEFT)
+		mlx->keys.left = true;
+	if (key == KEY_DOWN)
+		mlx->keys.down = true;
+	if (key == KEY_UP)
+		mlx->keys.up = true;
+	mlx->needs_redraw = 0;
 }
+
+void	key_released(int key, void* param)
+{
+	mlx_t* mlx = (mlx_t*)param;
+
+	if (key == KEY_RIGHT)
+		mlx->keys.right = false;
+	if (key == KEY_LEFT)
+		mlx->keys.left = false;
+	if (key == KEY_DOWN)
+		mlx->keys.down = false;
+	if (key == KEY_UP)
+		mlx->keys.up = false;
+	if (key != 40)
+		mlx->needs_redraw = 1;
+}
+
 
 void window_hook(int event, void* param)
 {

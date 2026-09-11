@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/04 18:48:22 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/11 18:11:29 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ typedef	struct	s_hittable_list
 
 }	t_hit_list;
 
+typedef struct s_keys
+{
+	bool	up;
+	bool	down;
+	bool	right;
+	bool	left;
+}	t_keys;
+
+
 typedef struct s_camera
 {
 	t_vec	origin;
@@ -91,16 +100,19 @@ typedef struct s_get_root
 
 typedef struct s_mlx
 {
-	mlx_context	mlx;
-	mlx_window	win;
-	mlx_image	img;
+	mlx_context				mlx;
+	mlx_window				win;
+	mlx_image				img;
+	mlx_window_create_info	info;
 
-	t_camera	camera;
-	t_sphere	sp;
-	t_pl		pl;
-	t_cy		cy;
+	t_camera				camera;
+	t_sphere				sp;
+	t_pl					pl;
+	t_cy					cy;
 
-	int			needs_redraw;
+	t_keys					keys;
+	double					last_time;
+	int						needs_redraw;
 }	mlx_t;
 
 double	dot(t_vec a, t_vec b);

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:24:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/07 19:05:42 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/11 18:53:09 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,53 @@ mlx_color	ray_color(mlx_t *mlx, t_ray ray)
 	});
 }
 
-t_ray	camera_ray(t_camera camera, int x, int y)
+t_ray	camera_ray(mlx_t *mlx, t_camera camera, int x, int y)
 {
 	t_ray	ray;
 	double	viewport_x;
 	double	viewport_y;
 	double	ratio_aspect;
 
-	ratio_aspect = 1920.0 / 1080.0;
-	viewport_x = (2.0 * (x + 0.5) / 1920.0 - 1.0) * ratio_aspect;
-	viewport_y = 1.0 - 2.0 * (y + 0.5) / 1080.0;
+	ratio_aspect = mlx->info.width / mlx->info.height;
+	viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0) * ratio_aspect;
+	viewport_y = 1.0 - 2.0 * (y + 0.5) / mlx->info.height;
 	ray.origin = camera.origin;
 	ray.dir = add(camera.forward, add(
 		multiply_scalar(camera.right, viewport_x),
 		multiply_scalar(camera.up, viewport_y)
 		)
 	);
-	// add function for rotating the y axis
-	//[ cos(0)   0   sin(0) ]
-	//|    0     1     0    |  x ray.dir
-	//[ -sin(0)  0   cos(0) ]
 	ray.dir = normalize(ray.dir);
 	return (ray);
+}
+
+void	render_moving_sphere(mlx_t *mlx, t_camera camera)
+{
+	int			x;
+	int			y;
+	double		viewport_x;
+	double		viewport_y;
+	t_ray		ray;
+	mlx_color	color;
+	
+	y = 0;
+	while (y < mlx->info.height)
+	{
+		x = 0;
+		while (x < mlx->info.width)
+		{
+			viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0) * mlx->info.width / mlx->info.height;
+			viewport_y = 1.0 - 2.0 * (y + 0.5) / mlx->info.height;
+			ray = camera_ray(mlx, camera, x, y);
+			color = ray_color(mlx, ray);
+			mlx_set_image_pixel(mlx->mlx, mlx->img, x++, y, color);
+			mlx_set_image_pixel(mlx->mlx, mlx->img, x++, y, color);
+			mlx_set_image_pixel(mlx->mlx, mlx->img, x++, y, color);
+			mlx_set_image_pixel(mlx->mlx, mlx->img, x++, y, color);
+			x = x + 5;
+		}
+		y = y + 5;
+	}
 }
 
 void	render_sphere(mlx_t *mlx, t_camera camera)
@@ -95,14 +120,14 @@ void	render_sphere(mlx_t *mlx, t_camera camera)
 	mlx_color	color;
 
 	y = 0;
-	while (y < 1080)
+	while (y < mlx->info.height)
 	{
 		x = 0;
-		while (x < 1920)
+		while (x < mlx->info.width)
 		{
-			viewport_x = (2.0 * (x + 0.5) / 1920.0 - 1.0) * 1920 / 1080;
-			viewport_y = 1.0 - 2.0 * (y + 0.5) / 1080.0;
-			ray = camera_ray(camera, x, y);
+			viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0) * mlx->info.width / mlx->info.height;
+			viewport_y = 1.0 - 2.0 * (y + 0.5) / mlx->info.height;
+			ray = camera_ray(mlx, camera, x, y);
 			color = ray_color(mlx, ray);
 			mlx_set_image_pixel(mlx->mlx, mlx->img, x, y, color);
 			x++;
@@ -111,14 +136,47 @@ void	render_sphere(mlx_t *mlx, t_camera camera)
 	}
 }
 
+void	update_camera(mlx_t *mlx, double dt)
+{
+	double	speed;
+
+	speed = 5.0;
+
+	if (mlx->keys.up)
+		mlx->camera.origin = sub(mlx->camera.origin,
+			multiply_scalar(mlx->camera.up, speed * dt));
+	if (mlx->keys.down)
+		mlx->camera.origin = add(mlx->camera.origin,
+			multiply_scalar(mlx->camera.up, speed * dt));
+	if (mlx->keys.right)
+		mlx->camera.origin = add(mlx->camera.origin,
+			multiply_scalar(mlx->camera.right, speed * dt));
+	if (mlx->keys.left)
+		mlx->camera.origin = sub(mlx->camera.origin,
+			multiply_scalar(mlx->camera.right, speed * dt));
+
+
+}
+
+double	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
+}
+
 void	render_loop(void *param)
 {
 	mlx_t	*mlx;
+	double	current_time;
+	double	delta_time;
+
 
 	mlx = (mlx_t *)param;
 
-	if (!mlx->needs_redraw)
-		return ;
+	// if (!mlx->needs_redraw)
+	// 	return ;
 	printf("rendering\n");
 	printf(
 	"render: camera = %f %f %f\n",
@@ -126,22 +184,19 @@ void	render_loop(void *param)
 	mlx->camera.origin.y,
 	mlx->camera.origin.z
 );
-	char	str[15];
-	sprintf(str, "%f", mlx->camera.origin.x);
-	mlx_string_put(mlx->mlx, mlx->win, 5, 5, (mlx_color){ {0, 0, 0, 255} }, "x: ");
-	mlx_string_put(mlx->mlx, mlx->win, 8, 5, (mlx_color){ {0, 0, 0, 255} }, str);
-
-	sprintf(str, "%f", mlx->camera.origin.y);
-	mlx_string_put(mlx->mlx, mlx->win, 5, 7, (mlx_color){ {0, 0, 0, 255} }, "y: ");
-	mlx_string_put(mlx->mlx, mlx->win, 8, 7, (mlx_color){ {0, 0, 0, 255} }, str);
-
-	sprintf(str, "%f", mlx->camera.origin.z);
-	mlx_string_put(mlx->mlx, mlx->win, 5, 9, (mlx_color){ {0, 0, 0, 255} }, "z: ");
-	mlx_string_put(mlx->mlx, mlx->win, 8, 9, (mlx_color){ {0, 0, 0, 255} }, str);
-
-
 	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){ {255, 255, 255, 255} });
-	render_sphere(mlx, mlx->camera);
+
+	current_time = get_time();
+	delta_time = current_time - mlx->last_time;
+	mlx->last_time = current_time;
+
+	update_camera(mlx, delta_time);
+
+	if (!mlx->needs_redraw)
+		render_moving_sphere(mlx, mlx->camera);
+	else
+		render_sphere(mlx, mlx->camera);
+
 	mlx_put_image_to_window(
 		mlx->mlx,
 		mlx->win,
@@ -155,10 +210,9 @@ void	render_loop(void *param)
 int	main(void)
 {
 	mlx_t		mlx;
-	mlx_window_create_info info;
 	t_sphere	sp;
 
-	init_window(&mlx, &info);
+	init_window(&mlx);
 	mlx.camera.origin = (t_vec){0, 2, 10};
 	mlx.camera.forward = (t_vec){0, 0, -1};
 	mlx.camera.right = (t_vec){1, 0, 0};
