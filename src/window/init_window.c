@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:44:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/11 18:43:12 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/15 16:57:35 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ void	init_window(mlx_t *mlx)
 	info.is_resizable = true;
 
 	mlx->info = info;
+	mlx->needs_redraw = 1;
 	mlx->win = mlx_new_window(mlx->mlx, &info);
 
-	mlx->needs_redraw = 1;
+	mlx->keys.up = false;
+	mlx->keys.down = false;
+	mlx->keys.left = false;
+	mlx->keys.right = false;
 
 	mlx->img = mlx_new_image(mlx->mlx, info.width, info.height);
 	mlx->last_time = get_time();

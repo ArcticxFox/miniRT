@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/11 18:56:12 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/15 18:10:29 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,18 @@ void	key_pressed(int key, void* param)
 		mlx->keys.down = true;
 	if (key == KEY_UP)
 		mlx->keys.up = true;
-	mlx->needs_redraw = 0;
+	if (key != 40 && (key == KEY_RIGHT || key == KEY_LEFT
+		|| key == KEY_DOWN || key == KEY_UP))
+		mlx->needs_redraw = 0;
 }
 
 void	key_released(int key, void* param)
 {
 	mlx_t* mlx = (mlx_t*)param;
 
+	printf("key == %d\n\n", key);
+	if (key != 40)
+		mlx->needs_redraw = 1;
 	if (key == KEY_RIGHT)
 		mlx->keys.right = false;
 	if (key == KEY_LEFT)
@@ -63,12 +68,10 @@ void	key_released(int key, void* param)
 		mlx->keys.down = false;
 	if (key == KEY_UP)
 		mlx->keys.up = false;
-	if (key != 40)
-		mlx->needs_redraw = 1;
 }
 
 
-void window_hook(int event, void* param)
+void	window_hook(int event, void* param)
 {
 	if(event == 0)
 		mlx_loop_end(((mlx_t*)param)->mlx);
