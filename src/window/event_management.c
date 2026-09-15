@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 18:10:29 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/15 19:33:51 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,15 @@ void	key_pressed(int key, void* param)
 		mlx->keys.down = true;
 	if (key == KEY_UP)
 		mlx->keys.up = true;
+	if (key == 5)
+		mlx->keys.wheel_forwards = true;
+	if (key == 9)
+		mlx->keys.wheel_backwards = true;
 	if (key != 40 && (key == KEY_RIGHT || key == KEY_LEFT
-		|| key == KEY_DOWN || key == KEY_UP))
+		|| key == KEY_DOWN || key == KEY_UP || key == 5 || key == 9))
 		mlx->needs_redraw = 0;
 }
-
+//b == 5 f == 9
 void	key_released(int key, void* param)
 {
 	mlx_t* mlx = (mlx_t*)param;
@@ -68,8 +72,20 @@ void	key_released(int key, void* param)
 		mlx->keys.down = false;
 	if (key == KEY_UP)
 		mlx->keys.up = false;
+	if (key == 5)
+		mlx->keys.wheel_forwards = false;
+	if (key == 9)
+		mlx->keys.wheel_backwards = false;
 }
 
+void	mouse_wheel(int wheel, void *param)
+{
+	mlx_t* mlx = (mlx_t*)param;
+	(void)mlx;
+	printf("wheel move == %d\n", wheel);
+	if (wheel == 2)
+		mlx->keys.wheel_backwards = true;
+}
 
 void	window_hook(int event, void* param)
 {

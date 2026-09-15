@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:24:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 18:02:32 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/15 19:35:52 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@ int	main(void)
 
 	init_window(&mlx);
 	mlx.camera.origin = (t_vec){0, 2, 10};
-	mlx.camera.forward = (t_vec){0, 0, -1};
+	mlx.camera.forward = (t_vec){0, 0, 1};
 	mlx.camera.right = (t_vec){1, 0, 0};
 	mlx.camera.up = (t_vec){0, 1, 0};
 	mlx.camera.fov = 90.0;
 	mlx.needs_redraw = 1;
 
-	sp.center = (t_vec){0, 2, -10};
+	sp.center = (t_vec){0, 2, 10};
 	sp.r = 1;
 	mlx.sp = sp;
 
 
-	mlx.pl.point_in_py = (t_vec){0, 0, -5};
+	mlx.pl.point_in_py = (t_vec){0, 0, 5};
 
 	mlx.cy.axis_dir = normalize((t_vec){-2, 1, 0});
-	mlx.cy.center = (t_vec){6, 2, -15};
+	mlx.cy.center = (t_vec){6, 2, 15};
 	mlx.cy.r = 2;
 	mlx.cy.h = 10;
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);

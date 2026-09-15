@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/11 18:11:29 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/15 19:26:58 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_keys
 	bool	down;
 	bool	right;
 	bool	left;
+	bool	wheel_backwards;
+	bool	wheel_forwards;
 }	t_keys;
 
 

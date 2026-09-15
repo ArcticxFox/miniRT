@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 18:09:17 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/15 19:39:26 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	update_camera(mlx_t *mlx, double dt)
 {
 	double	speed;
 
-	speed = 5.0;
+	speed = 6.0;
 
 	if (mlx->keys.up)
 		mlx->camera.origin = sub(mlx->camera.origin,
@@ -113,4 +113,10 @@ void	update_camera(mlx_t *mlx, double dt)
 	if (mlx->keys.left)
 		mlx->camera.origin = sub(mlx->camera.origin,
 			multiply_scalar(mlx->camera.right, speed * dt));
+	if (mlx->keys.wheel_forwards)
+		mlx->camera.origin = sub(mlx->camera.origin,
+			multiply_scalar(mlx->camera.forward, speed * dt));
+	if (mlx->keys.wheel_backwards)
+		mlx->camera.origin = add(mlx->camera.origin,
+			multiply_scalar(mlx->camera.forward, speed * dt));
 }
