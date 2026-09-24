@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/11 18:27:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/21 15:42:59 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
 
-# include "struct.h"
+# include "arithmetics.h"
+# include "scene.h"
 # include "window.h"
 # include "render_utils.h"
 

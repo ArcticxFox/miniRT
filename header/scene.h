@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 19:26:58 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:12:35 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef SCENE_H
+# define SCENE_H
 
 # include "mini_rt.h"
 
 # define HEIGHT 60
 # define WIDTH 148
 
-typedef struct s_vec
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_vec;
+//=================================objects====================================//
 
-typedef struct s_ray
-{
-	t_vec	origin;
-	t_vec	dir;
-}	t_ray;
-
-typedef struct s_sphere
+typedef struct	s_sphere
 {
 	t_vec	center;
 	double	r;
 }	t_sphere;
 
-typedef struct s_plane
+typedef struct	s_plane
 {
 	t_vec	point_in_py;
 }	t_pl;
@@ -51,38 +40,13 @@ typedef struct s_cylinder
 	double	r;
 }	t_cy;
 
-typedef struct s_hit
+typedef struct	s_hit
 {
 	double		t;
 	t_vec		point;
 	t_vec		normal;
 	mlx_color	color;
 }	t_hit;
-
-typedef	struct	s_hittable_list
-{
-
-}	t_hit_list;
-
-typedef struct s_keys
-{
-	bool	up;
-	bool	down;
-	bool	right;
-	bool	left;
-	bool	wheel_backwards;
-	bool	wheel_forwards;
-}	t_keys;
-
-
-typedef struct s_camera
-{
-	t_vec	origin;
-	t_vec	forward;
-	t_vec	right;
-	t_vec	up;
-	double	fov;
-}	t_camera;
 
 typedef struct	s_objects
 {
@@ -91,16 +55,36 @@ typedef struct	s_objects
 	t_cy		cy;
 }	t_objects;
 
-typedef struct s_get_root
+typedef struct	s_mouse_pos
 {
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-}	t_get_root;
+	int	x;
+	int	y;
+}	t_mouse_pos;
 
+//============================================================================//
 
-typedef struct s_mlx
+typedef struct	s_keys
+{
+	bool	up;
+	bool	down;
+	bool	right;
+	bool	left;
+	bool	backwards;
+	bool	forwards;
+	bool	left_click;
+	bool	right_click;
+}	t_keys;
+
+typedef struct	s_camera
+{
+	t_vec	origin;
+	t_vec	forward;
+	t_vec	right;
+	t_vec	up;
+	double	fov;
+}	t_camera;
+
+typedef struct	s_mlx
 {
 	mlx_context				mlx;
 	mlx_window				win;
@@ -112,19 +96,10 @@ typedef struct s_mlx
 	t_pl					pl;
 	t_cy					cy;
 
+	t_mouse_pos				prev_mouse_pos;
 	t_keys					keys;
 	double					last_time;
 	int						needs_redraw;
 }	mlx_t;
-
-double	dot(t_vec a, t_vec b);
-t_vec	add(t_vec a, t_vec b);
-t_vec	sub(t_vec a, t_vec b);
-t_vec	mult(t_vec a, t_vec b);
-t_vec	multiply_scalar(t_vec vec1, double t);
-t_vec	normalize(t_vec v);
-double	vec_lenght(t_vec vec);
-t_vec	ray_at(t_ray ray, double t);
-
 
 #endif

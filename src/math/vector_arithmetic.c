@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:11:37 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/17 19:38:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/17 17:42:00 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ t_vec multiply_scalar(t_vec vec1, double t)
 	return (vec1);
 }
 
+t_vec	cross(t_vec a, t_vec b)
+{
+	t_vec	res;
+
+	res.x = a.y * b.z - a.z * b.y;
+	res.y = a.z * b.x - a.x * b.z;
+	res.x = a.x * b.y - a.y * b.x;
+	return (res);
+}
+
 t_vec normalize(t_vec v)
 {
 	double length;
@@ -74,7 +84,6 @@ t_vec	ray_at(t_ray ray, double t)
 	result.x = ray.origin.x + t * ray.dir.x;
 	result.y = ray.origin.y + t * ray.dir.y;
 	result.z = ray.origin.z + t * ray.dir.z;
-
 	return (result);
 }
 

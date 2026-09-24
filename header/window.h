@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:51:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 19:15:01 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/21 16:17:52 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	key_hook(int key, void* param);
 void	key_pressed(int key, void* param);
 void	key_released(int key, void* param);
 //tmp
-void	mouse_wheel(int wheel, void *param);
-
+void	mouse_down(int wheel, void *param);
+void	mouse_up(int wheel, void *param);
 //move somewhere else maybe
 double	get_time(void);
 

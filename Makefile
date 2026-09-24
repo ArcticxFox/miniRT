@@ -6,7 +6,7 @@
 #    By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/31 14:11:32 by ejones            #+#    #+#              #
-#    Updated: 2026/09/15 18:09:50 by ejones           ###   ########.fr        #
+#    Updated: 2026/09/21 17:32:03 by ejones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ INC_DIR := header
 SRC := \
 	main.c \
 	math/vector_arithmetic.c \
+	math/quaternions.c \
 	window/init_window.c \
 	window/event_management.c \
 	rendering/sphere.c \

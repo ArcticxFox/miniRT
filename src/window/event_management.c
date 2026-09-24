@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 19:33:51 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:46:17 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	key_pressed(int key, void* param)
 	if (key == KEY_UP)
 		mlx->keys.up = true;
 	if (key == 5)
-		mlx->keys.wheel_forwards = true;
+		mlx->keys.forwards = true;
 	if (key == 9)
-		mlx->keys.wheel_backwards = true;
+		mlx->keys.backwards = true;
 	if (key != 40 && (key == KEY_RIGHT || key == KEY_LEFT
 		|| key == KEY_DOWN || key == KEY_UP || key == 5 || key == 9))
 		mlx->needs_redraw = 0;
@@ -73,18 +73,37 @@ void	key_released(int key, void* param)
 	if (key == KEY_UP)
 		mlx->keys.up = false;
 	if (key == 5)
-		mlx->keys.wheel_forwards = false;
+		mlx->keys.forwards = false;
 	if (key == 9)
-		mlx->keys.wheel_backwards = false;
+		mlx->keys.backwards = false;
 }
 
-void	mouse_wheel(int wheel, void *param)
+void	mouse_down(int click, void *param)
 {
 	mlx_t* mlx = (mlx_t*)param;
 	(void)mlx;
-	printf("wheel move == %d\n", wheel);
-	if (wheel == 2)
-		mlx->keys.wheel_backwards = true;
+	printf("wheel move == %d\n", click);
+	if (click == 1)
+	{
+		mlx->keys.left_click = true;
+		mlx_mouse_get_pos(mlx->mlx,
+			&mlx->prev_mouse_pos.x, &mlx->prev_mouse_pos.y);
+		mlx->needs_redraw = 0;
+	}
+	if (click == 3)
+		mlx->keys.right_click = true;
+}
+
+void	mouse_up(int click, void *param)
+{
+	mlx_t* mlx = (mlx_t*)param;
+	(void)mlx;
+	printf("wheel move == %d\n", click);
+	if (click == 1)
+		mlx->keys.left_click = false;
+	if (click == 3)
+		mlx->keys.right_click = false;
+	mlx->needs_redraw = 1;
 }
 
 void	window_hook(int event, void* param)

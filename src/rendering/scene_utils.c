@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/15 19:39:26 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/24 14:46:01 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,11 @@ t_ray	camera_ray(mlx_t *mlx, t_camera camera, int x, int y)
 	return (ray);
 }
 
-void	update_camera(mlx_t *mlx, double dt)
+void	movement(mlx_t *mlx, double dt)
 {
 	double	speed;
 
 	speed = 6.0;
-
 	if (mlx->keys.up)
 		mlx->camera.origin = sub(mlx->camera.origin,
 			multiply_scalar(mlx->camera.up, speed * dt));
@@ -113,10 +112,81 @@ void	update_camera(mlx_t *mlx, double dt)
 	if (mlx->keys.left)
 		mlx->camera.origin = sub(mlx->camera.origin,
 			multiply_scalar(mlx->camera.right, speed * dt));
-	if (mlx->keys.wheel_forwards)
+	if (mlx->keys.forwards)
 		mlx->camera.origin = sub(mlx->camera.origin,
 			multiply_scalar(mlx->camera.forward, speed * dt));
-	if (mlx->keys.wheel_backwards)
+	if (mlx->keys.backwards)
 		mlx->camera.origin = add(mlx->camera.origin,
 			multiply_scalar(mlx->camera.forward, speed * dt));
+}
+
+// void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
+// {
+// 	double	sensitivity;
+// 	double	yaw;
+// 	double	pitch;
+// 	t_quat	q_yaw;
+// 	t_quat	q_pitch;
+
+// 	sensitivity = 0.002;
+
+// 	yaw = dx * sensitivity;
+// 	pitch = dy * sensitivity;
+
+// 	q_yaw = quat_from_axis_angle(
+// 		mlx->camera.up,
+// 		yaw
+// 	);
+// 	mlx->camera.forward =
+// 		quat_rotate_vec(q_yaw, mlx->camera.forward);
+// 	mlx->camera.right =
+// 		quat_rotate_vec(q_yaw, mlx->camera.right);
+// 	q_pitch = quat_from_axis_angle(
+// 		mlx->camera.right,
+// 		pitch
+// 	);
+// 	mlx->camera.forward =
+// 		quat_rotate_vec(q_pitch, mlx->camera.forward);
+// 	mlx->camera.up =
+// 		quat_rotate_vec(q_pitch, mlx->camera.up);
+
+// 	//=============DEBUG====================//
+// 	mlx->camera.forward = normalize(mlx->camera.forward);
+// 	mlx->camera.right = normalize(mlx->camera.right);
+// 	mlx->camera.up = normalize(mlx->camera.up);
+// 	printf("forward length: %f\n", vec_lenght(mlx->camera.forward));
+// 	printf("right length: %f\n", vec_lenght(mlx->camera.right));
+// 	printf("up length: %f\n", vec_lenght(mlx->camera.up));
+// 	printf("F.R = %f\n",
+// 	dot(mlx->camera.forward, mlx->camera.right));
+// printf("F.U = %f\n",
+// 	dot(mlx->camera.forward, mlx->camera.up));
+// printf("R.U = %f\n",
+// 	dot(mlx->camera.right, mlx->camera.up));
+// }
+
+// void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
+// {
+// 	int	dx;
+// 	int	dy;
+
+// 	if(mlx->keys.left_click)
+// 	{
+// 		dx = mouse_x - mlx->prev_mouse_pos.x;
+// 		dy = mouse_y - mlx->prev_mouse_pos.y;
+// 		camera_mouse_rotate(mlx, dx, dy);
+// 		mlx->prev_mouse_pos.x = mouse_x;
+// 		mlx->prev_mouse_pos.y = mouse_y;
+// 	}
+
+// }
+
+void	update_camera(mlx_t *mlx, double dt)
+{
+	int	mouse_x;
+	int	mouse_y;
+
+	mlx_mouse_get_pos(mlx->mlx, &mouse_x, &mouse_y);
+	movement(mlx, dt);
+	// rotations(mlx, mouse_x, mouse_y);
 }
