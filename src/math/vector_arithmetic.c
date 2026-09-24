@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:11:37 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/17 17:42:00 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/24 17:15:35 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_vec	cross(t_vec a, t_vec b)
 
 	res.x = a.y * b.z - a.z * b.y;
 	res.y = a.z * b.x - a.x * b.z;
-	res.x = a.x * b.y - a.y * b.x;
+	res.z = a.x * b.y - a.y * b.x;
 	return (res);
 }
 
