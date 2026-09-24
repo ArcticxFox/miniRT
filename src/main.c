@@ -1,4 +1,5 @@
 #include "parsing.h"
+#include "parerrors.h"
 
 void	free_all(t_data *minirt)
 {
@@ -14,9 +15,10 @@ int	main(int ac, char **av)
 {
 	t_data	minirt;
 
-	if (program_setup(ac, av, &minirt))
+	if (program_setup(ac, av, &minirt) != MRT_OK)
 	{
 		printf("shitfucked\n");
+		free_all(&minirt);
 		return (1);
 	}
 	printf("%s is a good name!\n", av[1]);
