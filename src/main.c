@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/25 15:53:21 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/25 16:03:47 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,27 @@ double	get_time(void)
 	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
 }
 
+void	add_radius(t_data *scene)
+{
+	int	i;
+
+	i = 0;
+	while(i < scene->sph_count)
+	{
+		scene->sphere[i].r = scene->sphere[i].d / 2;
+		++i;
+	}
+	i = 0;
+	while(i < scene->cyl_count)
+	{
+		scene->cylinder[i].r = scene->cylinder[i].d / 2;
+		++i;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	mlx_t	mlx;
-
 
 	if (program_setup(ac, av, &mlx.scene) != MRT_OK)
 	{
@@ -43,6 +60,7 @@ int	main(int ac, char **av)
 	print_everything(&mlx.scene);
 	mlx.scene.cylinder[0].r = mlx.scene.cylinder[0].d / 2;
 	mlx.scene.sphere[0].r = mlx.scene.sphere[0].d / 2;
+	add_radius(&mlx.scene);
 	init_window(&mlx);
 
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
