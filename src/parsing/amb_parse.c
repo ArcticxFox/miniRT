@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:35:17 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:53:22 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/24 17:05:33 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_errors	amb_parse(char **split, t_data *minirt)
 	if (minirt->ambient_light.ratio < 0 || minirt->ambient_light.ratio > 1)
 		return (MRT_BAD_LIGHT_RATIO);
 	i++;
-	ret = parse_colours(split[i], minirt->ambient_light.rgb);
+	ret = parse_colours(split[i], &minirt->ambient_light.rgb);
 	if (ret == MRT_OUT_OF_BOUNDS)
 		ret = MRT_BAD_COLOUR;
 	if (split[i + 1] != NULL)

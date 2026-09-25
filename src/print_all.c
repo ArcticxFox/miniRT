@@ -13,15 +13,15 @@ void	print_spheres(t_data *minirt)
 	{
 		printf("\nSphere %d\n", i);
 		printf("  Coordinates: %.6f, %.6f, %.6f\n",
-			minirt->sphere[i].coords[0],
-			minirt->sphere[i].coords[1],
-			minirt->sphere[i].coords[2]);
+			minirt->sphere[i].center.x,
+			minirt->sphere[i].center.y,
+			minirt->sphere[i].center.z);
 		printf("  Diameter: %.6f\n",
-			minirt->sphere[i].diameter);
+			minirt->sphere[i].d);
 		printf("  rgb: %d, %d, %d\n",
-			minirt->sphere[i].rgb[0],
-			minirt->sphere[i].rgb[1],
-			minirt->sphere[i].rgb[2]);
+			minirt->sphere[i].rgb.r,
+			minirt->sphere[i].rgb.g,
+			minirt->sphere[i].rgb.b);
 		i++;
 	}
 }
@@ -39,17 +39,17 @@ void	print_planes(t_data *minirt)
 	{
 		printf("\nPlane %d\n", i);
 		printf("  Coordinates: %.6f, %.6f, %.6f\n",
-			minirt->plane[i].coords[0],
-			minirt->plane[i].coords[1],
-			minirt->plane[i].coords[2]);
+			minirt->plane[i].point_in_py.x,
+			minirt->plane[i].point_in_py.y,
+			minirt->plane[i].point_in_py.z);
 		printf("  Normal: %.6f, %.6f, %.6f\n",
-			minirt->plane[i].threed_nov[0],
-			minirt->plane[i].threed_nov[1],
-			minirt->plane[i].threed_nov[2]);
+			minirt->plane[i].direction.x,
+			minirt->plane[i].direction.y,
+			minirt->plane[i].direction.z);
 		printf("  rgb: %d, %d, %d\n",
-			minirt->plane[i].rgb[0],
-			minirt->plane[i].rgb[1],
-			minirt->plane[i].rgb[2]);
+			minirt->plane[i].rgb.r,
+			minirt->plane[i].rgb.g,
+			minirt->plane[i].rgb.b);
 		i++;
 	}
 }
@@ -67,21 +67,21 @@ void	print_cylinders(t_data *minirt)
 	{
 		printf("\nCylinder %d\n", i);
 		printf("  Coordinates: %.6f, %.6f, %.6f\n",
-			minirt->cylinder[i].coords[0],
-			minirt->cylinder[i].coords[1],
-			minirt->cylinder[i].coords[2]);
+			minirt->cylinder[i].center.x,
+			minirt->cylinder[i].center.y,
+			minirt->cylinder[i].center.z);
 		printf("  Normal: %.6f, %.6f, %.6f\n",
-			minirt->cylinder[i].threed_nov[0],
-			minirt->cylinder[i].threed_nov[1],
-			minirt->cylinder[i].threed_nov[2]);
+			minirt->cylinder[i].axis_dir.x,
+			minirt->cylinder[i].axis_dir.y,
+			minirt->cylinder[i].axis_dir.z);
 		printf("  Diameter: %.6f\n",
-			minirt->cylinder[i].diameter);
+			minirt->cylinder[i].d);
 		printf("  Height: %.6f\n",
-			minirt->cylinder[i].height);
+			minirt->cylinder[i].h);
 		printf("  rgb: %d, %d, %d\n",
-			minirt->cylinder[i].rgb[0],
-			minirt->cylinder[i].rgb[1],
-			minirt->cylinder[i].rgb[2]);
+			minirt->cylinder[i].rgb.r,
+			minirt->cylinder[i].rgb.g,
+			minirt->cylinder[i].rgb.b);
 		i++;
 	}
 }
@@ -90,9 +90,9 @@ void	print_light(t_data *minirt)
 {
 	printf("\n========== LIGHT ==========\n");
 	printf("Position: %.6f, %.6f, %.6f\n",
-		minirt->light.lightpoint[0],
-		minirt->light.lightpoint[1],
-		minirt->light.lightpoint[2]);
+		minirt->light.lightpoint.x,
+		minirt->light.lightpoint.y,
+		minirt->light.lightpoint.z);
 	printf("Brightness: %.6f\n",
 		minirt->light.brightness);
 }
@@ -101,13 +101,13 @@ void	print_camera(t_data *minirt)
 {
 	printf("\n========== CAMERA ==========\n");
 	printf("Viewpoint: %.6f, %.6f, %.6f\n",
-		minirt->camera.viewpoint[0],
-		minirt->camera.viewpoint[1],
-		minirt->camera.viewpoint[2]);
+		minirt->camera.origin.x,
+		minirt->camera.origin.y,
+		minirt->camera.origin.z);
 	printf("Normal: %.6f, %.6f, %.6f\n",
-		minirt->camera.threed_nov[0],
-		minirt->camera.threed_nov[1],
-		minirt->camera.threed_nov[2]);
+		minirt->camera.threed_nov.x,
+		minirt->camera.threed_nov.y,
+		minirt->camera.threed_nov.z);
 	printf("fov: %.6f\n",
 		minirt->camera.fov);
 }
@@ -118,9 +118,9 @@ void	print_ambient_light(t_data *minirt)
 	printf("Ratio: %.6f\n",
 		minirt->ambient_light.ratio);
 	printf("rgb: %d, %d, %d\n",
-		minirt->ambient_light.rgb[0],
-		minirt->ambient_light.rgb[1],
-		minirt->ambient_light.rgb[2]);
+		minirt->ambient_light.rgb.r,
+		minirt->ambient_light.rgb.g,
+		minirt->ambient_light.rgb.b);
 }
 
 void	print_everything(t_data *minirt)

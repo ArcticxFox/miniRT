@@ -9,13 +9,13 @@ void	render_loop(void *param)
 	printf("rendering\n");
 	printf(
 	"render: camera = %f %f %f\n",
-	mlx->camera.origin.x,
-	mlx->camera.origin.y,
-	mlx->camera.origin.z
+	mlx->scene.camera.origin.x,
+	mlx->scene.camera.origin.y,
+	mlx->scene.camera.origin.z
 );
 	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){ {255, 255, 255, 255} });
 
-	render_scene(mlx, mlx->camera);
+	render_scene(mlx, mlx->scene.camera);
 
 	mlx_put_image_to_window(
 		mlx->mlx,
@@ -28,16 +28,16 @@ void	render_loop(void *param)
 	char	str[15];
 	mlx_set_font(mlx->mlx, "default");
 	mlx_set_font_scale(mlx->mlx, "default", 12.f);
-	sprintf(str, "%.4f", mlx->camera.origin.x);
+	sprintf(str, "%.4f", mlx->scene.camera.origin.x);
 	mlx_string_put(mlx->mlx, mlx->win, 20, 20, (mlx_color){ .rgba = 0x0020FFFF }, "x:");
 	mlx_string_put(mlx->mlx, mlx->win, 50, 20, (mlx_color){ .rgba = 0x0020FFFF }, str);
 
-	sprintf(str, "%.4f", mlx->camera.origin.y);
+	sprintf(str, "%.4f", mlx->scene.camera.origin.y);
 	printf("\n\nhello str == %s\n\n", str);
 	mlx_string_put(mlx->mlx, mlx->win, 20, 40, (mlx_color){ .rgba = 0x0020FFFF }, "y:");
 	mlx_string_put(mlx->mlx, mlx->win, 50, 40, (mlx_color){ .rgba = 0x0020FFFF }, str);
 
-	sprintf(str, "%.4f", mlx->camera.origin.z);
+	sprintf(str, "%.4f", mlx->scene.camera.origin.z);
 	mlx_string_put(mlx->mlx, mlx->win, 20, 60, (mlx_color){ .rgba = 0x0020FFFF }, "z:");
 	mlx_string_put(mlx->mlx, mlx->win, 50, 60, (mlx_color){ .rgba = 0x0020FFFF }, str);
 

@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:01:09 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:55:27 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/24 17:06:52 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_errors	light_parse(char **split, t_data *minirt)
 	int	ret;
 
 	i = 0;
-	ret = parse_coords(split[i], minirt->light.lightpoint, -DBL_MAX, DBL_MAX);
+	ret = parse_coords(split[i], &minirt->light.lightpoint, -DBL_MAX, DBL_MAX);
 	if (ret != MRT_OK)
 		return (ret);
 	i++;

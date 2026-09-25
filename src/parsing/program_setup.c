@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:50:11 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/24 17:52:17 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ t_errors	data_init(t_data *minirt)
 		return (MRT_MALLOC);
 	minirt->pl_cap = 4;
 	minirt->pl_count = 0;
-	minirt->plane = ft_calloc(minirt->pl_cap, sizeof(t_plane));
+	minirt->plane = ft_calloc(minirt->pl_cap, sizeof(t_pl));
 	if (!minirt->plane)
 		return (MRT_MALLOC);
 	minirt->cyl_cap = 4;
 	minirt->cyl_count = 0;
-	minirt->cylinder = ft_calloc(minirt->cyl_cap, sizeof(t_cylinder));
+	minirt->cylinder = ft_calloc(minirt->cyl_cap, sizeof(t_cy));
 	if (!minirt->cylinder)
 		return (MRT_MALLOC);
 	return (MRT_OK);
@@ -115,7 +115,6 @@ t_errors	program_setup(int ac, char **av, t_data *minirt)
 	err = load_scene_info(av[1], minirt);
 	if (err != MRT_OK)
 	{
-		printf("here");
 		print_error(err);
 		return (err);
 	}

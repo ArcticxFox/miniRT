@@ -6,13 +6,13 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 13:02:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:55:27 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/24 17:52:48 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static t_errors	parse_nov(char *str, double *NOV)
+static t_errors	parse_nov(char *str, t_vec *NOV)
 {
 	t_errors		ret;
 
@@ -26,24 +26,24 @@ t_errors	parse_cyl_data(char **split, t_data *minirt)
 	t_errors	ret;
 
 	i = 0;
-	ret = parse_coords(split[i], minirt->cylinder[minirt->cyl_count].coords,
+	ret = parse_coords(split[i], &minirt->cylinder[minirt->cyl_count].center,
 			-DBL_MAX, DBL_MAX);
 	if (ret != MRT_OK)
 		return (ret);
 	i++;
-	ret = parse_nov(split[i], minirt->cylinder[minirt->cyl_count].threed_nov);
+	ret = parse_nov(split[i], &minirt->cylinder[minirt->cyl_count].axis_dir);
 	if (ret != MRT_OK)
 		return (ret);
 	i++;
 	if (!valid_float_number(split[i]))
 		return (MRT_INVALID_NUM);
-	minirt->cylinder[minirt->cyl_count].diameter = ft_atof(split[i]);
+	minirt->cylinder[minirt->cyl_count].d = ft_atof(split[i]);
 	i++;
 	if (!valid_float_number(split[i]))
 		return (MRT_INVALID_NUM);
-	minirt->cylinder[minirt->cyl_count].height = ft_atof(split[i]);
+	minirt->cylinder[minirt->cyl_count].h = ft_atof(split[i]);
 	i++;
-	ret = parse_colours(split[i], minirt->cylinder[minirt->cyl_count].rgb);
+	ret = parse_colours(split[i], &minirt->cylinder[minirt->cyl_count].rgb);
 	if (split[i + 1] != NULL)
 		return (MRT_PARSE_LINE_ERR);
 	return (MRT_OK);

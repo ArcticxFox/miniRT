@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/24 14:46:01 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/25 14:40:45 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
 
 	hit_anything = false;
 	closest_so_far = DBL_MAX;
-	if (hit_sphere(mlx->sp, ray, &hit_tmp, 0.001f, closest_so_far))
+	if (hit_sphere(mlx->scene.sphere[0], ray, &hit_tmp, 0.001f, closest_so_far))
 	{
 		hit_anything = true;
 		closest_so_far = hit_tmp.t;
 		*hit = hit_tmp;
 	}
-	if (hit_cylinder(mlx->cy, ray, &hit_tmp, 0.001f, closest_so_far))
+	if (hit_cylinder(mlx->scene.cylinder[0], ray, &hit_tmp, 0.001f, closest_so_far))
 	{
 		hit_anything = true;
 		closest_so_far = hit_tmp.t;
 		*hit = hit_tmp;
 	}
-	if (hit_plane(mlx->pl, ray, &hit_tmp, 0.001f, closest_so_far))
+	if (hit_plane(mlx->scene.plane[0], ray, &hit_tmp, 0.001f, closest_so_far))
 	{
 		hit_anything = true;
 		closest_so_far = hit_tmp.t;
@@ -101,23 +101,23 @@ void	movement(mlx_t *mlx, double dt)
 
 	speed = 6.0;
 	if (mlx->keys.up)
-		mlx->camera.origin = sub(mlx->camera.origin,
-			multiply_scalar(mlx->camera.up, speed * dt));
+		mlx->scene.camera.origin = sub(mlx->scene.camera.origin,
+			multiply_scalar(mlx->scene.camera.up, speed * dt));
 	if (mlx->keys.down)
-		mlx->camera.origin = add(mlx->camera.origin,
-			multiply_scalar(mlx->camera.up, speed * dt));
+		mlx->scene.camera.origin = add(mlx->scene.camera.origin,
+			multiply_scalar(mlx->scene.camera.up, speed * dt));
 	if (mlx->keys.right)
-		mlx->camera.origin = add(mlx->camera.origin,
-			multiply_scalar(mlx->camera.right, speed * dt));
+		mlx->scene.camera.origin = add(mlx->scene.camera.origin,
+			multiply_scalar(mlx->scene.camera.right, speed * dt));
 	if (mlx->keys.left)
-		mlx->camera.origin = sub(mlx->camera.origin,
-			multiply_scalar(mlx->camera.right, speed * dt));
+		mlx->scene.camera.origin = sub(mlx->scene.camera.origin,
+			multiply_scalar(mlx->scene.camera.right, speed * dt));
 	if (mlx->keys.forwards)
-		mlx->camera.origin = sub(mlx->camera.origin,
-			multiply_scalar(mlx->camera.forward, speed * dt));
+		mlx->scene.camera.origin = sub(mlx->scene.camera.origin,
+			multiply_scalar(mlx->scene.camera.forward, speed * dt));
 	if (mlx->keys.backwards)
-		mlx->camera.origin = add(mlx->camera.origin,
-			multiply_scalar(mlx->camera.forward, speed * dt));
+		mlx->scene.camera.origin = add(mlx->scene.camera.origin,
+			multiply_scalar(mlx->scene.camera.forward, speed * dt));
 }
 
 // void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
@@ -134,35 +134,35 @@ void	movement(mlx_t *mlx, double dt)
 // 	pitch = dy * sensitivity;
 
 // 	q_yaw = quat_from_axis_angle(
-// 		mlx->camera.up,
+// 		mlx->scene.camera.up,
 // 		yaw
 // 	);
-// 	mlx->camera.forward =
-// 		quat_rotate_vec(q_yaw, mlx->camera.forward);
-// 	mlx->camera.right =
-// 		quat_rotate_vec(q_yaw, mlx->camera.right);
+// 	mlx->scene.camera.forward =
+// 		quat_rotate_vec(q_yaw, mlx->scene.camera.forward);
+// 	mlx->scene.camera.right =
+// 		quat_rotate_vec(q_yaw, mlx->scene.camera.right);
 // 	q_pitch = quat_from_axis_angle(
-// 		mlx->camera.right,
+// 		mlx->scene.camera.right,
 // 		pitch
 // 	);
-// 	mlx->camera.forward =
-// 		quat_rotate_vec(q_pitch, mlx->camera.forward);
-// 	mlx->camera.up =
-// 		quat_rotate_vec(q_pitch, mlx->camera.up);
+// 	mlx->scene.camera.forward =
+// 		quat_rotate_vec(q_pitch, mlx->scene.camera.forward);
+// 	mlx->scene.camera.up =
+// 		quat_rotate_vec(q_pitch, mlx->scene.camera.up);
 
 // 	//=============DEBUG====================//
-// 	mlx->camera.forward = normalize(mlx->camera.forward);
-// 	mlx->camera.right = normalize(mlx->camera.right);
-// 	mlx->camera.up = normalize(mlx->camera.up);
-// 	printf("forward length: %f\n", vec_lenght(mlx->camera.forward));
-// 	printf("right length: %f\n", vec_lenght(mlx->camera.right));
-// 	printf("up length: %f\n", vec_lenght(mlx->camera.up));
+// 	mlx->scene.camera.forward = normalize(mlx->scene.camera.forward);
+// 	mlx->scene.camera.right = normalize(mlx->scene.camera.right);
+// 	mlx->scene.camera.up = normalize(mlx->scene.camera.up);
+// 	printf("forward length: %f\n", vec_lenght(mlx->scene.camera.forward));
+// 	printf("right length: %f\n", vec_lenght(mlx->scene.camera.right));
+// 	printf("up length: %f\n", vec_lenght(mlx->scene.camera.up));
 // 	printf("F.R = %f\n",
-// 	dot(mlx->camera.forward, mlx->camera.right));
+// 	dot(mlx->scene.camera.forward, mlx->scene.camera.right));
 // printf("F.U = %f\n",
-// 	dot(mlx->camera.forward, mlx->camera.up));
+// 	dot(mlx->scene.camera.forward, mlx->scene.camera.up));
 // printf("R.U = %f\n",
-// 	dot(mlx->camera.right, mlx->camera.up));
+// 	dot(mlx->scene.camera.right, mlx->scene.camera.up));
 // }
 
 // void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)

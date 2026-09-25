@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/21 17:36:03 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/25 14:39:11 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	render_loop(void *param)
 	if (!mlx->needs_redraw)
 		update_camera(mlx, delta_time);
 	if (!mlx->needs_redraw)
-		render_moving_scene(mlx, mlx->camera);
+		render_moving_scene(mlx, mlx->scene.camera);
 	else
-		render_scene(mlx, mlx->camera);
+		render_scene(mlx, mlx->scene.camera);
 	mlx_put_image_to_window(
 		mlx->mlx,
 		mlx->win,

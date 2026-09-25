@@ -6,16 +6,20 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 15:35:08 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:38:08 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/24 17:53:56 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_errors	parse_int_array(char **input, int *table, int lower, int upper)
+t_errors	parse_int_array(char **input, mlx_color *rgb, int lower, int upper)
 {
 	int		i;
+	uint8_t		*colour[3];
 
+	colour[0] = &rgb->r;
+	colour[1] = &rgb->g;
+	colour[2] = &rgb->b;
 	i = 0;
 	while (input[i])
 	{
@@ -23,8 +27,8 @@ t_errors	parse_int_array(char **input, int *table, int lower, int upper)
 			return (MRT_PARSE_LINE_ERR);
 		if (!valid_number(input[i]))
 			return (MRT_INVALID_NUM);
-		table[i] = ft_atoi(input[i]);
-		if (table[i] < lower || table[i] > upper)
+		*colour[i] = (uint8_t)ft_atoi(input[i]);
+		if (*colour[i] < lower || *colour[i] > upper)
 			return (MRT_OUT_OF_BOUNDS);
 		i++;
 	}
@@ -33,10 +37,14 @@ t_errors	parse_int_array(char **input, int *table, int lower, int upper)
 	return (MRT_OK);
 }
 
-t_errors	parse_float_array(char **input, double *table, double lower, double upper)
+t_errors	parse_float_array(char **input, t_vec *coords, double lower, double upper)
 {
-	int		i;
+	int				i;
+	double	*coordinate[3];
 
+	coordinate[0] = &coords->x;
+	coordinate[1] = &coords->y;
+	coordinate[2] = &coords->z;
 	i = 0;
 	while (input[i])
 	{
@@ -44,8 +52,8 @@ t_errors	parse_float_array(char **input, double *table, double lower, double upp
 			return (MRT_PARSE_LINE_ERR);
 		if (!valid_float_number(input[i]))
 			return (MRT_INVALID_NUM);
-		table[i] = ft_atof(input[i]);
-		if (table[i] < lower || table[i] > upper)
+		*coordinate[i] = ft_atof(input[i]);
+		if (*coordinate[i] < lower || *coordinate[i] > upper)
 			return (MRT_OUT_OF_BOUNDS);
 		i++;
 	}

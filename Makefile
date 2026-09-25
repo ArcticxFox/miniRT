@@ -76,8 +76,6 @@ SRC := \
 	rendering/sphere.c \
 	rendering/plane.c \
 	rendering/cylinder.c \
-	rendering/scene_utils.c \
-	rendering/scene.c \
 	parsing/program_setup.c parsing/parse_line.c \
 	parsing/parse_line_utils.c parsing/amb_parse.c \
 	parsing/cam_parse.c parsing/light_parse.c \
@@ -85,21 +83,24 @@ SRC := \
 	parsing/cyl_parse.c \
 	parsing/number_parsing.c \
 	error_handling/errors.c \
-	print_all.c
+	print_all.c \
+	rendering/scene.c \
+	rendering/scene_utils.c \
+
 
 SRC := $(addprefix src/, $(SRC))
 
 OBJ := $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -Wunused-function -I$(INC_DIR) -g
+CFLAGS := -Wall -Wextra -Werror -Wunused-function -I$(INC_DIR) -Isrc/my_libft/headers -g
 
 NAME := miniRT
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ) $(MLX_DIR)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LIB) -Imlx -lm -lSDL2 -I$(MLX_DIR)/includes -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -Isrc/my_libft/headers $(MLX_LIB) -Imlx -lm -lSDL2 -I$(MLX_DIR)/includes -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) bonus -C src/my_libft

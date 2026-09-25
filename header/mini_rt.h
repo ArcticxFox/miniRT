@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/21 15:42:59 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/25 14:00:21 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include "scene.h"
 # include "window.h"
 # include "render_utils.h"
+# include "parsing.h"
+# include "parerrors.h"
+
 
 # define	WINDOW_WIDTH	640.0;
 # define	WINDOW_HEIGTH	360.0;

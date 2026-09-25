@@ -6,13 +6,13 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:55:27 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/24 17:52:58 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int	parse_nov(char *str, double *NOV)
+static int	parse_nov(char *str, t_vec *NOV)
 {
 	int		ret;
 
@@ -35,16 +35,16 @@ t_errors plane_parse(char **split, t_data *minirt)
 		if (!minirt->plane)
 			return (MRT_MALLOC);
 	}
-	ret = parse_coords(split[i], minirt->plane[minirt->pl_count].coords,
+	ret = parse_coords(split[i], &minirt->plane[minirt->pl_count].point_in_py,
 			-DBL_MAX, DBL_MAX);
 	if (ret != MRT_OK)
 		return (ret);
 	i++;
-	ret = parse_nov(split[i], minirt->plane[minirt->pl_count].threed_nov);
+	ret = parse_nov(split[i], &minirt->plane[minirt->pl_count].direction);
 	if (ret != MRT_OK)
 		return (ret);
 	i++;
-	ret = parse_colours(split[i], minirt->plane[minirt->pl_count].rgb);
+	ret = parse_colours(split[i], &minirt->plane[minirt->pl_count].rgb);
 	if (split[i + 1] != NULL)
 		return (MRT_PARSE_LINE_ERR);
 	minirt->pl_count++;

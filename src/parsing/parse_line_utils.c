@@ -6,31 +6,31 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:21:29 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:47:38 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/25 15:02:06 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_errors	parse_coords(char *str, double *table, double lower, double upper)
+t_errors	parse_coords(char *str, t_vec *coords, double lower, double upper)
 {
-	char	**coords;
+	char	**input;
 	int		i;
 	t_errors		ret;
 
-	coords = split_multi_comma(str, &ret);
-	if (!coords)
+	input = split_multi_comma(str, &ret);
+	if (!input)
 		return (ret);
 	i = 0;
-	while (coords[i])
+	while (input[i])
 		i++;
 	if (i > 3)
 	{
-		ft_free_array(coords);
+		ft_free_array(input);
 		return (MRT_PARSE_LINE_ERR);
 	}
-	ret = parse_float_array(coords, table, lower, upper);
-	ft_free_array(coords);
+	ret = parse_float_array(input, coords, lower, upper);
+	ft_free_array(input);
 	return (ret);
 }
 
@@ -62,7 +62,7 @@ char	**split_multi_comma(char *str, t_errors *err)
 	return (res);
 }
 
-t_errors	parse_colours(char *str, int *colour_tab)
+t_errors	parse_colours(char *str, mlx_color *rgb)
 {
 	char		**colours;
 	t_errors	ret;
@@ -71,7 +71,8 @@ t_errors	parse_colours(char *str, int *colour_tab)
 	colours = split_multi_comma(str, &ret);
 	if (!colours)
 		return (ret);
-	ret = parse_int_array(colours, colour_tab, 0, 255);
+	ret = parse_int_array(colours, rgb, 0, 255);
+	rgb->a = 255;
 	ft_free_array(colours);
 	return (ret);
 }

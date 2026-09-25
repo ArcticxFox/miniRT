@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/21 17:46:17 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/24 17:49:51 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	y_rotation(mlx_t *mlx)
 	t_vec		new_rigt;
 	double		angle;
 
-	camera = mlx->camera;
+	camera = mlx->scene.camera;
 	angle = 1.0 * M_PI / 180.0;
 
 	new_forward.x = camera.forward.x  * cos(angle) + camera.forward.z * sin(angle);
@@ -30,9 +30,9 @@ void	y_rotation(mlx_t *mlx)
 	new_rigt.y = camera.right.y;
 	new_rigt.z = -camera.right.x * sin(angle) + camera.right.z * cos(angle);
 
-	mlx->camera.forward = new_forward;
+	mlx->scene.camera.forward = new_forward;
 	printf("forward x: %f, y: %f, z: %f\n", new_forward.x, new_forward.y, new_forward.z);
-	mlx->camera.right = new_rigt;
+	mlx->scene.camera.right = new_rigt;
 }
 void	key_pressed(int key, void* param)
 {
