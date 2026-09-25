@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/25 14:40:45 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/25 15:49:35 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,66 +120,45 @@ void	movement(mlx_t *mlx, double dt)
 			multiply_scalar(mlx->scene.camera.forward, speed * dt));
 }
 
-// void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
-// {
-// 	double	sensitivity;
-// 	double	yaw;
-// 	double	pitch;
-// 	t_quat	q_yaw;
-// 	t_quat	q_pitch;
+void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
+{
+	double	sensitivity;
+	double	yaw;
+	double	pitch;
+	t_quat	q_yaw;
+	t_quat	q_pitch;
 
-// 	sensitivity = 0.002;
+	sensitivity = 0.002;
+	yaw = dx * sensitivity;
+	pitch = dy * sensitivity;
+	// q_yaw = quat_from_axis_angle(mlx->camera.up, yaw);
+	q_yaw = quat_from_axis_angle((t_vec){0, 1, 0}, yaw);
+	mlx->scene.camera.forward = quat_rotate_vec(q_yaw, mlx->scene.camera.forward);
+	mlx->scene.camera.right = quat_rotate_vec(q_yaw, mlx->scene.camera.right);
+	mlx->scene.camera.up = quat_rotate_vec(q_yaw, mlx->scene.camera.up);
+	q_pitch = quat_from_axis_angle(mlx->scene.camera.right, pitch);
+	mlx->scene.camera.forward = quat_rotate_vec(q_pitch, mlx->scene.camera.forward);
+	mlx->scene.camera.up = quat_rotate_vec(q_pitch, mlx->scene.camera.up);
+	mlx->scene.camera.forward = normalize(mlx->scene.camera.forward);
+	mlx->scene.camera.right = normalize(mlx->scene.camera.right);
+	mlx->scene.camera.up = normalize(mlx->scene.camera.up);
 
-// 	yaw = dx * sensitivity;
-// 	pitch = dy * sensitivity;
+}
 
-// 	q_yaw = quat_from_axis_angle(
-// 		mlx->scene.camera.up,
-// 		yaw
-// 	);
-// 	mlx->scene.camera.forward =
-// 		quat_rotate_vec(q_yaw, mlx->scene.camera.forward);
-// 	mlx->scene.camera.right =
-// 		quat_rotate_vec(q_yaw, mlx->scene.camera.right);
-// 	q_pitch = quat_from_axis_angle(
-// 		mlx->scene.camera.right,
-// 		pitch
-// 	);
-// 	mlx->scene.camera.forward =
-// 		quat_rotate_vec(q_pitch, mlx->scene.camera.forward);
-// 	mlx->scene.camera.up =
-// 		quat_rotate_vec(q_pitch, mlx->scene.camera.up);
+void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
+{
+	int	dx;
+	int	dy;
 
-// 	//=============DEBUG====================//
-// 	mlx->scene.camera.forward = normalize(mlx->scene.camera.forward);
-// 	mlx->scene.camera.right = normalize(mlx->scene.camera.right);
-// 	mlx->scene.camera.up = normalize(mlx->scene.camera.up);
-// 	printf("forward length: %f\n", vec_lenght(mlx->scene.camera.forward));
-// 	printf("right length: %f\n", vec_lenght(mlx->scene.camera.right));
-// 	printf("up length: %f\n", vec_lenght(mlx->scene.camera.up));
-// 	printf("F.R = %f\n",
-// 	dot(mlx->scene.camera.forward, mlx->scene.camera.right));
-// printf("F.U = %f\n",
-// 	dot(mlx->scene.camera.forward, mlx->scene.camera.up));
-// printf("R.U = %f\n",
-// 	dot(mlx->scene.camera.right, mlx->scene.camera.up));
-// }
-
-// void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
-// {
-// 	int	dx;
-// 	int	dy;
-
-// 	if(mlx->keys.left_click)
-// 	{
-// 		dx = mouse_x - mlx->prev_mouse_pos.x;
-// 		dy = mouse_y - mlx->prev_mouse_pos.y;
-// 		camera_mouse_rotate(mlx, dx, dy);
-// 		mlx->prev_mouse_pos.x = mouse_x;
-// 		mlx->prev_mouse_pos.y = mouse_y;
-// 	}
-
-// }
+	if(mlx->keys.left_click)
+	{
+		dx = mouse_x - mlx->prev_mouse_pos.x;
+		dy = mouse_y - mlx->prev_mouse_pos.y;
+		camera_mouse_rotate(mlx, dx, dy);
+		mlx->prev_mouse_pos.x = mouse_x;
+		mlx->prev_mouse_pos.y = mouse_y;
+	}
+}
 
 void	update_camera(mlx_t *mlx, double dt)
 {
@@ -188,5 +167,5 @@ void	update_camera(mlx_t *mlx, double dt)
 
 	mlx_mouse_get_pos(mlx->mlx, &mouse_x, &mouse_y);
 	movement(mlx, dt);
-	// rotations(mlx, mouse_x, mouse_y);
+	rotations(mlx, mouse_x, mouse_y);
 }
