@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/25 16:03:47 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/28 16:49:50 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ int	main(int ac, char **av)
 	mlx.scene.sphere[0].r = mlx.scene.sphere[0].d / 2;
 	add_radius(&mlx.scene);
 	init_window(&mlx);
-
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
 	mlx_loop(mlx.mlx);
 	mlx_destroy_image(mlx.mlx, mlx.img);
 	mlx_destroy_window(mlx.mlx, mlx.win);
 	mlx_destroy_context(mlx.mlx);
-
 	free_all(&mlx.scene);
 	return (0);
 }

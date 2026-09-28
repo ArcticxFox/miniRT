@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:21:29 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/25 15:02:06 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/09/28 16:05:37 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

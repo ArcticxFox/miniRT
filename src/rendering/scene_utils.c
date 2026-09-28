@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/25 15:49:35 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/28 16:43:56 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
 
 	hit_anything = false;
 	closest_so_far = DBL_MAX;
-	if (hit_sphere(mlx->scene.sphere[0], ray, &hit_tmp, 0.001f, closest_so_far))
+	if (hit_spheres(&mlx->scene, ray, &hit_tmp, closest_so_far))
 	{
 		hit_anything = true;
 		closest_so_far = hit_tmp.t;
 		*hit = hit_tmp;
 	}
-	if (hit_cylinder(mlx->scene.cylinder[0], ray, &hit_tmp, 0.001f, closest_so_far))
+	if (hit_cylinders(&mlx->scene, ray, &hit_tmp, closest_so_far))
 	{
 		hit_anything = true;
 		closest_so_far = hit_tmp.t;
 		*hit = hit_tmp;
 	}
-	if (hit_plane(mlx->scene.plane[0], ray, &hit_tmp, 0.001f, closest_so_far))
+	if (hit_planes(&mlx->scene, ray, &hit_tmp, closest_so_far))
 	{
 		hit_anything = true;
 		closest_so_far = hit_tmp.t;
@@ -41,14 +41,14 @@ bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
 	return (hit_anything);
 }
 
-void	fill_tab(mlx_t *mlx, t_ray *ray, mlx_color	*tab_col)
+void	fill_tab(mlx_t *mlx, t_ray *ray, mlx_color	*tab_col, int size)
 {
 	mlx_color	color;
-	int	i;
+	int			i;
 
 	color = ray_color(mlx, *ray);
 	i = 0;
-	while (i < 16)
+	while (i < size)
 	{
 		tab_col[i] = color;
 		++i;
@@ -68,9 +68,9 @@ mlx_color	ray_color(mlx_t *mlx, t_ray ray)
 	unit_direction = normalize(ray.dir);
 	a = 0.5 * (unit_direction.y + 1.0);
 	return ((mlx_color){
-		.r = (uint8_t)((1.0-a) * 255 + a * 127),
-		.g = (uint8_t)((1.0-a) * 255 + a * 178),
-		.b = (uint8_t)((1.0-a) * 255 + a * 255),
+		.r = (uint8_t)((1.0 - a) * 255 + a * 127),
+		.g = (uint8_t)((1.0 - a) * 255 + a * 178),
+		.b = (uint8_t)((1.0 - a) * 255 + a * 255),
 		.a = 255
 	});
 }
@@ -87,10 +87,10 @@ t_ray	camera_ray(mlx_t *mlx, t_camera camera, int x, int y)
 	viewport_y = 1.0 - 2.0 * (y + 0.5) / mlx->info.height;
 	ray.origin = camera.origin;
 	ray.dir = add(camera.forward, add(
-		multiply_scalar(camera.right, viewport_x),
-		multiply_scalar(camera.up, viewport_y)
-		)
-	);
+				multiply_scalar(camera.right, viewport_x),
+				multiply_scalar(camera.up, viewport_y)
+				)
+			);
 	ray.dir = normalize(ray.dir);
 	return (ray);
 }
@@ -102,22 +102,22 @@ void	movement(mlx_t *mlx, double dt)
 	speed = 6.0;
 	if (mlx->keys.up)
 		mlx->scene.camera.origin = sub(mlx->scene.camera.origin,
-			multiply_scalar(mlx->scene.camera.up, speed * dt));
+				multiply_scalar(mlx->scene.camera.up, speed * dt));
 	if (mlx->keys.down)
 		mlx->scene.camera.origin = add(mlx->scene.camera.origin,
-			multiply_scalar(mlx->scene.camera.up, speed * dt));
+				multiply_scalar(mlx->scene.camera.up, speed * dt));
 	if (mlx->keys.right)
 		mlx->scene.camera.origin = add(mlx->scene.camera.origin,
-			multiply_scalar(mlx->scene.camera.right, speed * dt));
+				multiply_scalar(mlx->scene.camera.right, speed * dt));
 	if (mlx->keys.left)
 		mlx->scene.camera.origin = sub(mlx->scene.camera.origin,
-			multiply_scalar(mlx->scene.camera.right, speed * dt));
+				multiply_scalar(mlx->scene.camera.right, speed * dt));
 	if (mlx->keys.forwards)
 		mlx->scene.camera.origin = sub(mlx->scene.camera.origin,
-			multiply_scalar(mlx->scene.camera.forward, speed * dt));
+				multiply_scalar(mlx->scene.camera.forward, speed * dt));
 	if (mlx->keys.backwards)
 		mlx->scene.camera.origin = add(mlx->scene.camera.origin,
-			multiply_scalar(mlx->scene.camera.forward, speed * dt));
+				multiply_scalar(mlx->scene.camera.forward, speed * dt));
 }
 
 void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
@@ -131,18 +131,18 @@ void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
 	sensitivity = 0.002;
 	yaw = dx * sensitivity;
 	pitch = dy * sensitivity;
-	// q_yaw = quat_from_axis_angle(mlx->camera.up, yaw);
 	q_yaw = quat_from_axis_angle((t_vec){0, 1, 0}, yaw);
-	mlx->scene.camera.forward = quat_rotate_vec(q_yaw, mlx->scene.camera.forward);
+	mlx->scene.camera.forward = quat_rotate_vec(q_yaw,
+			mlx->scene.camera.forward);
 	mlx->scene.camera.right = quat_rotate_vec(q_yaw, mlx->scene.camera.right);
 	mlx->scene.camera.up = quat_rotate_vec(q_yaw, mlx->scene.camera.up);
 	q_pitch = quat_from_axis_angle(mlx->scene.camera.right, pitch);
-	mlx->scene.camera.forward = quat_rotate_vec(q_pitch, mlx->scene.camera.forward);
+	mlx->scene.camera.forward = quat_rotate_vec(q_pitch,
+			mlx->scene.camera.forward);
 	mlx->scene.camera.up = quat_rotate_vec(q_pitch, mlx->scene.camera.up);
 	mlx->scene.camera.forward = normalize(mlx->scene.camera.forward);
 	mlx->scene.camera.right = normalize(mlx->scene.camera.right);
 	mlx->scene.camera.up = normalize(mlx->scene.camera.up);
-
 }
 
 void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
@@ -150,7 +150,7 @@ void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
 	int	dx;
 	int	dy;
 
-	if(mlx->keys.left_click)
+	if (mlx->keys.left_click)
 	{
 		dx = mouse_x - mlx->prev_mouse_pos.x;
 		dy = mouse_y - mlx->prev_mouse_pos.y;

@@ -6,13 +6,14 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:59:59 by ejones            #+#    #+#             */
-/*   Updated: 2026/08/26 15:27:59 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/28 16:37:42 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax)
+bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit,
+	double ray_tmin, double ray_tmax)
 {
 	double	a;
 	double	b;
@@ -38,10 +39,29 @@ bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, double ray_tmin, double ray_
 	hit->t = root;
 	hit->point = ray_at(ray, root);
 	hit->normal = normalize(sub(hit->point, sp.center));
-	hit->color = (mlx_color){
-			.r = (uint8_t)((hit->normal.x + 1.0) * 0.5 * 255),
-			.g = (uint8_t)((hit->normal.y + 1.0) * 0.5 * 255),
-			.b = (uint8_t)((hit->normal.z + 1.0) * 0.5 * 255),
-			.a = 255};
 	return (true);
+}
+
+bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, double closest_so_far)
+{
+	int		i;
+	t_hit	hit_tmp;
+	bool	hit_anything;
+
+	i = 0;
+	hit_anything = false;
+	while (i < scene->sph_count)
+	{
+		if (hit_sphere(scene->sphere[i], ray, &hit_tmp, 0.001f, closest_so_far))
+		{
+			hit_anything = true;
+			closest_so_far = hit_tmp.t;
+			*hit = hit_tmp;
+			hit->color = scene->sphere[i].rgb;
+		}
+		++i;
+	}
+	if (hit_anything)
+		return (true);
+	return (false);
 }

@@ -76,6 +76,7 @@ SRC := \
 	rendering/sphere.c \
 	rendering/plane.c \
 	rendering/cylinder.c \
+	rendering/cylinder_utils.c \
 	parsing/program_setup.c parsing/parse_line.c \
 	parsing/parse_line_utils.c parsing/amb_parse.c \
 	parsing/cam_parse.c parsing/light_parse.c \
