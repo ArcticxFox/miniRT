@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/28 16:40:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/29 16:02:31 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	render_scene(mlx_t *mlx, t_camera camera)
 {
 	int			x;
 	int			y;
-	double		viewport_x;
-	double		viewport_y;
 	t_ray		ray;
 	mlx_color	color;
 
@@ -49,9 +47,6 @@ void	render_scene(mlx_t *mlx, t_camera camera)
 		x = 0;
 		while (x < mlx->info.width)
 		{
-			viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0)
-				* mlx->info.width / mlx->info.height;
-			viewport_y = 1.0 - 2.0 * (y + 0.5) / mlx->info.height;
 			ray = camera_ray(mlx, camera, x, y);
 			color = ray_color(mlx, ray);
 			mlx_set_image_pixel(mlx->mlx, mlx->img, x, y, color);

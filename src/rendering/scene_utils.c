@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/28 16:43:56 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/29 16:29:33 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
 {
-	bool	hit_anything;
-	double	closest_so_far;
-	t_hit	hit_tmp;
+	bool		hit_anything;
+	t_hit		hit_tmp;
+	t_interval	range;
 
 	hit_anything = false;
-	closest_so_far = DBL_MAX;
-	if (hit_spheres(&mlx->scene, ray, &hit_tmp, closest_so_far))
+	range.min = 0.001f;
+	range.max = DBL_MAX;
+	if (hit_spheres(&mlx->scene, ray, &hit_tmp, range))
 	{
 		hit_anything = true;
-		closest_so_far = hit_tmp.t;
+		range.max = hit_tmp.t;
 		*hit = hit_tmp;
 	}
-	if (hit_cylinders(&mlx->scene, ray, &hit_tmp, closest_so_far))
+	if (hit_cylinders(&mlx->scene, ray, &hit_tmp, range))
 	{
 		hit_anything = true;
-		closest_so_far = hit_tmp.t;
+		range.max = hit_tmp.t;
 		*hit = hit_tmp;
 	}
-	if (hit_planes(&mlx->scene, ray, &hit_tmp, closest_so_far))
+	if (hit_planes(&mlx->scene, ray, &hit_tmp, range))
 	{
 		hit_anything = true;
-		closest_so_far = hit_tmp.t;
 		*hit = hit_tmp;
 	}
 	return (hit_anything);

@@ -6,20 +6,19 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:59:59 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/28 16:37:42 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/29 17:07:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit,
-	double ray_tmin, double ray_tmax)
+static bool	get_sphere_roots(t_sphere sp, t_ray ray,
+	double *root1, double *root2)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	delta;
-	double	root;
 	t_vec	oc;
 
 	oc = sub(sp.center, ray.origin);
@@ -29,20 +28,31 @@ bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit,
 	delta = b * b - a * c;
 	if (delta < 0)
 		return (false);
-	root = (b - sqrt(delta)) / a;
-	if (root <= ray_tmin || ray_tmax <= root)
+	*root1 = (b - sqrt(delta)) / a;
+	*root2 = (b + sqrt(delta)) / a;
+	return (true);
+}
+
+bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, t_interval range)
+{
+	double	root1;
+	double	root2;
+
+	if (!get_sphere_roots(sp, ray, &root1, &root2))
+		return (false);
+	if (root1 <= range.min || range.max <= root1)
 	{
-		root = (b + sqrt(delta)) / a;
-		if (root <= ray_tmin || ray_tmax <= root)
+		root1 = root2;
+		if (root1 <= range.min || range.max <= root1)
 			return (false);
 	}
-	hit->t = root;
-	hit->point = ray_at(ray, root);
+	hit->t = root1;
+	hit->point = ray_at(ray, root1);
 	hit->normal = normalize(sub(hit->point, sp.center));
 	return (true);
 }
 
-bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, double closest_so_far)
+bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range)
 {
 	int		i;
 	t_hit	hit_tmp;
@@ -52,10 +62,10 @@ bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, double closest_so_far)
 	hit_anything = false;
 	while (i < scene->sph_count)
 	{
-		if (hit_sphere(scene->sphere[i], ray, &hit_tmp, 0.001f, closest_so_far))
+		if (hit_sphere(scene->sphere[i], ray, &hit_tmp, range))
 		{
 			hit_anything = true;
-			closest_so_far = hit_tmp.t;
+			range.max = hit_tmp.t;
 			*hit = hit_tmp;
 			hit->color = scene->sphere[i].rgb;
 		}

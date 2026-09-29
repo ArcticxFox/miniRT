@@ -6,13 +6,13 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 16:26:02 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/28 16:44:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/29 16:32:23 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax)
+bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 {
 	double	denom;
 	double	t;
@@ -25,7 +25,7 @@ bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_t
 	if (fabs(denom) < 1e-8)
 		return (false);
 	t = dot(sub(top_cap, ray.origin), cy.axis_dir) / denom;
-	if (t <= ray_tmin || ray_tmax <= t)
+	if (t <= range.min || range.max <= t)
 		return (false);
 	hit->t = t;
 	hit->point = ray_at(ray, t);
@@ -38,7 +38,7 @@ bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_t
 	return (true);
 }
 
-bool	check_bottom_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax)
+bool	check_bottom_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 {
 	double	denom;
 	double	t;
@@ -51,7 +51,7 @@ bool	check_bottom_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ra
 	if (fabs(denom) < 1e-8)
 		return (false);
 	t = dot(sub(bottom_center, ray.origin), cy.axis_dir) / denom;
-	if (t <= ray_tmin || ray_tmax <= t)
+	if (t <= range.min || range.max <= t)
 		return (false);
 	hit->t = t;
 	hit->point = ray_at(ray, t);

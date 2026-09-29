@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/28 16:32:33 by ejones           ###   ########.fr       */
+/*   Updated: 2026/09/29 16:43:00 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@
 
 # include "mini_rt.h"
 
-// bool		hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax);
-bool		hit_spheres(t_data *scene, t_ray ray, t_hit *hit, double closest_so_far);
+bool		hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
-// bool		hit_plane(t_pl	pl, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax);
-bool		hit_planes(t_data *scene, t_ray ray, t_hit *hit, double closest_so_far);
+bool		hit_planes(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
-bool		check_top_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax);
-bool		check_bottom_cap(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax);
-bool		check_cylinder_root(t_cy cy, t_ray ray, t_hit *hit, double root, t_vec oc);
-// bool		hit_cylinder(t_cy cy, t_ray ray, t_hit *hit, double ray_tmin, double ray_tmax);
-bool		hit_cylinders(t_data *scene, t_ray ray, t_hit *hit, double closest_so_far);
+bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range);
+bool	check_bottom_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range);
+bool	check_cylinder_root(t_cy cy, t_ray ray, t_hit *hit, double root);
+
+bool		hit_cylinders(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
 bool		hit_object(mlx_t *mlx, t_ray ray, t_hit *hit);
 void		fill_tab(mlx_t *mlx, t_ray *ray, mlx_color *tab_col, int size);
