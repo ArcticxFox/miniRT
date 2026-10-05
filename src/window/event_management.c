@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/28 16:49:38 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/05 20:05:48 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	key_pressed(int key, void *param)
 	mlx_t	*mlx;
 
 	mlx = (mlx_t *) param;
+	if (key == 45)
+		mlx->scene.camera.fov -= 1;
+	if (key == 46)
+		mlx->scene.camera.fov += 1;
 	if (key == 41)
 		mlx_loop_end(mlx->mlx);
 	if (key == KEY_RIGHT)
@@ -81,7 +85,7 @@ void	mouse_up(int click, void *param)
 	mlx_t	*mlx;
 
 	mlx = (mlx_t *)param;
-	printf("wheel move == %d\n", click);
+	printf("MOUSE CLICK == %d\n", click);
 	if (click == 1)
 		mlx->keys.left_click = false;
 	if (click == 3)

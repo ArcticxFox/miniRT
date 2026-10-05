@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 16:29:33 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/05 19:57:42 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,15 @@ t_ray	camera_ray(mlx_t *mlx, t_camera camera, int x, int y)
 	t_ray	ray;
 	double	viewport_x;
 	double	viewport_y;
-	double	ratio_aspect;
+	double	aspect;
+	double	fov_scale;
 
-	ratio_aspect = mlx->info.width / mlx->info.height;
-	viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0) * ratio_aspect;
-	viewport_y = 1.0 - 2.0 * (y + 0.5) / mlx->info.height;
+	aspect = (double)mlx->info.width / mlx->info.height;
+	fov_scale = tan(camera.fov * 0.5 * M_PI / 180);
+	viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0)
+		* aspect * fov_scale;
+	viewport_y = (1.0 - 2.0 * (y + 0.5) / mlx->info.height)
+		* fov_scale;
 	ray.origin = camera.origin;
 	ray.dir = add(camera.forward, add(
 				multiply_scalar(camera.right, viewport_x),
