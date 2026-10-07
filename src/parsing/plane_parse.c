@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:52:58 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 12:37:01 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	parse_nov(char *str, t_vec *NOV)
 	return (ret);
 }
 
-t_errors plane_parse(char **split, t_data *minirt)
+t_errors	plane_parse(char **split, t_data *minirt)
 {
 	int	i;
 	int	ret;

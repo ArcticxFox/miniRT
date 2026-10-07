@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quaternions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:32:23 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/21 17:52:34 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 12:43:32 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ t_quat	quat_multiply(t_quat a, t_quat b)
 
 t_quat	quat_normalize(t_quat q)
 {
-	double length;
+	double	length;
 
 	length = sqrt(q.w * q.w
-		+ q.x * q.x
-		+ q.y * q.y
-		+ q.z * q.z);
+			+ q.x * q.x
+			+ q.y * q.y
+			+ q.z * q.z);
 	q.w /= length;
 	q.x /= length;
 	q.y /= length;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:21:29 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/28 16:05:37 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 12:40:30 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_errors	parse_coords(char *str, t_vec *coords, double lower, double upper)
 {
-	char	**input;
-	int		i;
-	t_errors		ret;
+	char		**input;
+	int			i;
+	t_errors	ret;
 
 	input = split_multi_comma(str, &ret);
 	if (!input)

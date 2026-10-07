@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 13:02:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:52:48 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 12:33:42 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_errors	parse_nov(char *str, t_vec *NOV)
 
 t_errors	parse_cyl_data(char **split, t_data *minirt)
 {
-	int	i;
+	int			i;
 	t_errors	ret;
 
 	i = 0;

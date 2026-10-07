@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cam_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 12:04:24 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/05 17:18:52 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 12:40:05 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_camera_basis(t_camera *cam, t_vec rawnov)
 	t_vec	world_up;
 
 	cam->forward = rawnov;
-	world_up = (t_vec){0,1,0};
+	world_up = (t_vec){0, 1, 0};
 	if (fabs(dot(cam->forward, world_up)) > 0.999)
 		world_up = (t_vec){0, 0, 1};
 	cam->right = normalize(cross(world_up, cam->forward));
