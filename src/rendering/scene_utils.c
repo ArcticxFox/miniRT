@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 16:07:38 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ mlx_color	ray_color(t_mlx *mlx, t_ray ray)
 
 	if (hit_object(mlx, ray, &hit))
 	{
-		return (hit.color);
+		return (hit.color); // add ambient lighting here.
 	}
 	unit_direction = normalize(ray.dir);
 	a = 0.5 * (unit_direction.y + 1.0);
