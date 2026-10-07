@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 15:35:08 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:53:56 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 12:35:05 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_errors	parse_int_array(char **input, mlx_color *rgb, int lower, int upper)
 {
 	int		i;
-	uint8_t		*colour[3];
+	uint8_t	*colour[3];
 
 	colour[0] = &rgb->r;
 	colour[1] = &rgb->g;
@@ -37,23 +37,23 @@ t_errors	parse_int_array(char **input, mlx_color *rgb, int lower, int upper)
 	return (MRT_OK);
 }
 
-t_errors	parse_float_array(char **input, t_vec *coords, double lower, double upper)
+t_errors	parse_float_array(char **in, t_vec *coords, double low, double up)
 {
-	int				i;
+	int		i;
 	double	*coordinate[3];
 
 	coordinate[0] = &coords->x;
 	coordinate[1] = &coords->y;
 	coordinate[2] = &coords->z;
 	i = 0;
-	while (input[i])
+	while (in[i])
 	{
 		if (i >= 3)
 			return (MRT_PARSE_LINE_ERR);
-		if (!valid_float_number(input[i]))
+		if (!valid_float_number(in[i]))
 			return (MRT_INVALID_NUM);
-		*coordinate[i] = ft_atof(input[i]);
-		if (*coordinate[i] < lower || *coordinate[i] > upper)
+		*coordinate[i] = ft_atof(in[i]);
+		if (*coordinate[i] < low || *coordinate[i] > up)
 			return (MRT_OUT_OF_BOUNDS);
 		i++;
 	}

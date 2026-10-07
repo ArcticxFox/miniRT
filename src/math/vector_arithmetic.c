@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_arithmetic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:11:37 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/25 15:49:55 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 12:44:42 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_vec	mult(t_vec a, t_vec b)
 	return (a);
 }
 
-t_vec multiply_scalar(t_vec vec1, double t)
+t_vec	multiply_scalar(t_vec vec1, double t)
 {
 	vec1.x *= t;
 	vec1.y *= t;
@@ -59,17 +59,17 @@ t_vec	cross(t_vec a, t_vec b)
 	return (res);
 }
 
-t_vec normalize(t_vec v)
+t_vec	normalize(t_vec v)
 {
-	double length;
+	double	length;
 
 	length = sqrt(v.x * v.x
-		+ v.y * v.y
-		+ v.z * v.z);
+			+ v.y * v.y
+			+ v.z * v.z);
 	v.x /= length;
 	v.y /= length;
 	v.z /= length;
-	return v;
+	return (v);
 }
 
 double	vec_lenght(t_vec vec)
@@ -86,6 +86,3 @@ t_vec	ray_at(t_ray ray, double t)
 	result.z = ray.origin.z + t * ray.dir.z;
 	return (result);
 }
-
-
-

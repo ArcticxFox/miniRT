@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:44:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/05 20:03:49 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	init_mlx_events(mlx_t *mlx)
+void	init_mlx_events(t_mlx *mlx)
 {
 	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEDOWN, mouse_down, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEUP, mouse_up, mlx);
@@ -33,7 +33,7 @@ void	init_keys(t_keys *keys)
 	keys->right_click = false;
 }
 
-void	init_window(mlx_t *mlx)
+void	init_window(t_mlx *mlx)
 {
 	mlx_window_create_info	info;
 

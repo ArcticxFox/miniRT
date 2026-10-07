@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 13:02:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:52:48 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 14:16:32 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_errors	parse_nov(char *str, t_vec *NOV)
 
 t_errors	parse_cyl_data(char **split, t_data *minirt)
 {
-	int	i;
+	int			i;
 	t_errors	ret;
 
 	i = 0;
@@ -51,16 +51,13 @@ t_errors	parse_cyl_data(char **split, t_data *minirt)
 
 t_errors	cylinder_parse(char **split, t_data *minirt)
 {
-	int	ret;
+	t_errors	ret;
 
 	if (minirt->cyl_count == minirt->cyl_cap)
 	{
-		minirt->cylinder = ft_realloc(minirt->cylinder,
-				minirt->cyl_cap * sizeof(*minirt->cylinder),
-				(minirt->cyl_cap + 4) * sizeof(*minirt->cylinder));
-		if (!minirt->cylinder)
+		if (expand_obj_array(&minirt->cyl_cap, (void **)&minirt->cylinder,
+				sizeof(*minirt->cylinder)) != MRT_OK)
 			return (MRT_MALLOC);
-		minirt->cyl_cap += 4;
 	}
 	ret = parse_cyl_data(split, minirt);
 	minirt->cyl_count++;

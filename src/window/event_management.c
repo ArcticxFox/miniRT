@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 16:08:43 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 16:19:12 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	key_pressed(int key, void *param)
 {
-	mlx_t	*mlx;
+	t_mlx	*mlx;
 
-	mlx = (mlx_t *) param;
-	if (key == 45 && mlx->scene.camera.fov > 0)
+	mlx = (t_mlx *) param;
+	if (key == 45)
 		mlx->scene.camera.fov -= 1;
 	if (key == 46 && mlx->scene.camera.fov < 180)
 		mlx->scene.camera.fov += 1;
@@ -43,9 +43,9 @@ void	key_pressed(int key, void *param)
 //b == 5 f == 9
 void	key_released(int key, void *param)
 {
-	mlx_t	*mlx;
+	t_mlx	*mlx;
 
-	mlx = (mlx_t *)param;
+	mlx = (t_mlx *)param;
 	printf("key == %d\n\n", key);
 	if (key != 40)
 		mlx->needs_redraw = 1;
@@ -65,9 +65,9 @@ void	key_released(int key, void *param)
 
 void	mouse_down(int click, void *param)
 {
-	mlx_t	*mlx;
+	t_mlx	*mlx;
 
-	mlx = (mlx_t *)param;
+	mlx = (t_mlx *)param;
 	printf("MOUSE CLICK == %d\n", click);
 	if (click == 1)
 	{
@@ -104,9 +104,9 @@ void	mouse_down(int click, void *param)
 
 void	mouse_up(int click, void *param)
 {
-	mlx_t	*mlx;
+	t_mlx	*mlx;
 
-	mlx = (mlx_t *)param;
+	mlx = (t_mlx *)param;
 	printf("MOUSE CLICK == %d\n", click);
 	if (click == 1)
 		mlx->keys.left_click = false;
@@ -118,5 +118,5 @@ void	mouse_up(int click, void *param)
 void	window_hook(int event, void *param)
 {
 	if (event == 0)
-		mlx_loop_end(((mlx_t *)param)->mlx);
+		mlx_loop_end(((t_mlx *)param)->mlx);
 }

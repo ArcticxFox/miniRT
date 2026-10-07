@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 10:13:59 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 15:14:29 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 12:39:37 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	print_error(t_errors error)
 {
-	const char *msg[] = {
+	const char	*msg[] = {
 		"Minirt is launched with one argument, the scene filename",
 		"Scene must be named and must end in '.rt'. Example: scene.rt",
 		"Malloc",
@@ -29,6 +29,7 @@ void	print_error(t_errors error)
 		"Brightness must have a value between 0.0 - 1.0",
 		"Misconfiguration in scene file"
 	};
+
 	if (error != MRT_ERRNO)
 		printf("Error\n%s\n", msg[error]);
 	else

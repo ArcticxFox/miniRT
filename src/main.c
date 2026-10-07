@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/28 16:49:50 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_all(t_data *minirt)
 		free(minirt->sphere);
 	if (minirt->plane)
 		free(minirt->plane);
+	return ;
 }
 
 double	get_time(void)
@@ -50,7 +51,7 @@ void	add_radius(t_data *scene)
 
 int	main(int ac, char **av)
 {
-	mlx_t	mlx;
+	t_mlx	mlx;
 
 	if (program_setup(ac, av, &mlx.scene) != MRT_OK)
 	{
@@ -73,7 +74,7 @@ int	main(int ac, char **av)
 
 // int	main(void)
 // {
-// 	mlx_t		mlx;
+// 	t_mlx		mlx;
 // 	t_sphere	sp;
 
 // 	init_window(&mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 16:08:23 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_light
 	double	brightness;
 }	t_light;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_vec		center;
 	double		r;
@@ -40,7 +40,7 @@ typedef struct	s_sphere
 	mlx_color	rgb;
 }	t_sphere;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_vec		point_in_py;
 	t_vec		direction;
@@ -54,10 +54,10 @@ typedef struct s_cylinder
 	double		d;
 	double		h;
 	mlx_color	rgb;
-	double	r;
+	double		r;
 }	t_cy;
 
-typedef struct	s_hit
+typedef struct s_hit
 {
 	double		t;
 	t_vec		point;
@@ -65,20 +65,20 @@ typedef struct	s_hit
 	mlx_color	color;
 }	t_hit;
 
-typedef struct	s_interval
+typedef struct s_interval
 {
 	double	min;
 	double	max;
 }	t_interval;
 
-typedef struct	s_objects
+typedef struct s_objects
 {
 	t_sphere	sp;
 	t_pl		pl;
 	t_cy		cy;
 }	t_objects;
 
-typedef struct	s_mouse_pos
+typedef struct s_mouse_pos
 {
 	int	x;
 	int	y;
@@ -86,7 +86,7 @@ typedef struct	s_mouse_pos
 
 //============================================================================//
 
-typedef struct	s_keys
+typedef struct s_keys
 {
 	bool	up;
 	bool	down;
@@ -98,7 +98,7 @@ typedef struct	s_keys
 	bool	right_click;
 }	t_keys;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_vec	origin;
 	t_vec	threed_nov;
@@ -124,7 +124,7 @@ typedef struct s_data
 	int			cyl_count;
 }	t_data;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	mlx_context				mlx;
 	mlx_window				win;
@@ -137,6 +137,6 @@ typedef struct	s_mlx
 	t_keys					keys;
 	double					last_time;
 	int						needs_redraw;
-}	mlx_t;
+}	t_mlx;
 
 #endif
