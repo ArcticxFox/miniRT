@@ -1,8 +1,8 @@
 void	render_loop(void *param)
 {
-	mlx_t	*mlx;
+	t_mlx	*mlx;
 
-	mlx = (mlx_t *)param;
+	mlx = (t_mlx *)param;
 
 	if (!mlx->needs_redraw)
 		return ;
@@ -46,7 +46,7 @@ void	render_loop(void *param)
 }
 
 
-void	render_movind_scene(mlx_t *mlx, t_camera camera)
+void	render_movind_scene(t_mlx *mlx, t_camera camera)
 {
 	int			x;
 	int			y;

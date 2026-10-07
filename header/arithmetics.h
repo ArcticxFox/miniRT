@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arithmetics.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:33:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/21 17:31:05 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 15:55:39 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_vec	multiply_scalar(t_vec vec1, double t);
 t_vec	normalize(t_vec v);
 double	vec_lenght(t_vec vec);
 t_vec	ray_at(t_ray ray, double t);
-
 
 t_quat	quat_multiply(t_quat a, t_quat b);
 t_quat	quat_normalize(t_quat q);

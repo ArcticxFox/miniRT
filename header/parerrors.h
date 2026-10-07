@@ -6,14 +6,15 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 10:14:39 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 13:49:15 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 15:32:28 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARERRORS_H
 # define PARERRORS_H
 
-typedef enum e_errors {
+typedef enum e_errors
+{
 	MRT_BAD_ARGS,
 	MRT_FILENAME,
 	MRT_MALLOC,
@@ -27,7 +28,7 @@ typedef enum e_errors {
 	MRT_OUT_OF_BOUNDS,
 	MRT_ERRNO,
 	MRT_OK,
-} t_errors;
+}	t_errors;
 
 void	print_error(t_errors error);
 

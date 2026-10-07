@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 16:02:31 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	render_moving_scene(mlx_t *mlx, t_camera camera)
+void	render_moving_scene(t_mlx *mlx, t_camera camera)
 {
 	int			x;
 	int			y;
@@ -34,7 +34,7 @@ void	render_moving_scene(mlx_t *mlx, t_camera camera)
 	}
 }
 
-void	render_scene(mlx_t *mlx, t_camera camera)
+void	render_scene(t_mlx *mlx, t_camera camera)
 {
 	int			x;
 	int			y;
@@ -58,11 +58,11 @@ void	render_scene(mlx_t *mlx, t_camera camera)
 
 void	render_loop(void *param)
 {
-	mlx_t	*mlx;
+	t_mlx	*mlx;
 	double	current_time;
 	double	delta_time;
 
-	mlx = (mlx_t *)param;
+	mlx = (t_mlx *)param;
 	current_time = get_time();
 	delta_time = current_time - mlx->last_time;
 	mlx->last_time = current_time;

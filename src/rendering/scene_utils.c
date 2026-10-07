@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   scene_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/05 19:57:42 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
+bool	hit_object(t_mlx *mlx, t_ray ray, t_hit *hit)
 {
 	bool		hit_anything;
 	t_hit		hit_tmp;
@@ -41,7 +41,7 @@ bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
 	return (hit_anything);
 }
 
-void	fill_tab(mlx_t *mlx, t_ray *ray, mlx_color	*tab_col, int size)
+void	fill_tab(t_mlx *mlx, t_ray *ray, mlx_color	*tab_col, int size)
 {
 	mlx_color	color;
 	int			i;
@@ -55,7 +55,7 @@ void	fill_tab(mlx_t *mlx, t_ray *ray, mlx_color	*tab_col, int size)
 	}
 }
 
-mlx_color	ray_color(mlx_t *mlx, t_ray ray)
+mlx_color	ray_color(t_mlx *mlx, t_ray ray)
 {
 	double	a;
 	t_hit	hit;
@@ -75,7 +75,7 @@ mlx_color	ray_color(mlx_t *mlx, t_ray ray)
 	});
 }
 
-t_ray	camera_ray(mlx_t *mlx, t_camera camera, int x, int y)
+t_ray	camera_ray(t_mlx *mlx, t_camera camera, int x, int y)
 {
 	t_ray	ray;
 	double	viewport_x;
@@ -99,7 +99,7 @@ t_ray	camera_ray(mlx_t *mlx, t_camera camera, int x, int y)
 	return (ray);
 }
 
-void	movement(mlx_t *mlx, double dt)
+void	movement(t_mlx *mlx, double dt)
 {
 	double	speed;
 
@@ -124,7 +124,7 @@ void	movement(mlx_t *mlx, double dt)
 				multiply_scalar(mlx->scene.camera.forward, speed * dt));
 }
 
-void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
+void	camera_mouse_rotate(t_mlx *mlx, double dx, double dy)
 {
 	double	sensitivity;
 	double	yaw;
@@ -149,7 +149,7 @@ void	camera_mouse_rotate(mlx_t *mlx, double dx, double dy)
 	mlx->scene.camera.up = normalize(mlx->scene.camera.up);
 }
 
-void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
+void	rotations(t_mlx *mlx, int mouse_x, int mouse_y)
 {
 	int	dx;
 	int	dy;
@@ -164,7 +164,7 @@ void	rotations(mlx_t *mlx, int mouse_x, int mouse_y)
 	}
 }
 
-void	update_camera(mlx_t *mlx, double dt)
+void	update_camera(t_mlx *mlx, double dt)
 {
 	int	mouse_x;
 	int	mouse_y;

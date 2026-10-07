@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 12:31:53 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	add_radius(t_data *scene)
 
 int	main(int ac, char **av)
 {
-	mlx_t	mlx;
+	t_mlx	mlx;
 
 	if (program_setup(ac, av, &mlx.scene) != MRT_OK)
 	{
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 
 // int	main(void)
 // {
-// 	mlx_t		mlx;
+// 	t_mlx		mlx;
 // 	t_sphere	sp;
 
 // 	init_window(&mlx);
