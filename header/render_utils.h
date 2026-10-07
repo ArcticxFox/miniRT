@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 16:43:00 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/06 16:55:04 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "mini_rt.h"
 
-bool		hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
+int	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
 bool		hit_planes(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
@@ -26,7 +26,7 @@ bool	check_cylinder_root(t_cy cy, t_ray ray, t_hit *hit, double root);
 
 bool		hit_cylinders(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
-bool		hit_object(mlx_t *mlx, t_ray ray, t_hit *hit);
+bool		hit_objects(mlx_t *mlx, t_ray ray, t_hit *hit);
 void		fill_tab(mlx_t *mlx, t_ray *ray, mlx_color *tab_col, int size);
 
 mlx_color	ray_color(mlx_t *mlx, t_ray ray);

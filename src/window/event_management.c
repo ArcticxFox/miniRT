@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/05 20:05:48 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/07 16:08:43 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	key_pressed(int key, void *param)
 	mlx_t	*mlx;
 
 	mlx = (mlx_t *) param;
-	if (key == 45)
+	if (key == 45 && mlx->scene.camera.fov > 0)
 		mlx->scene.camera.fov -= 1;
-	if (key == 46)
+	if (key == 46 && mlx->scene.camera.fov < 180)
 		mlx->scene.camera.fov += 1;
 	if (key == 41)
 		mlx_loop_end(mlx->mlx);
@@ -78,6 +78,28 @@ void	mouse_down(int click, void *param)
 	}
 	if (click == 3)
 		mlx->keys.right_click = true;
+
+	bool		hit_anything;
+	t_hit		hit_tmp;
+	t_interval	range;
+	t_ray ray;
+
+	int	n = 0;
+	int	type = 0;
+	int	x, y;
+	mlx_mouse_get_pos(mlx->mlx, &x, &y);
+
+	ray = camera_ray(mlx, mlx->scene.camera, x, y);
+	hit_anything = false;
+	range.min = 0.001f;
+	range.max = DBL_MAX;
+	if (-1 < (n = hit_spheres(&mlx->scene, ray, &hit_tmp, range)))
+	{
+		hit_anything = true;
+		range.max = hit_tmp.t;
+		type = 1;
+		mlx->scene.sphere[n].r = 4;
+	}
 }
 
 void	mouse_up(int click, void *param)

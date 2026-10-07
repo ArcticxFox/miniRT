@@ -6,13 +6,13 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/05 19:57:42 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/06 17:13:25 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
+bool	hit_objects(mlx_t *mlx, t_ray ray, t_hit *hit)
 {
 	bool		hit_anything;
 	t_hit		hit_tmp;
@@ -21,7 +21,7 @@ bool	hit_object(mlx_t *mlx, t_ray ray, t_hit *hit)
 	hit_anything = false;
 	range.min = 0.001f;
 	range.max = DBL_MAX;
-	if (hit_spheres(&mlx->scene, ray, &hit_tmp, range))
+	if (-1 < hit_spheres(&mlx->scene, ray, &hit_tmp, range))
 	{
 		hit_anything = true;
 		range.max = hit_tmp.t;
@@ -61,7 +61,7 @@ mlx_color	ray_color(mlx_t *mlx, t_ray ray)
 	t_hit	hit;
 	t_vec	unit_direction;
 
-	if (hit_object(mlx, ray, &hit))
+	if (hit_objects(mlx, ray, &hit))
 	{
 		return (hit.color);
 	}

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:59:59 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 17:07:22 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/06 17:13:20 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,27 @@ bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, t_interval range)
 	return (true);
 }
 
-bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range)
+int	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range)
 {
 	int		i;
-	t_hit	hit_tmp;
+	int		n;
 	bool	hit_anything;
 
 	i = 0;
+	n = 0;
 	hit_anything = false;
 	while (i < scene->sph_count)
 	{
-		if (hit_sphere(scene->sphere[i], ray, &hit_tmp, range))
+		if (hit_sphere(scene->sphere[i], ray, hit, range))
 		{
 			hit_anything = true;
-			range.max = hit_tmp.t;
-			*hit = hit_tmp;
+			range.max = hit->t;
 			hit->color = scene->sphere[i].rgb;
+			n = i;
 		}
 		++i;
 	}
 	if (hit_anything)
-		return (true);
-	return (false);
+		return (n);
+	return (-1);
 }
