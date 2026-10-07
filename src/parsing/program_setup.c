@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:52:17 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 10:54:02 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	file_name_check(char *filename)
 	return (0);
 }
 
-int	input_parsing(int ac, char **av)
+t_errors	input_parsing(int ac, char **av)
 {
 	if (ac != 2)
 		return (MRT_BAD_ARGS);
@@ -75,49 +75,49 @@ int	input_parsing(int ac, char **av)
 	return (MRT_OK);
 }
 
-t_errors	data_init(t_data *minirt)
+t_errors	data_init(t_data *scene)
 {
-	ft_bzero(minirt, sizeof(t_data));
-	minirt->sph_cap = 4;
-	minirt->sph_count = 0;
-	minirt->sphere = ft_calloc(minirt->sph_cap, sizeof(t_sphere));
-	if (!minirt->sphere)
+	scene->sph_cap = 4;
+	scene->sph_count = 0;
+	scene->sphere = ft_calloc(scene->sph_cap, sizeof(t_sphere));
+	if (!scene->sphere)
 		return (MRT_MALLOC);
-	minirt->pl_cap = 4;
-	minirt->pl_count = 0;
-	minirt->plane = ft_calloc(minirt->pl_cap, sizeof(t_pl));
-	if (!minirt->plane)
+	scene->pl_cap = 4;
+	scene->pl_count = 0;
+	scene->plane = ft_calloc(scene->pl_cap, sizeof(t_pl));
+	if (!scene->plane)
 		return (MRT_MALLOC);
-	minirt->cyl_cap = 4;
-	minirt->cyl_count = 0;
-	minirt->cylinder = ft_calloc(minirt->cyl_cap, sizeof(t_cy));
-	if (!minirt->cylinder)
+	scene->cyl_cap = 4;
+	scene->cyl_count = 0;
+	scene->cylinder = ft_calloc(scene->cyl_cap, sizeof(t_cy));
+	if (!scene->cylinder)
 		return (MRT_MALLOC);
 	return (MRT_OK);
 }
 
-t_errors	program_setup(int ac, char **av, t_data *minirt)
+t_errors	program_setup(int ac, char **av, t_data *scene)
 {
 	t_errors	err;
 
+	ft_bzero(scene, sizeof(*scene));
 	err = input_parsing(ac, av);
 	if (err != MRT_OK)
 	{
 		print_error(err);
 		return (err);
 	}
-	err = data_init(minirt);
+	err = data_init(scene);
 	if (err != MRT_OK)
 	{
 		print_error(err);
 		return (err);
 	}
-	err = load_scene_info(av[1], minirt);
+	err = load_scene_info(av[1], scene);
 	if (err != MRT_OK)
 	{
 		print_error(err);
 		return (err);
 	}
-	print_everything(minirt);
+	print_everything(scene);
 	return (err);
 }
