@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 10:54:02 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 15:15:37 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,17 @@
 
 t_errors	load_scene_info(char *filename, t_data *minirt)
 {
-	int		fd;
-	char	*res;
+	int			fd;
+	char		*res;
+	t_errors	err_ret;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (MRT_ERRNO);
 	res = get_next_line(fd);
-	while (res)
-	{
-		if (res[0] == '\0' || res[0] == '\n')
-		{
-			free(res);
-			res = get_next_line(fd);
-		}
-		else if (parse_line(res, minirt) == MRT_OK)
-		{
-			free(res);
-			res = get_next_line(fd);
-		}
-		else
-		{
-			while (1)
-			{
-				free(res);
-				res = get_next_line(fd);
-				if (!res)
-					break ;
-			}
-			return (MRT_PARSE_LINE_ERR);
-		}
-	}
+	err_ret = lsi_loop(&res, minirt, fd);
 	close(fd);
-	return (MRT_OK);
+	return (err_ret);
 }
 
 int	file_name_check(char *filename)

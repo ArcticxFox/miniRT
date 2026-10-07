@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 14:01:58 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 15:16:33 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_parser
 }	t_parser;
 
 t_errors	program_setup(int ac, char **av, t_data *minirt);
+t_errors	lsi_loop(char **res, t_data *minirt, int fd);
 
 //============== PARSING ==============
 
