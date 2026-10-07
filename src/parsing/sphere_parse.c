@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:50:45 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:53:04 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 14:16:10 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,14 @@ void	*ft_realloc(void *ptr, int old_size, int new_size)
 
 t_errors	sphere_parse(char **split, t_data *minirt)
 {
-	int	i;
-	int	ret;
+	int			i;
+	t_errors	ret;
 
 	i = 0;
 	if (minirt->sph_count == minirt->sph_cap)
 	{
-		minirt->sph_cap += 4;
-		minirt->sphere = ft_realloc(minirt->sphere,
-				minirt->sph_count * sizeof(*minirt->sphere),
-				minirt->sph_cap * sizeof(*minirt->sphere));
-		if (!minirt->sphere)
+		if (expand_obj_array(&minirt->sph_cap, (void **)&minirt->sphere,
+				sizeof(*minirt->sphere)) != MRT_OK)
 			return (MRT_MALLOC);
 	}
 	ret = parse_coords(split[i], &minirt->sphere[minirt->sph_count].center,

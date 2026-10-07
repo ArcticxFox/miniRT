@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:46:00 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 14:01:58 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_errors	sphere_parse(char **split, t_data *minirt);
 t_errors	plane_parse(char **split, t_data *minirt);
 t_errors	cylinder_parse(char **split, t_data *minirt);
 
-void	print_everything(t_data *minirt);
+void		print_everything(t_data *minirt);
+t_errors	expand_obj_array(int *cap, void **obj, size_t size);
 
 #endif

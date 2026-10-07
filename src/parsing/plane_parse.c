@@ -6,11 +6,20 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 12:37:01 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/07 14:16:28 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+t_errors	expand_obj_array(int *cap, void **obj, size_t size)
+{
+	*obj = ft_realloc(*obj, *cap * size, (*cap + 4) * size);
+	if (!(*obj))
+		return (MRT_MALLOC);
+	*cap += 4;
+	return (MRT_OK);
+}
 
 static int	parse_nov(char *str, t_vec *NOV)
 {
@@ -22,17 +31,14 @@ static int	parse_nov(char *str, t_vec *NOV)
 
 t_errors	plane_parse(char **split, t_data *minirt)
 {
-	int	i;
-	int	ret;
+	int			i;
+	t_errors	ret;
 
 	i = 0;
 	if (minirt->pl_count == minirt->pl_cap)
 	{
-		minirt->pl_cap += 4;
-		minirt->plane = ft_realloc(minirt->plane,
-				minirt->pl_count * sizeof(*minirt->plane),
-				minirt->pl_cap * sizeof(*minirt->plane));
-		if (!minirt->plane)
+		if (expand_obj_array(&minirt->pl_cap, (void **)&minirt->plane,
+				sizeof(*minirt->plane)) != MRT_OK)
 			return (MRT_MALLOC);
 	}
 	ret = parse_coords(split[i], &minirt->plane[minirt->pl_count].point_in_py,
