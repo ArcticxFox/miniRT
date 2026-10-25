@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/23 18:52:57 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 
+	mlx = (t_mlx){0};
 	if (program_setup(ac, av, &mlx.scene) != MRT_OK)
 	{
 		free_all(&mlx.scene);

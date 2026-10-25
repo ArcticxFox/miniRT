@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/23 18:40:37 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "../MacroLibX/includes/mlx_extended.h"
 
 # include "arithmetics.h"
+# include "editor.h"
 # include "scene.h"
 # include "window.h"
 # include "render_utils.h"

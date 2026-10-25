@@ -4,26 +4,6 @@ void	render_loop(void *param)
 
 	mlx = (t_mlx *)param;
 
-	if (!mlx->needs_redraw)
-		return ;
-	printf("rendering\n");
-	printf(
-	"render: camera = %f %f %f\n",
-	mlx->scene.camera.origin.x,
-	mlx->scene.camera.origin.y,
-	mlx->scene.camera.origin.z
-);
-	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){ {255, 255, 255, 255} });
-
-	render_scene(mlx, mlx->scene.camera);
-
-	mlx_put_image_to_window(
-		mlx->mlx,
-		mlx->win,
-		mlx->img,
-		0,
-		0
-	);
 
 	char	str[15];
 	mlx_set_font(mlx->mlx, "default");

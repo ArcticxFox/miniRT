@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/25 20:23:10 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 	}
 }
 
+void	render_mode(t_mlx *mlx, double	delta_time)
+{
+	if (mlx->mode == MODE_CAMERA)
+		update_camera(mlx, delta_time);
+	else if (mlx->mode == MODE_MOVE)
+		move_object(mlx);
+	else if (mlx->mode == MODE_ROTATE)
+	{
+
+	}
+	else if (mlx->mode == MODE_SCALE)
+	{
+
+	}
+}
+
 void	render_loop(void *param)
 {
 	t_mlx	*mlx;
@@ -63,16 +79,20 @@ void	render_loop(void *param)
 	double	delta_time;
 
 	mlx = (t_mlx *)param;
+	char	str[15];
+
 	current_time = get_time();
 	delta_time = current_time - mlx->last_time;
 	mlx->last_time = current_time;
-	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){{0, 0, 0, 0}});
+	if(delta_time > 0.05)
+		delta_time = 0.05;
 	if (!mlx->needs_redraw)
-		update_camera(mlx, delta_time);
+		render_mode(mlx, delta_time);
 	if (!mlx->needs_redraw)
 		render_moving_scene(mlx, mlx->scene.camera);
 	else
 		render_scene(mlx, mlx->scene.camera);
+	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){{0, 0, 0, 0}});
 	mlx_put_image_to_window(
 		mlx->mlx,
 		mlx->win,
@@ -80,4 +100,17 @@ void	render_loop(void *param)
 		0,
 		0
 		);
+	mlx_set_font(mlx->mlx, "default");
+	mlx_set_font_scale(mlx->mlx, "default", 12.f);
+	sprintf(str, "%.4f", mlx->scene.camera.origin.x);
+	mlx_string_put(mlx->mlx, mlx->win, 20, 20, (mlx_color){ .rgba = 0x0020FFFF }, "x:");
+	mlx_string_put(mlx->mlx, mlx->win, 50, 20, (mlx_color){ .rgba = 0x0020FFFF }, str);
+
+	sprintf(str, "%.4f", mlx->scene.camera.origin.y);
+	mlx_string_put(mlx->mlx, mlx->win, 20, 40, (mlx_color){ .rgba = 0x0020FFFF }, "y:");
+	mlx_string_put(mlx->mlx, mlx->win, 50, 40, (mlx_color){ .rgba = 0x0020FFFF }, str);
+
+	sprintf(str, "%.4f", mlx->scene.camera.origin.z);
+	mlx_string_put(mlx->mlx, mlx->win, 20, 60, (mlx_color){ .rgba = 0x0020FFFF }, "z:");
+	mlx_string_put(mlx->mlx, mlx->win, 50, 60, (mlx_color){ .rgba = 0x0020FFFF }, str);
 }

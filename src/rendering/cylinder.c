@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:51:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 16:43:16 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/23 18:50:38 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ bool	hit_cylinder(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 	if (range.max == old_max)
 		return (false);
 	hit->t = range.max;
+
 	return (true);
 }
 

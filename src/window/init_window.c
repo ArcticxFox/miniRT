@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:44:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/25 18:22:33 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	init_mlx_events(t_mlx *mlx)
+static void	init_mlx_events(t_mlx *mlx)
 {
 	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEDOWN, mouse_down, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEUP, mouse_up, mlx);
@@ -21,7 +21,7 @@ void	init_mlx_events(t_mlx *mlx)
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, window_hook, mlx);
 }
 
-void	init_keys(t_keys *keys)
+static void	init_keys(t_keys *keys)
 {
 	keys->up = false;
 	keys->down = false;
@@ -51,5 +51,6 @@ void	init_window(t_mlx *mlx)
 	init_keys(&mlx->keys);
 	mlx->prev_mouse_pos.x = 0;
 	mlx->prev_mouse_pos.y = 0;
+	mlx->mode = MODE_CAMERA;
 	init_mlx_events(mlx);
 }

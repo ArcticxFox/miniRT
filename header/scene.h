@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 15:59:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/25 15:47:13 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # define HEIGHT 60
 # define WIDTH 148
 
-//=================================objects====================================//
+//============================================================================//
+//									OBJECTS									  //
+//============================================================================//
 
 typedef struct s_amb_light
 {
@@ -57,6 +59,25 @@ typedef struct s_cylinder
 	double		r;
 }	t_cy;
 
+typedef enum	e_obj_type
+{
+	OBJ_NONE,
+	OBJ_SPHERE,
+	OBJ_PLANE,
+	OBJ_CYLINDER
+}	t_obj_type;
+
+typedef struct s_selection
+{
+	t_obj_type	type;
+	int			index;
+	bool		valid;
+}	t_selection;
+
+//============================================================================//
+//								HELPER
+//============================================================================//
+
 typedef struct s_hit
 {
 	double		t;
@@ -70,13 +91,6 @@ typedef struct s_interval
 	double	min;
 	double	max;
 }	t_interval;
-
-typedef struct s_objects
-{
-	t_sphere	sp;
-	t_pl		pl;
-	t_cy		cy;
-}	t_objects;
 
 typedef struct s_mouse_pos
 {
@@ -137,6 +151,12 @@ typedef struct s_mlx
 	t_keys					keys;
 	double					last_time;
 	int						needs_redraw;
+
+	t_mode					mode;
+	t_selection				selected;
+	t_mouse_pos				drag_start;
+	t_vec					object_start;
+	double					value_start;
 }	t_mlx;
 
 #endif
