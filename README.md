@@ -1,6 +1,15 @@
 # miniRT
 Groupe project involving ray-tracing
 
+# MODES
+	- camera : press 'c' to enter mode
+		use arrow keys for 'up, down, left and right' movement
+		'f' for forward
+		'b' for backwards
+	- move mode : press 'm' to enter
+		'left click' a sphere and drag.
+_I need to implement it for a cylinder and plane._
+
 To do list:
 
 	- make a luist
