@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 13:02:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 14:16:32 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/28 13:22:15 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ t_errors	parse_cyl_data(char **split, t_data *minirt)
 	if (!valid_float_number(split[i]))
 		return (MRT_INVALID_NUM);
 	minirt->cylinder[minirt->cyl_count].d = ft_atof(split[i]);
+	if (minirt->sphere[minirt->cyl_count].d <= 0)
+		return (MRT_INVALID_NUM);
 	i++;
 	if (!valid_float_number(split[i]))
 		return (MRT_INVALID_NUM);
 	minirt->cylinder[minirt->cyl_count].h = ft_atof(split[i]);
+	if (minirt->sphere[minirt->cyl_count].d <= 0)
+		return (MRT_INVALID_NUM);
 	i++;
 	ret = parse_colours(split[i], &minirt->cylinder[minirt->cyl_count].rgb);
 	if (split[i + 1] != NULL)
