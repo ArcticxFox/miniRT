@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 10:14:39 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 15:32:28 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/28 14:19:40 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef enum e_errors
 	MRT_FILENAME,
 	MRT_MALLOC,
 	MRT_INVALID_NUM,
+	MRT_NEGATIVE_VALUE,
 	MRT_BAD_COLOUR,
 	MRT_BAD_LIGHT_RATIO,
 	MRT_BAD_NOV,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 15:15:25 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/28 16:45:33 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,37 @@ mlx_color	ray_color(t_mlx *mlx, t_ray ray)
 
 	if (hit_objects(mlx, ray, &hit))
 	{
+		t_vec	light_dir;
+		double	diffuse;
+		uint8_t	ambient_r = hit.color.r * mlx->scene.ambient_light.rgb.r * mlx->scene.ambient_light.ratio / 255;
+		uint8_t	ambient_g = hit.color.g * mlx->scene.ambient_light.rgb.g * mlx->scene.ambient_light.ratio / 255;
+		uint8_t	ambient_b = hit.color.b * mlx->scene.ambient_light.rgb.b * mlx->scene.ambient_light.ratio / 255;
+
+		// t_hit	tmp_hit;
+		light_dir = normalize(sub(mlx->scene.light.lightpoint, hit.point));
+		// if (hit_objects(mlx, (t_ray){
+		// 		.dir = light_dir,
+		// 		.origin = hit.point},
+		// 		&tmp_hit))
+		// 	{
+		// 		diffuse = 0.0;
+		// 	}
+		// else
+		diffuse = dot(hit.normal, light_dir);
+		if (diffuse < 0.0)
+			diffuse = 0.0;
+		diffuse *= mlx->scene.light.brightness;
+
+		double red = ambient_r + hit.color.r * diffuse;
+		double green = ambient_g + hit.color.g * diffuse;
+		double blue = ambient_b + hit.color.b * diffuse;
 
 		return ((mlx_color){
-			.r = (uint8_t)((hit.normal.x + 1.0) * 0.5 * hit.color.r),
-			.g = (uint8_t)((hit.normal.y + 1.0) * 0.5 * hit.color.g),
-			.b = (uint8_t)((hit.normal.z + 1.0) * 0.5 * hit.color.b),
-			.a = 170
+			.r = (uint8_t)red,
+			.g = (uint8_t)green,
+			.b = (uint8_t)blue,
+			.a = 255
 		});
-		// return (hit.color);
 	}
 	unit_direction = normalize(ray.dir);
 	a = 0.5 * (unit_direction.y + 1.0);

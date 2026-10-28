@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 10:13:59 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 12:39:37 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/28 14:21:20 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_error(t_errors error)
 		"Scene must be named and must end in '.rt'. Example: scene.rt",
 		"Malloc",
 		"Object values must be numerical",
+		"Diameter / heights must be a positive value",
 		"Colours must have a value between 0 - 255",
 		"Lighting ratio must be between 0.0 - 1.0",
 		"Normalised orientation vector must have a value between -1.0 - 1.0",

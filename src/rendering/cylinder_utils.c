@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 16:26:02 by ejones            #+#    #+#             */
-/*   Updated: 2026/09/29 16:32:23 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/28 16:44:41 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 	radial = sub(oc, multiply_scalar(cy.axis_dir, dot(oc, cy.axis_dir)));
 	if (dot(radial, radial) > cy.r * cy.r)
 		return (false);
-	hit->normal = multiply_scalar(cy.axis_dir, -1);
+	hit->normal = multiply_scalar(cy.axis_dir, 1);
 	hit->color = cy.rgb;
 	return (true);
 }

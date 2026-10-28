@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:44:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 15:40:57 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/28 16:47:18 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	hit_plane(t_pl pl, t_ray ray, t_hit *hit, t_interval range)
 		return (false);
 	hit->t = t;
 	hit->point = ray_at(ray, t);
-	hit->normal = multiply_scalar(pl.direction, -1);
+	hit->normal = multiply_scalar(pl.direction, 1);
 	hit->color = pl.rgb;
 	return (true);
 }

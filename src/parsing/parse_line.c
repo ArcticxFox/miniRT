@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/08/26 14:55:26 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/28 13:30:22 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_errors	parse_line(char *line, t_data *minirt)
 {
 	char			**split;
 	t_parse_func	func;
-	int				ret;
+	t_errors		ret;
 
 	ret = MRT_OK;
 	if (!line)

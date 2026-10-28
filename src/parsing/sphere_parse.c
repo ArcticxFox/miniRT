@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:50:45 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/28 13:20:15 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/28 14:20:49 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_errors	sphere_parse(char **split, t_data *minirt)
 		return (MRT_INVALID_NUM);
 	minirt->sphere[minirt->sph_count].d = ft_atof(split[i]);
 	if (minirt->sphere[minirt->sph_count].d <= 0)
-		return (MRT_INVALID_NUM);
+		return (MRT_NEGATIVE_VALUE);
 	i++;
 	ret = parse_colours(split[i], &minirt->sphere[minirt->sph_count].rgb);
 	if (split[i + 1] != NULL)
