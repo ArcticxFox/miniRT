@@ -7,7 +7,7 @@ Groupe project involving ray-tracing
 		'f' for forward
 		'b' for backwards
 	- move mode : press 'm' to enter
-		'left click' a sphere and drag. 	
+		'left click' a sphere and drag.
 _I need to implement it for a cylinder and plane._
 
 To do list:
@@ -19,3 +19,5 @@ source:
 - https://stackoverflow.com/questions/7753361/construct-an-orthonormal-base-given-only-one-vector-in-3d
 
 - https://raytracing.github.io/books/RayTracingInOneWeekend.html
+
+- https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm

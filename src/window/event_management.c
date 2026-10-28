@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/25 20:22:42 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/28 15:55:27 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,16 @@ void	key_released(int key, void *param)
 void	save_object_start(t_mlx *mlx, t_data scene)
 {
 	if (mlx->selected.type == OBJ_SPHERE)
+	{
 		mlx->object_start = scene.sphere[mlx->selected.index].center;
+		mlx->selected.r = scene.sphere[mlx->selected.index].r;
+	}
 	else if (mlx->selected.type == OBJ_CYLINDER)
+	{
 		mlx->object_start = scene.cylinder[mlx->selected.index].center;
+		mlx->selected.r = scene.cylinder[mlx->selected.index].r;
+		mlx->selected.h = scene.cylinder[mlx->selected.index].h;
+	}
 	else if (mlx->selected.type == OBJ_PLANE)
 		mlx->object_start = scene.plane[mlx->selected.index].point_in_py;
 }
@@ -123,7 +130,10 @@ void	mouse_up(int click, void *param)
 	mlx = (t_mlx *)param;
 	printf("MOUSE CLICK == %d\n", click);
 	if (click == 1)
+	{
 		mlx->keys.left_click = false;
+		mlx->selected.type = OBJ_NONE;
+	}
 	mlx->needs_redraw = 1;
 }
 

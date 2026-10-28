@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/25 20:09:05 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/28 13:33:19 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ mlx_color	ray_color(t_mlx *mlx, t_ray ray);
 t_ray		camera_ray(t_mlx *mlx, t_camera camera, int x, int y);
 
 //modes
-void		move_object(t_mlx *mlx);
 bool		find_objects(t_mlx *mlx);
+void		move_object(t_mlx *mlx);
+void		scale_object(t_mlx *mlx);
 void		update_camera(t_mlx *mlx, double dt);
 
 void		render_loop(void *param);

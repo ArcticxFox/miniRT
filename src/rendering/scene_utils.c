@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/25 15:46:51 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/28 15:15:25 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,14 @@ mlx_color	ray_color(t_mlx *mlx, t_ray ray)
 
 	if (hit_objects(mlx, ray, &hit))
 	{
-		return (hit.color);
+
+		return ((mlx_color){
+			.r = (uint8_t)((hit.normal.x + 1.0) * 0.5 * hit.color.r),
+			.g = (uint8_t)((hit.normal.y + 1.0) * 0.5 * hit.color.g),
+			.b = (uint8_t)((hit.normal.z + 1.0) * 0.5 * hit.color.b),
+			.a = 170
+		});
+		// return (hit.color);
 	}
 	unit_direction = normalize(ray.dir);
 	a = 0.5 * (unit_direction.y + 1.0);

@@ -79,8 +79,9 @@ SRC := \
 	rendering/cylinder.c \
 	rendering/cylinder_utils.c \
 	rendering/mode_utils.c \
-	rendering/camera_mode.c \
-	rendering/move_mode.c \
+	rendering/mode_camera.c \
+	rendering/mode_move.c \
+	rendering/mode_scale.c \
 	parsing/program_setup.c parsing/program_setup_utils.c parsing/parse_line.c \
 	parsing/parse_line_utils.c parsing/amb_parse.c \
 	parsing/cam_parse.c parsing/light_parse.c \

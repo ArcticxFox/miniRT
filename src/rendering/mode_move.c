@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_mode.c                                        :+:      :+:    :+:   */
+/*   mode_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 14:43:42 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/25 20:19:12 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/27 13:52:00 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	move_sphere(t_mlx *mlx, int mouse_x, int mouse_y)
+t_vec	move_position(t_mlx *mlx, int mouse_x, int mouse_y)
 {
 	int	dx;
 	int	dy;
@@ -25,23 +25,33 @@ void	move_sphere(t_mlx *mlx, int mouse_x, int mouse_y)
 	{
 		depth = dot(sub(mlx->object_start, mlx->scene.camera.origin),
 			mlx->scene.camera.forward);
-		world_unit_pixel = 2 * depth * tan(mlx->scene.camera.fov * 0.5 * M_PI / 180) /
-			mlx->info.height;
+		world_unit_pixel = 2 * depth *
+			tan(mlx->scene.camera.fov * 0.5 * M_PI / 180) / mlx->info.height;
 			dx = mouse_x - mlx->drag_start.x;
 			dy = mouse_y - mlx->drag_start.y;
-		offset = add(multiply_scalar(mlx->scene.camera.right, dx * world_unit_pixel),
+		offset = add(
+			multiply_scalar(mlx->scene.camera.right, dx * world_unit_pixel),
 			multiply_scalar(mlx->scene.camera.up, -dy * world_unit_pixel));
 		new_pos = add(mlx->object_start, offset);
-		mlx->scene.sphere[mlx->selected.index].center = new_pos;
+		return (new_pos);
 	}
+	return (mlx->object_start);
 }
 
 void	move_object(t_mlx *mlx)
 {
-	int	mouse_x;
-	int	mouse_y;
+	int		mouse_x;
+	int		mouse_y;
+	int		index;
+	t_data	*scene;
 
+	index = mlx->selected.index;
+	scene = &mlx->scene;
 	mlx_mouse_get_pos(mlx->mlx, &mouse_x, &mouse_y);
 	if (mlx->selected.type == OBJ_SPHERE)
-		move_sphere(mlx, mouse_x, mouse_y);
+		scene->sphere[index].center = move_position(mlx, mouse_x, mouse_y);
+	if (mlx->selected.type == OBJ_CYLINDER)
+		scene->cylinder[index].center = move_position(mlx, mouse_x, mouse_y);
+	if (mlx->selected.type == OBJ_PLANE)
+		scene->plane[index].point_in_py = move_position(mlx, mouse_x, mouse_y);
 }
