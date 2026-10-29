@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 16:14:25 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/10/29 16:41:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_ray		camera_ray(t_mlx *mlx, t_camera camera, int x, int y);
 bool		find_objects(t_mlx *mlx);
 void		move_object(t_mlx *mlx);
 void		scale_object(t_mlx *mlx);
+double		get_distance(t_mlx *mlx, int mouse_x, int mouse_y);
 void		update_camera(t_mlx *mlx, double dt);
 
 void		render_loop(void *param);

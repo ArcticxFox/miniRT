@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 13:33:33 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/29 16:51:34 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	render_mode(t_mlx *mlx, double	delta_time)
 	}
 	else if (mlx->mode == MODE_SCALE)
 	{
+		if (mlx->selected.type == OBJ_PLANE)
+			return ;
 		scale_object(mlx);
 	}
 }

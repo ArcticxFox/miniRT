@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 15:55:27 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/29 16:54:57 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static void	set_movement_key(t_mlx *mlx, int key, bool pressed)
 static void	handle_camera_key(t_mlx *mlx, int key)
 {
 	if (key == 45)
-		mlx->scene.camera.fov -= 1;
+		mlx->scene.camera.fov *= 0.98f;
 	else if (key == 46 && mlx->scene.camera.fov < 180)
-		mlx->scene.camera.fov += 1;
+		mlx->scene.camera.fov *= 1.05f;
 	set_movement_key(mlx, key, true);
 }
 
@@ -119,6 +119,8 @@ void	mouse_down(int click, void *param)
 			&mlx->prev_mouse_pos.y);
 		if (find_objects(mlx))
 			drag_start(mlx, mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
+		if (mlx->mode == MODE_SCALE)
+			mlx->value_start = get_distance(mlx, mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
 		mlx->needs_redraw = 0;
 	}
 }
