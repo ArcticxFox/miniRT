@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 12:58:28 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/30 16:28:56 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,13 @@ void	save_object_start(t_mlx *mlx, t_data scene)
 		mlx->object_start = scene.cylinder[mlx->selected.index].center;
 		mlx->selected.r = scene.cylinder[mlx->selected.index].r;
 		mlx->selected.h = scene.cylinder[mlx->selected.index].h;
+		mlx->object_dir = &scene.cylinder[mlx->selected.index].axis_dir;
 	}
 	else if (mlx->selected.type == OBJ_PLANE)
+	{
 		mlx->object_start = scene.plane[mlx->selected.index].point_in_py;
+		mlx->object_dir = &scene.plane[mlx->selected.index].direction;
+	}
 }
 
 void	drag_start(t_mlx *mlx, int x, int y)

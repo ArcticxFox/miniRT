@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 14:58:26 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/30 16:34:53 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	render_mode(t_mlx *mlx, double	delta_time)
 		move_object(mlx);
 	else if (mlx->mode == MODE_ROTATE)
 	{
+		if (mlx->selected.type == (OBJ_SPHERE || OBJ_NONE) )
+			return ;
 		rotate_objects(mlx);
 	}
 	else if (mlx->mode == MODE_SCALE)

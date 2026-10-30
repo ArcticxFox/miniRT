@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 13:04:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/30 16:28:49 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct s_mlx
 	t_selection				selected;
 	t_mouse_pos				drag_start;
 	t_vec					object_start;
+	t_vec					*object_dir;
 	double					value_start;
 }	t_mlx;
 
