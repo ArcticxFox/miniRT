@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:51:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/23 18:50:38 by ejones           ###   ########.fr       */
+/*   Updated: 2026/10/30 16:34:27 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	get_root(t_cy cy, t_ray ray, bool root_type, double *root)
 	delta = b * b - a * c;
 	if (delta < 0)
 		return (false);
-	if (root_type == true)
+	if (root_type == false)
 		*root = (-b - sqrt(delta)) / a;
 	else
 		*root = (-b + sqrt(delta)) / a;
