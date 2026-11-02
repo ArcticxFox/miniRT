@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 14:17:00 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 14:27:23 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 			ray = camera_ray(mlx, camera, x, y);
 			fill_tab(mlx, &ray, tab_col, 30);
 			mlx_set_image_region(mlx->mlx, mlx->img, x, y, 6, 6, tab_col);
-			x = x + 5;
+			x = x + 6;
 		}
-		y += 5;
+		y += 6;
 	}
 }
 
