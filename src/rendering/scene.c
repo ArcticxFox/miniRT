@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 13:49:17 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 14:17:00 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 	int			x;
 	int			y;
 	t_ray		ray;
-	mlx_color	tab_col[25];
+	mlx_color	tab_col[36];
 
 	y = 0;
 	while (y < mlx->info.height)
@@ -26,8 +26,8 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 		while (x < mlx->info.width)
 		{
 			ray = camera_ray(mlx, camera, x, y);
-			fill_tab(mlx, &ray, tab_col, 25);
-			mlx_set_image_region(mlx->mlx, mlx->img, x, y, 5, 5, tab_col);
+			fill_tab(mlx, &ray, tab_col, 30);
+			mlx_set_image_region(mlx->mlx, mlx->img, x, y, 6, 6, tab_col);
 			x = x + 5;
 		}
 		y += 5;
