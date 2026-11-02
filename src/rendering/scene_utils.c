@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 16:53:04 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:24:44 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,23 @@ mlx_color	ray_color(t_mlx *mlx, t_ray ray)
 		uint8_t	ambient_g = hit.color.g * mlx->scene.ambient_light.rgb.g * mlx->scene.ambient_light.ratio / 255;
 		uint8_t	ambient_b = hit.color.b * mlx->scene.ambient_light.rgb.b * mlx->scene.ambient_light.ratio / 255;
 
-		// t_hit	tmp_hit;
+		t_hit	tmp_hit;
 
 		light_dir = normalize(sub(mlx->scene.light.lightpoint, hit.point));
 		light_distance = vec_lenght(sub(mlx->scene.light.lightpoint, hit.point));
 		diffuse = dot(hit.normal, light_dir);
 		if (diffuse < 0.0)
 			diffuse = 0.0;
-		// else
-		// 	{
-		// 		range.min = 0.001f;
-		// 		range.max = light_distance;
-		// 		if (hit_objects(mlx, (t_ray){
-		// 		.dir = light_dir,
-		// 		.origin = add(hit.point, multiply_scalar(hit.normal, 0.001))},
-		// 		&tmp_hit, range))
-		// 			diffuse = 0.0;
-		// 	}
+		else
+			{
+				range.min = 0.001f;
+				range.max = light_distance;
+				if (hit_objects(mlx, (t_ray){
+				.dir = light_dir,
+				.origin = add(hit.point, multiply_scalar(hit.normal, 0.001))},
+				&tmp_hit, range))
+					diffuse = 0.0;
+			}
 		diffuse *= mlx->scene.light.brightness;
 
 		double red = ambient_r + hit.color.r * diffuse;
@@ -139,44 +139,4 @@ t_ray	camera_ray(t_mlx *mlx, t_camera camera, int x, int y)
 			);
 	ray.dir = normalize(ray.dir);
 	return (ray);
-}
-mlx_color	ray_color(t_mlx *mlx, t_ray ray)
-{
-	double	a;
-	t_hit	hit;
-	t_vec	unit_direction;
-
-	if (hit_object(mlx, ray, &hit))
-	{
-		t_vec	light_dir;
-		double	diffuse;
-		uint8_t	ambient_r = hit.color.r * mlx->scene.ambient_light.rgb.r * mlx->scene.ambient_light.ratio / 255;
-		uint8_t	ambient_g = hit.color.g * mlx->scene.ambient_light.rgb.g * mlx->scene.ambient_light.ratio / 255;
-		uint8_t	ambient_b = hit.color.b * mlx->scene.ambient_light.rgb.b * mlx->scene.ambient_light.ratio / 255;
-
-		light_dir = normalize(sub(mlx->scene.light.lightpoint, hit.point));
-		diffuse = dot(hit.normal, light_dir);
-		if (diffuse < 0.0)
-			diffuse = 0.0;
-		diffuse *= mlx->scene.light.brightness;
-
-		double red = ambient_r + hit.color.r * diffuse;
-		double green = ambient_g + hit.color.g * diffuse;
-		double blue = ambient_b + hit.color.b * diffuse;
-
-		return ((mlx_color){
-			.r = (uint8_t)red,
-			.g = (uint8_t)green,
-			.b = (uint8_t)blue,
-			.a = 255
-		});
-	}
-	unit_direction = normalize(ray.dir);
-	a = 0.5 * (unit_direction.y + 1.0);
-	return ((mlx_color){
-		.r = (uint8_t)((1.0 - a) * 255 + a * 127),
-		.g = (uint8_t)((1.0 - a) * 255 + a * 178),
-		.b = (uint8_t)((1.0 - a) * 255 + a * 255),
-		.a = 255
-	});
 }
