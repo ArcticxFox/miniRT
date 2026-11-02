@@ -3,12 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   modes.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 17:16:38 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/29 16:37:37 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 15:31:15 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 13:49:28 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 15:30:57 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "mini_rt.h"
 
-bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, t_interval range);
-bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
+bool		hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, t_interval range);
+bool		hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
 
 bool		hit_plane(t_pl pl, t_ray ray, t_hit *hit, t_interval range);
 bool		hit_planes(t_data *scene, t_ray ray, t_hit *hit, t_interval range);
@@ -41,7 +41,7 @@ void		move_object(t_mlx *mlx);
 void		scale_object(t_mlx *mlx);
 double		get_distance(t_mlx *mlx, int mouse_x, int mouse_y);
 
-void	rotate_objects(t_mlx *mlx);
+void		rotate_objects(t_mlx *mlx);
 void		update_camera(t_mlx *mlx, double dt);
 
 void		render_loop(void *param);

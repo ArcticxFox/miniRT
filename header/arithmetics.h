@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arithmetics.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:33:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/23 18:17:20 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 15:28:49 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 # include "mini_rt.h"
 
-typedef struct	s_vec
+typedef struct s_vec
 {
 	double	x;
 	double	y;
 	double	z;
 }	t_vec;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_vec	origin;
 	t_vec	dir;
 }	t_ray;
 
-typedef struct	s_get_root
+typedef struct s_get_root
 {
 	double	a;
 	double	b;
@@ -36,7 +36,7 @@ typedef struct	s_get_root
 	double	delta;
 }	t_get_root;
 
-typedef struct	s_quaternions
+typedef struct s_quaternions
 {
 	double	w;
 	double	x;

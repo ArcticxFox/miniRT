@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 16:28:49 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 15:31:33 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,13 @@ typedef struct s_cylinder
 	double		r;
 }	t_cy;
 
-typedef enum	e_obj_type
+typedef enum e_obj_type
 {
 	OBJ_NONE,
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER
 }	t_obj_type;
-
 
 //============================================================================//
 //								HELPER
