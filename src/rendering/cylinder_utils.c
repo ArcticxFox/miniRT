@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 16:26:02 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 16:44:41 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/02 13:57:39 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ bool	check_top_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 	t = dot(sub(top_cap, ray.origin), cy.axis_dir) / denom;
 	if (t <= range.min || range.max <= t)
 		return (false);
-	hit->t = t;
-	hit->point = ray_at(ray, t);
-	oc = sub(hit->point, top_cap);
+	oc = sub(ray_at(ray, t), top_cap);
 	radial = sub(oc, multiply_scalar(cy.axis_dir, dot(oc, cy.axis_dir)));
 	if (dot(radial, radial) > cy.r * cy.r)
 		return (false);
+	hit->t = t;
+	hit->point = ray_at(ray, t);
 	hit->normal = multiply_scalar(cy.axis_dir, 1);
 	hit->color = cy.rgb;
 	return (true);
@@ -53,12 +53,12 @@ bool	check_bottom_cap(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 	t = dot(sub(bottom_center, ray.origin), cy.axis_dir) / denom;
 	if (t <= range.min || range.max <= t)
 		return (false);
-	hit->t = t;
-	hit->point = ray_at(ray, t);
-	oc = sub(hit->point, bottom_center);
+	oc = sub(ray_at(ray, t), bottom_center);
 	radial = sub(oc, multiply_scalar(cy.axis_dir, dot(oc, cy.axis_dir)));
 	if (dot(radial, radial) > cy.r * cy.r)
 		return (false);
+	hit->t = t;
+	hit->point = ray_at(ray, t);
 	hit->normal = multiply_scalar(cy.axis_dir, -1);
 	hit->color = cy.rgb;
 	return (true);

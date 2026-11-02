@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 14:58:10 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 13:49:28 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool		hit_cylinder(t_cy cy, t_ray ray, t_hit *hit, t_interval range);
 bool		hit_cylinders(t_data *scene, t_ray ray, t_hit *hit,
 				t_interval range);
 
-bool		hit_objects(t_mlx *mlx, t_ray ray, t_hit *hit);
+bool		hit_objects(t_mlx *mlx, t_ray ray, t_hit *hit, t_interval range);
 void		fill_tab(t_mlx *mlx, t_ray *ray, mlx_color *tab_col, int size);
 
 mlx_color	ray_color(t_mlx *mlx, t_ray ray);

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:51:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/23 18:50:38 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 13:54:55 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	check_cylinder_root(t_cy cy, t_ray ray, t_hit *hit, double root)
 	t_vec	oc;
 
 	oc = sub(ray.origin, cy.center);
-	m = dot(ray.dir, cy.axis_dir) * root + dot(oc, cy.axis_dir);
+	m = dot(ray.dir, cy.axis_dir) * root + dot(cy.axis_dir, oc);
 	if (m < (-cy.h / 2) || m > (cy.h / 2))
 	{
 		return (false);
@@ -50,7 +50,7 @@ bool	get_root(t_cy cy, t_ray ray, bool root_type, double *root)
 	delta = b * b - a * c;
 	if (delta < 0)
 		return (false);
-	if (root_type == true)
+	if (root_type == false)
 		*root = (-b - sqrt(delta)) / a;
 	else
 		*root = (-b + sqrt(delta)) / a;
@@ -63,13 +63,13 @@ bool	hit_cylinder(t_cy cy, t_ray ray, t_hit *hit, t_interval range)
 	double	old_max;
 
 	old_max = range.max;
-	if (get_root(cy, ray, true, &root))
+	if (get_root(cy, ray, false, &root))
 	{
 		if (root > range.min && root < range.max
 			&& check_cylinder_root(cy, ray, hit, root))
 			range.max = hit->t;
 	}
-	if (get_root(cy, ray, false, &root))
+	if (get_root(cy, ray, true, &root))
 	{
 		if (root > range.min && root < range.max
 			&& check_cylinder_root(cy, ray, hit, root))
