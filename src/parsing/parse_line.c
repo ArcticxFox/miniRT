@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/28 13:30:22 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/02 14:27:29 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,25 @@ static int	norm_whitespace(char *line)
 	return (0);
 }
 
+static int more_than_one_capital(char *identifier)
+{
+	static	int noofas;
+	static	int noofcs;
+	static	int noofls;
+
+	if (!identifier)
+		return (1);
+	if (ft_strcmp("A", identifier) == 0)
+		noofas++;
+	else if (ft_strcmp("C", identifier) == 0)
+		noofcs++;
+	else if (ft_strcmp("L", identifier) == 0)
+		noofls++;
+	if (noofas > 1 || noofcs > 1 || noofls > 1)
+		return (1);
+	return (0);
+}
+
 static t_parse_func	get_parse_func(char **split)
 {
 	int				i;
@@ -48,6 +67,8 @@ static t_parse_func	get_parse_func(char **split)
 	{"cy", cylinder_parse}
 	};
 
+	if (more_than_one_capital(split[0]))
+		return (NULL);
 	i = 0;
 	while (i < 6)
 	{
