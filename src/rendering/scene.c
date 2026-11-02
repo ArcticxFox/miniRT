@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 14:27:23 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 15:51:37 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 		while (x < mlx->info.width)
 		{
 			ray = camera_ray(mlx, camera, x, y);
-			fill_tab(mlx, &ray, tab_col, 30);
+			fill_tab(mlx, &ray, tab_col, 36);
 			mlx_set_image_region(mlx->mlx, mlx->img, x, y, 6, 6, tab_col);
 			x = x + 6;
 		}

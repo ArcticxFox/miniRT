@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 13:02:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/28 14:21:00 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/02 15:47:26 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ static t_errors	parse_nov(char *str, t_vec *NOV)
 
 	ret = parse_coords(str, NOV, -1.0, 1.0);
 	return (ret);
+}
+
+t_errors	parse_positive_float(char *input, double *value)
+{
+	if (!valid_float_number(input))
+		return (MRT_INVALID_NUM);
+	*value = ft_atof(input);
+	if (*value <= 0)
+		return (MRT_NEGATIVE_VALUE);
+	return (MRT_OK);
 }
 
 t_errors	parse_cyl_data(char **split, t_data *minirt)
@@ -35,17 +45,23 @@ t_errors	parse_cyl_data(char **split, t_data *minirt)
 	if (ret != MRT_OK)
 		return (ret);
 	i++;
-	if (!valid_float_number(split[i]))
-		return (MRT_INVALID_NUM);
-	minirt->cylinder[minirt->cyl_count].d = ft_atof(split[i]);
-	if (minirt->sphere[minirt->cyl_count].d <= 0)
-		return (MRT_NEGATIVE_VALUE);
+	ret = parse_positive_float(split[i], &minirt->cylinder[minirt->cyl_count].d);
+	if (ret != MRT_OK)
+		return (ret);
+	// if (!valid_float_number(split[i]))
+	// 	return (MRT_INVALID_NUM);
+	// minirt->cylinder[minirt->cyl_count].d = ft_atof(split[i]);
+	// if (minirt->cylinder[minirt->cyl_count].d <= 0)
+	// 	return (MRT_NEGATIVE_VALUE);
 	i++;
-	if (!valid_float_number(split[i]))
-		return (MRT_INVALID_NUM);
-	minirt->cylinder[minirt->cyl_count].h = ft_atof(split[i]);
-	if (minirt->sphere[minirt->cyl_count].d <= 0)
-		return (MRT_INVALID_NUM);
+	ret = parse_positive_float(split[i], &minirt->cylinder[minirt->cyl_count].h);
+	if (ret != MRT_OK)
+		return (ret);
+	// if (!valid_float_number(split[i]))
+	// 	return (MRT_INVALID_NUM);
+	// minirt->cylinder[minirt->cyl_count].h = ft_atof(split[i]);
+	// if (minirt->cylinder[minirt->cyl_count].h <= 0)
+	// 	return (MRT_NEGATIVE_VALUE);
 	i++;
 	ret = parse_colours(split[i], &minirt->cylinder[minirt->cyl_count].rgb);
 	if (split[i + 1] != NULL)
