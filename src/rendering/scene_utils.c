@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 14:28:01 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/02 16:37:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	fill_tab(t_mlx *mlx, t_ray *ray, mlx_color	*tab_col, int size)
 	}
 }
 
-t_ray	camera_ray(t_mlx *mlx, t_camera camera, int x, int y)
+t_ray	camera_ray(t_mlx *mlx, t_camera camera, double x, double y)
 {
 	t_ray	ray;
 	double	viewport_x;

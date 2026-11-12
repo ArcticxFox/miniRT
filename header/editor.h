@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:32:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/29 16:41:13 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/12 14:49:29 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ typedef enum	e_mode
 	MODE_SCALE,
 	MODE_ROTATE
 }	t_mode;
-
-
 
 #endif

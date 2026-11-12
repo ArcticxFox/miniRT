@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:44:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/25 18:22:33 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/05 21:05:21 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_window(t_mlx *mlx)
 	mlx_window_create_info	info;
 
 	mlx->mlx = mlx_init();
+	mlx_set_fps_goal(mlx->mlx, 60);
 	info = (mlx_window_create_info){0};
 	info.title = "My Ray Tracer";
 	info.width = 1920;
@@ -52,5 +53,6 @@ void	init_window(t_mlx *mlx)
 	mlx->prev_mouse_pos.x = 0;
 	mlx->prev_mouse_pos.y = 0;
 	mlx->mode = MODE_CAMERA;
+	mlx->render.samples = 4;
 	init_mlx_events(mlx);
 }

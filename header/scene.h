@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 16:28:49 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/05 20:48:28 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,19 @@ typedef struct s_mouse_pos
 	int	y;
 }	t_mouse_pos;
 
+
+typedef struct s_render
+{
+	int		x;
+	int		y;
+	int			diagonal;
+	int			diagonal_y;
+	int			total_tiles;
+	int		samples;
+	bool	active;
+	bool	moving;
+}	t_render;
+
 //============================================================================//
 
 typedef struct s_keys
@@ -149,6 +162,7 @@ typedef struct s_mlx
 	mlx_window_create_info	info;
 
 	t_data					scene;
+	t_render				render;
 
 	t_mouse_pos				prev_mouse_pos;
 	t_keys					keys;

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:33:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/23 18:17:20 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/06 18:38:52 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct	s_ray
 	t_vec	dir;
 }	t_ray;
 
+typedef struct	s_quaternions
+{
+	double	w;
+	double	x;
+	double	y;
+	double	z;
+}	t_quat;
+
 typedef struct	s_get_root
 {
 	double	a;
@@ -36,13 +44,7 @@ typedef struct	s_get_root
 	double	delta;
 }	t_get_root;
 
-typedef struct	s_quaternions
-{
-	double	w;
-	double	x;
-	double	y;
-	double	z;
-}	t_quat;
+
 
 double	dot(t_vec a, t_vec b);
 t_vec	add(t_vec a, t_vec b);
