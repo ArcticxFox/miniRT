@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/02 14:27:29 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/02 16:09:52 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static int	norm_whitespace(char *line)
 	return (0);
 }
 
-static int more_than_one_capital(char *identifier)
+static int	more_than_one_capital(char *identifier)
 {
-	static	int noofas;
-	static	int noofcs;
-	static	int noofls;
+	static int	noofas;
+	static int	noofcs;
+	static int	noofls;
 
 	if (!identifier)
 		return (1);

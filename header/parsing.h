@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 15:33:03 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/02 16:11:32 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ t_errors	parse_float_array(char **input, t_vec *coords, double lower,
 t_errors	parse_int_array(char **input, mlx_color *rgb, int lower, int upper);
 t_errors	parse_coords(char *str, t_vec *coords, double lower, double upper);
 void		*ft_realloc(void *ptr, int old_size, int new_size);
+t_errors	parse_positive_float(char *input, double *value);
 
 t_errors	amb_parse(char **split, t_data *minirt);
 t_errors	cam_parse(char **split, t_data *minirt);
