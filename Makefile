@@ -73,16 +73,16 @@ SRC := \
 	math/quaternions.c \
 	window/init_window.c \
 	window/event_management.c \
-	window/editor_init_win.c \
-	rendering/sphere.c \
-	rendering/plane.c \
-	rendering/cylinder.c \
-	rendering/cylinder_utils.c \
-	rendering/mode_utils.c \
-	rendering/mode_camera.c \
-	rendering/mode_move.c \
-	rendering/mode_scale.c \
-	rendering/mode_rotate.c \
+	rendering/intersections/sphere.c \
+	rendering/intersections/plane.c \
+	rendering/intersections/cylinder.c \
+	rendering/intersections/cylinder_utils.c \
+	rendering/editor/mode_utils.c \
+	rendering/editor/mode_camera.c \
+	rendering/editor/mode_move.c \
+	rendering/editor/mode_scale.c \
+	rendering/editor/mode_rotate.c \
+	rendering/ssaa.c \
 	parsing/program_setup.c parsing/program_setup_utils.c parsing/parse_line.c \
 	parsing/parse_line_utils.c parsing/amb_parse.c \
 	parsing/cam_parse.c parsing/light_parse.c \
@@ -93,6 +93,7 @@ SRC := \
 	print_all.c \
 	rendering/scene.c \
 	rendering/scene_utils.c \
+#   	rendering/acceleration/bvh.c \
 
 SRC := $(addprefix src/, $(SRC))
 

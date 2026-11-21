@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 18:40:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/12 14:21:45 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/14 14:31:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "scene.h"
 # include "../MacroLibX/includes/mlx.h"
 
-typedef struct s_hit
+typedef struct	s_hit
 {
 	double		t;
 	t_vec		point;
@@ -26,19 +26,16 @@ typedef struct s_hit
 	mlx_color	color;
 }	t_hit;
 
-typedef struct s_interval
+typedef struct	s_interval
 {
 	double	min;
 	double	max;
 }	t_interval;
 
-typedef struct s_render
+typedef struct	s_render
 {
 	int		x;
 	int		y;
-	int			diagonal;
-	int			diagonal_y;
-	int			total_tiles;
 	int		samples;
 	bool	active;
 	bool	moving;

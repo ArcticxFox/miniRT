@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   program_setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 15:15:37 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/16 17:02:20 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "parerrors.h"
 
-t_errors	load_scene_info(char *filename, t_data *minirt)
+t_errors	load_scene_info(char *filename, t_tmp_data *minirt)
 {
 	int			fd;
 	char		*res;
@@ -53,7 +53,7 @@ t_errors	input_parsing(int ac, char **av)
 	return (MRT_OK);
 }
 
-t_errors	data_init(t_data *scene)
+t_errors	data_init(t_tmp_data *scene)
 {
 	scene->sph_cap = 4;
 	scene->sph_count = 0;
@@ -73,7 +73,7 @@ t_errors	data_init(t_data *scene)
 	return (MRT_OK);
 }
 
-t_errors	program_setup(int ac, char **av, t_data *scene)
+t_errors	program_setup(int ac, char **av, t_tmp_data *scene)
 {
 	t_errors	err;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:50:45 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/28 14:20:49 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/16 14:04:46 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_realloc(void *ptr, int old_size, int new_size)
 	return (new);
 }
 
-t_errors	sphere_parse(char **split, t_data *minirt)
+t_errors	sphere_parse(char **split, t_tmp_data *minirt)
 {
 	int			i;
 	t_errors	ret;

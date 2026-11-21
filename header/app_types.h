@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:35:09 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/12 14:37:05 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/16 17:00:48 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
 
-typedef struct s_mlx
+typedef struct	s_mlx
 {
 	mlx_context				mlx;
 	mlx_window				win;

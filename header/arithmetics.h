@@ -6,35 +6,14 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:33:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/06 18:38:52 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/14 14:31:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARITHMETICS_H
 # define ARITHMETICS_H
 
-# include "mini_rt.h"
-
-typedef struct	s_vec
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_vec;
-
-typedef struct	s_ray
-{
-	t_vec	origin;
-	t_vec	dir;
-}	t_ray;
-
-typedef struct	s_quaternions
-{
-	double	w;
-	double	x;
-	double	y;
-	double	z;
-}	t_quat;
+# include "math_types.h"
 
 typedef struct	s_get_root
 {

@@ -1,14 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modes.h                                            :+:      :+:    :+:   */
+/*   math_types.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/25 17:16:38 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/29 16:37:37 by ejones           ###   ########.fr       */
+/*   Created: 2026/11/06 18:37:06 by ejones            #+#    #+#             */
+/*   Updated: 2026/11/14 15:58:07 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#ifndef MATH_TYPES_H
+# define MATH_TYPES_H
 
+typedef struct	s_vec
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_vec;
+
+typedef struct	s_ray
+{
+	t_vec	origin;
+	t_vec	dir;
+}	t_ray;
+
+typedef struct	s_quaternions
+{
+	double	w;
+	double	x;
+	double	y;
+	double	z;
+}	t_quat;
+
+#endif

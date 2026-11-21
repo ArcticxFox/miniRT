@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_arithmetic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:11:37 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/07 12:44:42 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/14 14:31:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

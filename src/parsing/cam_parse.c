@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cam_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 12:04:24 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 12:40:05 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/17 19:28:55 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	parse_nov(char *str, t_vec *NOV)
 	return (ret);
 }
 
-t_errors	cam_parse(char **split, t_data *minirt)
+t_errors	cam_parse(char **split, t_tmp_data *minirt)
 {
 	int	i;
 	int	ret;

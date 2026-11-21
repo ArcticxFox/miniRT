@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   amb_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:35:17 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/09/24 17:05:33 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/16 14:04:46 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_errors	amb_parse(char **split, t_data *minirt)
+t_errors	amb_parse(char **split, t_tmp_data *minirt)
 {
 	int			i;
 	t_errors	ret;
