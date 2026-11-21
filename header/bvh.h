@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:51:35 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 16:44:09 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 18:45:00 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_aabb	cylinder_aabb(t_cy cy);
 t_aabb	object_aabb(t_object *obj);
 
 
-int	init_bvh(t_bvh *bvh, t_objects *objs);
+int		init_bvh(t_bvh *bvh, t_objects *objs);
+bool	hit_bvh(t_bvh *bvh, t_query *q);
 
 #endif
