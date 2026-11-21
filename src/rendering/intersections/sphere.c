@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:59:59 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 16:33:49 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 17:18:56 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,46 +33,23 @@ static bool	get_sphere_roots(t_sphere sp, t_ray ray,
 	return (true);
 }
 
-bool	hit_sphere(t_sphere sp, t_ray ray, t_hit *hit, t_interval range)
+bool	hit_sphere(t_sphere sp, t_query *query)
 {
 	double	root1;
 	double	root2;
 
-	if (!get_sphere_roots(sp, ray, &root1, &root2))
+	if (!get_sphere_roots(sp, query->ray, &root1, &root2))
 		return (false);
-	if (root1 <= range.min || range.max <= root1)
+	if (root1 <= query->iv.min || query->iv.max <= root1)
 	{
 		root1 = root2;
-		if (root1 <= range.min || range.max <= root1)
+		if (root1 <= query->iv.min || query->iv.max <= root1)
 			return (false);
 	}
-	hit->t = root1;
-	hit->point = ray_at(ray, root1);
-	hit->normal = normalize(sub(hit->point, sp.center));
+	query->hit->t = root1;
+	query->hit->point = ray_at(query->ray, root1);
+	query->hit->normal = normalize(sub(query->hit->point, sp.center));
+	query->hit->color = sp.rgb;
 	return (true);
 }
 
-bool	hit_spheres(t_data *scene, t_ray ray, t_hit *hit, t_interval range)
-{
-	int		i;
-	int		n;
-	bool	hit_anything;
-
-	i = 0;
-	n = 0;
-	hit_anything = false;
-	while (i < scene->sph_count)
-	{
-		if (hit_sphere(scene->sphere[i], ray, hit, range))
-		{
-			hit_anything = true;
-			range.max = hit->t;
-			hit->color = scene->sphere[i].rgb;
-			n = i;
-		}
-		++i;
-	}
-	if (hit_anything)
-		return (true);
-	return (false);
-}

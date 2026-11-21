@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 16:28:56 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/17 19:18:48 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,25 @@ void	key_released(int key, void *param)
 
 void	save_object_start(t_mlx *mlx, t_data scene)
 {
+	t_object	*object;
+
+	object = scene.items.objects;
 	if (mlx->selected.type == OBJ_SPHERE)
 	{
-		mlx->object_start = scene.sphere[mlx->selected.index].center;
-		mlx->selected.r = scene.sphere[mlx->selected.index].r;
+		mlx->object_start = object[mlx->selected.index].data.sphere.center;
+		mlx->selected.r = object[mlx->selected.index].data.sphere.r;
 	}
 	else if (mlx->selected.type == OBJ_CYLINDER)
 	{
-		mlx->object_start = scene.cylinder[mlx->selected.index].center;
-		mlx->selected.r = scene.cylinder[mlx->selected.index].r;
-		mlx->selected.h = scene.cylinder[mlx->selected.index].h;
-		mlx->object_dir = &scene.cylinder[mlx->selected.index].axis_dir;
+		mlx->object_start = object[mlx->selected.index].data.cylinder.center;
+		mlx->selected.r = object[mlx->selected.index].data.cylinder.r;
+		mlx->selected.h = object[mlx->selected.index].data.cylinder.h;
+		mlx->object_dir = &object[mlx->selected.index].data.cylinder.axis_dir;
 	}
 	else if (mlx->selected.type == OBJ_PLANE)
 	{
-		mlx->object_start = scene.plane[mlx->selected.index].point_in_py;
-		mlx->object_dir = &scene.plane[mlx->selected.index].direction;
+		mlx->object_start = object[mlx->selected.index].data.plane.point_in_py;
+		mlx->object_dir = &object[mlx->selected.index].data.plane.direction;
 	}
 }
 

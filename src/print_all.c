@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-void	print_spheres(t_data *minirt)
+void	print_spheres(t_tmp_data *minirt)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	print_spheres(t_data *minirt)
 	}
 }
 
-void	print_planes(t_data *minirt)
+void	print_planes(t_tmp_data *minirt)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ void	print_planes(t_data *minirt)
 	}
 }
 
-void	print_cylinders(t_data *minirt)
+void	print_cylinders(t_tmp_data *minirt)
 {
 	int	i;
 
@@ -86,7 +86,7 @@ void	print_cylinders(t_data *minirt)
 	}
 }
 
-void	print_light(t_data *minirt)
+void	print_light(t_tmp_data *minirt)
 {
 	printf("\n========== LIGHT ==========\n");
 	printf("Position: %.6f, %.6f, %.6f\n",
@@ -97,7 +97,7 @@ void	print_light(t_data *minirt)
 		minirt->light.brightness);
 }
 
-void	print_camera(t_data *minirt)
+void	print_camera(t_tmp_data *minirt)
 {
 	printf("\n========== CAMERA ==========\n");
 	printf("Viewpoint: %.6f, %.6f, %.6f\n",
@@ -112,7 +112,7 @@ void	print_camera(t_data *minirt)
 		minirt->camera.fov);
 }
 
-void	print_ambient_light(t_data *minirt)
+void	print_ambient_light(t_tmp_data *minirt)
 {
 	printf("\n========== AMBIENT LIGHT ==========\n");
 	printf("Ratio: %.6f\n",
@@ -123,7 +123,7 @@ void	print_ambient_light(t_data *minirt)
 		minirt->ambient_light.rgb.b);
 }
 
-void	print_everything(t_data *minirt)
+void	print_everything(t_tmp_data *minirt)
 {
 	print_ambient_light(minirt);
 	print_camera(minirt);

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 13:16:58 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/29 16:51:28 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/17 20:09:58 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ double	get_distance(t_mlx *mlx, int mouse_x, int mouse_y)
 void	scale_objects(t_mlx *mlx, t_data *scene, int mouse_x, int mouse_y)
 {
 	double	distance;
+	t_object	*obj;
 
+	obj = scene->items.objects;
 	distance = get_distance(mlx, mouse_x, mouse_y);
 	if (mlx->selected.type == OBJ_SPHERE)
-		scene->sphere[mlx->selected.index].r = mlx->selected.r * distance / mlx->value_start;
+		obj[mlx->selected.index].data.sphere.r = mlx->selected.r * distance / mlx->value_start;
 	if (mlx->selected.type == OBJ_CYLINDER)
 	{
-		scene->cylinder[mlx->selected.index].r = mlx->selected.r * distance / mlx->value_start;
-		scene->cylinder[mlx->selected.index].h = mlx->selected.h * distance / mlx->value_start;
+		obj[mlx->selected.index].data.cylinder.r = mlx->selected.r * distance / mlx->value_start;
+		obj[mlx->selected.index].data.cylinder.h = mlx->selected.h * distance / mlx->value_start;
 	}
 }
 

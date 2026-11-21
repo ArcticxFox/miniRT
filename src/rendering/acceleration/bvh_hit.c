@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   editor_init_win.c                                  :+:      :+:    :+:   */
+/*   bvh_hit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/22 18:30:27 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/23 19:56:27 by ejones           ###   ########.fr       */
+/*   Created: 2026/11/21 16:47:15 by ejones            #+#    #+#             */
+/*   Updated: 2026/11/21 17:08:28 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-// void	init_editor_win(mlx_context *mlx, t_editor *editor)
-// {
-// 	mlx_window_create_info	info;
+static bool	hit_leaf(t_bvh *bvh, t_bvh_node *node, t_query *q)
+{
+	bool	hit;
+	int		i;
 
-// 	info = (mlx_window_create_info){0};
-// 	info.title = "Editor";
-// 	info.height = 1080;
-// 	info.width = 960;
-// 	info.is_resizable = true;
-// 	editor->info = info;
-// 	editor->active_input = NULL;
-// 	editor->input_count = 0;
-// 	editor->active_input = NULL;
-// 	editor->win = mlx_new_window(*mlx, &info);
-// }
+	hit = false;
+	i = node->leaf.start;
+	while (i < node->leaf.start + node->leaf.count)
+	{
+		if (!hit_object(&bvh->scene[bvh->objects->index], q->ray, q->hit, q->iv))
+		{
+
+		}
+	}
+	return
+}
