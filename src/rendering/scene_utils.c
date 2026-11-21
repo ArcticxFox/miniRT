@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 17:47:47 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:41:46 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,24 @@ bool	hit_objects(t_objects *items, t_query *query)
 	int			i;
 	bool		hit_anything;
 	t_hit		tmp;
-	t_hit		closest;
 	t_query		test;
 
 	i = 0;
-	hit_anything = false;
+	hit_anything = hit_bvh(&items->bvh, query);
 	test = *query;
 	test.hit = &tmp;
-	test.iv = query->iv;
 	while (i < items->count)
 	{
-		if (hit_object(&items->objects[i], &test))
+		if (items->objects[i].type == OBJ_PLANE
+			&& hit_object(&items->objects[i], &test))
 		{
-			closest = tmp;
+			*query->hit = tmp;
+			query->iv.max = tmp.t;
 			test.iv.max = tmp.t;
 			hit_anything = true;
 		}
 		++i;
 	}
-	if (hit_anything)
-		*query->hit = closest;
 	return (hit_anything);
 }
 

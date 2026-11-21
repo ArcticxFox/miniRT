@@ -6,13 +6,13 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/18 15:24:26 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:43:08 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	free_all(t_tmp_data *minirt)
+void	free_tmp_data(t_tmp_data *minirt)
 {
 	if (minirt->cylinder)
 		free(minirt->cylinder);
@@ -49,7 +49,7 @@ void	add_radius(t_tmp_data *scene)
 	}
 }
 
-void	*init_scene(t_tmp_data *tmp, t_data *scene)
+int	init_scene(t_tmp_data *tmp, t_data *scene)
 {
 	int	i;
 	int	n;
@@ -79,8 +79,14 @@ void	*init_scene(t_tmp_data *tmp, t_data *scene)
 		scene->items.objects[n++].type = OBJ_PLANE;
 	}
 	scene->items.pl_count = tmp->pl_count;
-	free_all(tmp);
-	return (scene);
+	if (init_bvh(&scene->items.bvh, &scene->items))
+	{
+		free_bvh(&scene->items.bvh);
+		free(scene->items.objects);
+		return (MRT_MALLOC);
+	}
+	free_tmp_data(tmp);
+	return (MRT_OK);
 }
 
 int	main(int ac, char **av)
@@ -91,12 +97,14 @@ int	main(int ac, char **av)
 	mlx = (t_mlx){0};
 	if (program_setup(ac, av, &tmp_scene) != MRT_OK)
 	{
-		free_all(&tmp_scene);
+		free_tmp_data(&tmp_scene);
 		return (1);
 	}
 	add_radius(&tmp_scene);
-	init_scene(&tmp_scene, &mlx.scene);
+	if (init_scene(&tmp_scene, &mlx.scene) == MRT_MALLOC)
+		return (MRT_MALLOC);
 	init_window(&mlx);
+
 	render_moving_scene(&mlx, mlx.scene.camera);
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
 	mlx_loop(mlx.mlx);
@@ -104,25 +112,6 @@ int	main(int ac, char **av)
 	mlx_destroy_window(mlx.mlx, mlx.win);
 	mlx_destroy_context(mlx.mlx);
 	free(mlx.scene.items.objects);
+	free_bvh(&mlx.scene.items.bvh);
 	return (0);
 }
-
-// int main(void)
-// {
-//     t_aabb      box;
-//     t_ray       ray;
-//     t_interval  interval;
-
-//     box.min = (t_vec){-2, -2, -2};
-//     box.max = (t_vec){2, 2, 2};
-
-//     ray.origin = (t_vec){2, 0, -5};
-//     ray.dir = (t_vec){0, 0, 1};
-
-//     interval.min = 0.001;
-//     interval.max = INFINITY;
-
-//     printf("Hit: %d\n", hit_aabb(ray, box, interval));
-// 	box.min = sub()
-//     return (0);
-// }

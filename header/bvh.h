@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:51:35 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 18:45:00 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:48:23 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_aabb	object_aabb(t_object *obj);
 
 
 int		init_bvh(t_bvh *bvh, t_objects *objs);
+void	free_bvh(t_bvh *bvh);
 bool	hit_bvh(t_bvh *bvh, t_query *q);
+void	rebuild_bvh(t_bvh *bvh, t_objects *objs);
 
 #endif

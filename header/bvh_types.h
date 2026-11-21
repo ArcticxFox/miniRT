@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:39:55 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 16:59:06 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:28:12 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include "math_types.h"
 # include "editor_types.h"
+# include "render_types.h"
 
 # define LEAF_MAX	4
+
+struct	s_object;
 
 typedef enum	e_axis
 {
@@ -71,13 +74,13 @@ typedef struct	s_bvh_node
 
 typedef struct	s_bvh
 {
-	t_bvh_node		*node;
-	t_bvh_node		*root;
-	t_object		*scene;
-	t_object_ref	*objects;
-	int				node_count;
-	int				node_capacity;
-	int				object_count;
+	t_bvh_node			*node;
+	t_bvh_node			*root;
+	struct s_object		*scene;
+	t_object_ref		*objects;
+	int					node_count;
+	int					node_capacity;
+	int					object_count;
 }	t_bvh;
 
 typedef struct s_query

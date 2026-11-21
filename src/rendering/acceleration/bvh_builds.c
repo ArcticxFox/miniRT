@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 16:06:19 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/20 16:16:28 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 20:02:41 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,15 @@ static void	fill_ref(t_bvh *bvh, t_objects *objs)
 	}
 }
 
+void	free_bvh(t_bvh *bvh)
+{
+	free(bvh->objects);
+	free(bvh->node);
+	bvh->objects = NULL;
+	bvh->node = NULL;
+	bvh->root = NULL;
+}
+
 int	init_bvh(t_bvh *bvh, t_objects *objs)
 {
 	bvh->scene = objs->objects;
@@ -108,4 +117,13 @@ int	init_bvh(t_bvh *bvh, t_objects *objs)
 	fill_ref(bvh, objs);
 	bvh->root = build_node(bvh, (t_range) {0, bvh->object_count});
 	return (0);
+}
+
+void	rebuild_bvh(t_bvh *bvh, t_objects *objs)
+{
+	if (bvh->object_count == 0)
+		return ;
+	bvh->node_count = 0;
+	fill_ref(bvh, objs);
+	bvh->root = build_node(bvh, (t_range) {0, bvh->object_count});
 }

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 16:39:42 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 16:58:48 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:44:01 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_aabb	surrounding_box(t_aabb a, t_aabb b)
 {
 	t_aabb	result;
 
-	result.min.x = (a.min.x, b.min.x);
-	result.min.y = (a.min.y, b.min.y);
-	result.min.z = (a.min.z, b.min.z);
-	result.max.x = (a.max.x, b.max.x);
-	result.max.y = (a.max.y, b.max.y);
-	result.max.z = (a.max.z, b.max.z);
+	result.min.x = fmin(a.min.x, b.min.x);
+	result.min.y = fmin(a.min.y, b.min.y);
+	result.min.z = fmin(a.min.z, b.min.z);
+	result.max.x = fmax(a.max.x, b.max.x);
+	result.max.y = fmax(a.max.y, b.max.y);
+	result.max.z = fmax(a.max.z, b.max.z);
 	return (result);
 }
 

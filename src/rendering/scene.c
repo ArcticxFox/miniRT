@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/20 14:14:16 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 20:04:51 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 		while (x < mlx->render.x + 8)
 		{
 			color = ssaa(mlx, x, y);
-			if (!color.r && !color.g && color.b)
-				return ;
 			mlx_set_image_pixel(mlx->mlx, mlx->img, x, y, color);
 			++x;
 		}
@@ -65,11 +63,10 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 		mlx->render.y = 0;
 }
 
-void	render_mode(t_mlx *mlx, double	delta_time)
+static void	edit_object(t_mlx *mlx)
 {
-	if (mlx->mode == MODE_CAMERA)
-		update_camera(mlx, delta_time);
-	else if (mlx->mode == MODE_MOVE)
+
+	if (mlx->mode == MODE_MOVE)
 		move_object(mlx);
 	else if (mlx->mode == MODE_ROTATE)
 	{
@@ -83,6 +80,16 @@ void	render_mode(t_mlx *mlx, double	delta_time)
 			return ;
 		scale_object(mlx);
 	}
+	if (mlx->selected.type != OBJ_PLANE && mlx->selected.type != OBJ_NONE)
+		rebuild_bvh(&mlx->scene.items.bvh, &mlx->scene.items);
+}
+
+void	render_mode(t_mlx *mlx, double delta_time)
+{
+	if (mlx->mode == MODE_CAMERA)
+		update_camera(mlx, delta_time);
+	else
+		edit_object(mlx);
 }
 
 void	print_camera_coords(t_mlx *mlx)

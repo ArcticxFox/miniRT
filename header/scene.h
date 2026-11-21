@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:17:08 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/18 15:23:53 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:19:42 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdbool.h>
 # include "math_types.h"
 # include "editor_types.h"
+# include "bvh_types.h"
 # include "../MacroLibX/includes/mlx.h"
 
 typedef struct	s_amb_light
@@ -70,6 +71,7 @@ typedef struct	s_object
 typedef struct	s_objects
 {
 	t_object	*objects;
+	t_bvh		bvh;
 	int			count;
 	int			pl_count;
 	int			capacity;
