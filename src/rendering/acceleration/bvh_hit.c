@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 16:47:15 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 19:56:38 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/23 15:33:38 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static bool	hit_leaf(t_bvh *bvh, t_bvh_node *node, t_query *q)
 	test.iv = q->iv;
 	while (i < node->leaf.start + node->leaf.count)
 	{
+
+		bvh->stats.object_tests++;
 		if (hit_object(&bvh->scene[bvh->objects[i].index], &test))
 		{
 			*q->hit = tmp;
@@ -43,6 +45,8 @@ static bool	hit_node(t_bvh *bvh, t_bvh_node *node, t_query *q)
 	bool	hit_l;
 	bool	hit_r;
 
+	bvh->stats.node_visits++;
+	bvh->stats.aabb_tests++;
 	if (!hit_aabb(q->ray, node->bounds, q->iv))
 		return (false);
 	if (node->is_leaf)

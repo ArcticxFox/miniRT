@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 20:04:51 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/23 17:07:36 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 	int			x;
 	int			y;
 	mlx_color	color;
+	static double	time = 0;
 
 	(void)camera;
 	y = mlx->render.y;
+	if (mlx->render.y == 0)
+		time = get_time();
 	while (y < mlx->render.y + 8)
 	{
 		x = mlx->render.x;
@@ -60,7 +63,13 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 		mlx->render.y += 8;
 	}
 	if (mlx->render.y > mlx->info.height)
+	{
 		mlx->render.y = 0;
+		printf("\nobject test : %ld\n", mlx->scene.items.bvh.stats.object_tests);
+		printf("node visits : %ld\n", mlx->scene.items.bvh.stats.node_visits);
+		time = get_time() - time;
+		printf("time elapsed: %f", time);
+	}
 }
 
 static void	edit_object(t_mlx *mlx)

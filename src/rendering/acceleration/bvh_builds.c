@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 16:06:19 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 20:02:41 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/23 17:23:39 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static t_bvh_node	*build_node(t_bvh *bvh, t_range r)
 
 	node = &bvh->node[bvh->node_count++];
 	node->bounds = range_bounds(bvh, r);
-	if(r.end - r.start <= LEAF_MAX)
+	if(r.end - r.start <= LEAF_HIGH)
 	{
 		node->is_leaf = true;
 		node->leaf.start = r.start;
@@ -100,6 +100,7 @@ void	free_bvh(t_bvh *bvh)
 
 int	init_bvh(t_bvh *bvh, t_objects *objs)
 {
+
 	bvh->scene = objs->objects;
 	bvh->object_count = objs->count - objs->pl_count;
 	bvh->node_count = 0;
@@ -116,6 +117,7 @@ int	init_bvh(t_bvh *bvh, t_objects *objs)
 	}
 	fill_ref(bvh, objs);
 	bvh->root = build_node(bvh, (t_range) {0, bvh->object_count});
+	bvh->stats = (t_bvh_stats) {0};
 	return (0);
 }
 
@@ -126,4 +128,5 @@ void	rebuild_bvh(t_bvh *bvh, t_objects *objs)
 	bvh->node_count = 0;
 	fill_ref(bvh, objs);
 	bvh->root = build_node(bvh, (t_range) {0, bvh->object_count});
+	bvh->stats = (t_bvh_stats) {0};
 }
