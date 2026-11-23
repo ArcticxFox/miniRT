@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:39:55 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 19:28:12 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/23 17:04:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include "editor_types.h"
 # include "render_types.h"
 
-# define LEAF_MAX	4
+# define LEAF_LOW	2
+# define LEAF_MID	4
+# define LEAF_HIGH	8
 
 struct	s_object;
 
@@ -72,12 +74,21 @@ typedef struct	s_bvh_node
 	bool	is_leaf;
 }	t_bvh_node;
 
+typedef struct	s_bvh_stats
+{
+	long	aabb_tests;
+	long	node_visits;
+	long	object_tests;
+}	t_bvh_stats;
+
+
 typedef struct	s_bvh
 {
 	t_bvh_node			*node;
 	t_bvh_node			*root;
 	struct s_object		*scene;
 	t_object_ref		*objects;
+	t_bvh_stats			stats;
 	int					node_count;
 	int					node_capacity;
 	int					object_count;
