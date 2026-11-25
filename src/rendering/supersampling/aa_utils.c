@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:19:06 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 18:10:44 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 18:38:13 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ static int	diff_colour(mlx_color a, mlx_color b)
 	return (a.r * a.r + a.g * a.g + a.b * a.b);
 }
 
-int	needs_refine(mlx_color c[4])
+int	needs_refine(mlx_color c[5])
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		j = i + 1;
-		while (j < 4)
+		while (j < 5)
 		{
 			if (diff_colour(c[i], c[j]) > AA_THRESHOLD)
 				return (1);

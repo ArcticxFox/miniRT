@@ -23,7 +23,8 @@ SRC := \
 	rendering/editor/mode_move.c \
 	rendering/editor/mode_scale.c \
 	rendering/editor/mode_rotate.c \
-	rendering/ssaa.c \
+	rendering/supersampling/ssaa.c \
+	rendering/supersampling/aa_utils.c \
 	parsing/program_setup.c parsing/program_setup_utils.c parsing/parse_line.c \
 	parsing/parse_line_utils.c parsing/amb_parse.c \
 	parsing/cam_parse.c parsing/light_parse.c \
@@ -45,7 +46,7 @@ SRC := $(addprefix src/, $(SRC))
 OBJ := $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 CC := cc
-SPEED_FLAGS := -O3 -march=native -ffast-math
+SPEED_FLAGS := -O2 -march=native
 CFLAGS := -Wall -Wextra -Werror -Wunused-function \
 	-I$(INC_DIR) -Isrc/my_libft/headers \
 	$(SPEED_FLAGS) -g \

@@ -6,14 +6,14 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:19:48 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 18:06:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 18:55:05 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SUPERSAMPLING_H
 # define SUPERSAMPLING_H
 
-# define AA_THRESHOLD	900
+# define AA_THRESHOLD	1000
 
 # include "render_types.h"
 

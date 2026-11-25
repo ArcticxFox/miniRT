@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 17:12:04 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 18:18:59 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 18:43:17 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static mlx_color	divide_colour(int colour1[], int denom)
 	return (tmp);
 }
 
-static void	probe(t_mlx *mlx, int pix[2], int colour[3], mlx_color out[4])
+static void	probe(t_mlx *mlx, int pix[2], int colour[3], mlx_color out[5])
 {
 	int	n;
 	int	i;
@@ -46,6 +46,9 @@ static void	probe(t_mlx *mlx, int pix[2], int colour[3], mlx_color out[4])
 		add_colour(colour, out[i]);
 		++i;
 	}
+	out[4] = ray_color(mlx,
+		camera_ray(mlx, mlx->scene.camera, pix[0] + 0.5, pix[1] + 0.5));
+	add_colour(colour, out[4]);
 }
 
 static void	grid_sample(t_mlx *mlx, int pix[2], int colour[3], int skip)
@@ -60,7 +63,9 @@ static void	grid_sample(t_mlx *mlx, int pix[2], int colour[3], int skip)
 		sub[0] = 0;
 		while (sub[0] < n)
 		{
-			if (!skip || !is_corner(sub, n))
+			if (!skip || (!is_corner(sub, n)
+					&& !(n % 2 && sub[0] == n / 2
+						&& sub[1] == n / 2)))
 				add_colour(colour, ray_color(mlx, sub_ray(mlx, pix, sub)));
 			++sub[0];
 		}
@@ -72,8 +77,9 @@ mlx_color	ssaa(t_mlx *mlx, int x, int y)
 {
 	int			pix[2];
 	int			colour[3];
-	mlx_color	probes[4];
+	mlx_color	probes[5];
 	int			skip;
+	int			denom;
 
 	pix[0] = x;
 	pix[1] = y;
@@ -83,8 +89,11 @@ mlx_color	ssaa(t_mlx *mlx, int x, int y)
 	{
 		probe(mlx, pix, colour, probes);
 		if (!needs_refine(probes))
-			return (divide_colour(colour, 4));
+			return (divide_colour(colour, 5));
 	}
 	grid_sample(mlx, pix, colour, skip);
-	return (divide_colour(colour, mlx->render.samples * mlx->render.samples));
+	denom = mlx->render.samples * mlx->render.samples;
+	if (skip && !(mlx->render.samples % 2))
+		++denom;
+	return (divide_colour(colour, denom));
 }
