@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   amb_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:35:17 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 10:05:24 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 10:33:58 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_errors	amb_parse(char **split, t_tmp_data *minirt)
 	t_errors	ret;
 
 	i = 0;
-	if (!(ft_isdigit(split[i][0]) || split[i][0] == '+'))
+	if (!valid_float_number(split[i]))
 		return (MRT_INVALID_NUM);
 	minirt->ambient_light.ratio = ft_atof(split[i]);
 	if (minirt->ambient_light.ratio < 0 || minirt->ambient_light.ratio > 1)
