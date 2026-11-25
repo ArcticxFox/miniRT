@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 13:48:02 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 15:32:23 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 20:25:40 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	hit_axis(double o, double d, t_interval box, t_interval *iv)
 
 	if (!hit_slab(o, d, box, &slab))
 		return (false);
-	iv->min = fmin(iv->min, slab.min);
+	iv->min = fmax(iv->min, slab.min);
 	iv->max = fmin(iv->max, slab.max);
 	return (iv->min <= iv->max);
 }

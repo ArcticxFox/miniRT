@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 17:12:04 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 20:04:14 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 20:21:49 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	probe(t_mlx *mlx, int pix[2], int colour[3], mlx_color out[5])
 		++i;
 	}
 	out[4] = ray_color(mlx,
-		camera_ray(mlx, mlx->scene.camera, pix[0] + 0.5, pix[1] + 0.5));
+		camera_ray(mlx, &mlx->scene.camera, pix[0] + 0.5, pix[1] + 0.5));
 	add_colour(colour, out[4]);
 }
 
@@ -63,7 +63,7 @@ static void	grid_sample(t_mlx *mlx, int pix[2], int colour[3], int skip)
 		sub[0] = 0;
 		while (sub[0] < n)
 		{
-			if (!skip || !is_probed(sub, n)) 	
+			if (!skip || !is_probed(sub, n))
 				add_colour(colour, ray_color(mlx, sub_ray(mlx, pix, sub)));
 			++sub[0];
 		}

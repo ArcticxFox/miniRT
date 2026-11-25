@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 14:41:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/16 17:03:54 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:38:31 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	rotations(t_mlx *mlx, int mouse_x, int mouse_y)
 
 	if (mlx->keys.left_click)
 	{
-		dx = mouse_x - mlx->prev_mouse_pos.x;
-		dy = mouse_y - mlx->prev_mouse_pos.y;
+		dx = mouse_x - mlx->old_mouse_pos.x;
+		dy = mouse_y - mlx->old_mouse_pos.y;
 		camera_mouse_rotate(mlx, dx, dy);
-		mlx->prev_mouse_pos.x = mouse_x;
-		mlx->prev_mouse_pos.y = mouse_y;
+		mlx->old_mouse_pos.x = mouse_x;
+		mlx->old_mouse_pos.y = mouse_y;
 	}
 }
 

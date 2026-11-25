@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 18:27:32 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:11:29 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ t_errors	input_parsing(int ac, char **av)
 
 t_errors	data_init(t_tmp_data *scene)
 {
-	scene->sph_cap = 100;
+	scene->sph_cap = 500;
 	scene->sph_count = 0;
 	scene->sphere = ft_calloc(scene->sph_cap, sizeof(t_sphere));
 	if (!scene->sphere)
 		return (MRT_MALLOC);
-	scene->pl_cap = 100;
+	scene->pl_cap = 500;
 	scene->pl_count = 0;
 	scene->plane = ft_calloc(scene->pl_cap, sizeof(t_pl));
 	if (!scene->plane)
 		return (MRT_MALLOC);
-	scene->cyl_cap = 100;
+	scene->cyl_cap = 500;
 	scene->cyl_count = 0;
 	scene->cylinder = ft_calloc(scene->cyl_cap, sizeof(t_cy));
 	if (!scene->cylinder)
@@ -96,6 +96,6 @@ t_errors	program_setup(int ac, char **av, t_tmp_data *scene)
 		print_error(err);
 		return (err);
 	}
-	print_everything(scene);
+	// print_everything(scene);
 	return (err);
 }

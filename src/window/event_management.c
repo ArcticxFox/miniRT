@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 16:32:20 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:42:19 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool handle_mode_key(t_mlx *mlx, int key)
 	{
 		mlx->mode = MODE_CAMERA;
 		mlx_mouse_get_pos(mlx->mlx,
-		&mlx->prev_mouse_pos.x, &mlx->prev_mouse_pos.y);
+		&mlx->old_mouse_pos.x, &mlx->old_mouse_pos.y);
 	}
 	else if (key == KEY_R)
 		mlx->mode = MODE_ROTATE;
@@ -123,12 +123,16 @@ void	mouse_down(int click, void *param)
 	if (click == 1)
 	{
 		mlx->keys.left_click = true;
-		mlx_mouse_get_pos(mlx->mlx, &mlx->prev_mouse_pos.x,
-			&mlx->prev_mouse_pos.y);
+		mlx_mouse_get_pos(mlx->mlx, &mlx->old_mouse_pos.x,
+			&mlx->old_mouse_pos.y);
 		if (find_objects(mlx))
-			drag_start(mlx, mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
+			drag_start(mlx, mlx->old_mouse_pos.x, mlx->old_mouse_pos.y);
 		if (mlx->mode == MODE_SCALE)
-			mlx->value_start = get_distance(mlx, mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
+		{
+			mlx->value_start = get_distance(mlx, mlx->old_mouse_pos.x, mlx->old_mouse_pos.y);
+			if (mlx->value_start < mlx->selected.r)
+				mlx->value_start = mlx->selected.r;
+		}
 		mlx->needs_redraw = 0;
 	}
 }
@@ -152,7 +156,6 @@ void	window_hook(int event, void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
-	// printf("window event %d\n", event);
 	if (event == 0)
 		mlx_loop_end(((t_mlx *)param)->mlx);
 }

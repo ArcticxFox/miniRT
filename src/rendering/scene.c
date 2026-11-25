@@ -6,13 +6,13 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 17:14:22 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:42:12 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	render_moving_scene(t_mlx *mlx, t_camera camera)
+void	render_moving_scene(t_mlx *mlx, t_camera *camera)
 {
 	int			x;
 	int			y;
@@ -34,7 +34,7 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 	}
 }
 
-void	render_scene(t_mlx *mlx, t_camera camera)
+void	render_scene(t_mlx *mlx, t_camera *camera)
 {
 	int			x;
 	int			y;
@@ -78,12 +78,13 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 
 static void	edit_object(t_mlx *mlx)
 {
-
+	// if (mlx->selected.type == OBJ_NONE)
+	// 	return ;
 	if (mlx->mode == MODE_MOVE)
 		move_object(mlx);
 	else if (mlx->mode == MODE_ROTATE)
 	{
-		if (mlx->selected.type == (OBJ_SPHERE || OBJ_NONE) )
+		if (mlx->selected.type == (OBJ_SPHERE || OBJ_NONE))
 			return ;
 		rotate_objects(mlx);
 	}
@@ -146,12 +147,12 @@ void	render_loop(void *param)
 	{
 		camera_init(&mlx->scene.camera, mlx->info.width, mlx->info.height);
 		render_mode(mlx, delta_time);
-		render_moving_scene(mlx, mlx->scene.camera);
+		render_moving_scene(mlx, &mlx->scene.camera);
 		mlx->render.x = 0;
 		mlx->render.y = 0;
 	}
 	else
-		render_scene(mlx, mlx->scene.camera);
+		render_scene(mlx, &mlx->scene.camera);
 	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){{0, 0, 0, 0}});
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	print_camera_coords(mlx);

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 18:24:47 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 20:21:04 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 		return (MRT_MALLOC);
 	}
 	init_window(&mlx);
-	render_moving_scene(&mlx, mlx.scene.camera);
+	render_moving_scene(&mlx, &mlx.scene.camera);
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
 	mlx_loop(mlx.mlx);
 	mlx_destroy_image(mlx.mlx, mlx.img);

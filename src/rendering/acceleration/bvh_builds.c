@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 16:06:19 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 16:47:00 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:09:33 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	split_range(t_bvh *bvh, t_range r, t_aabb bounds)
 	axis = longest_axis(bounds);
 	mid = 0.5 * (vec_axis(bounds.min, axis) + vec_axis(bounds.max, axis));
 	k =  partition(bvh, r, axis, mid);
-	if (k == mid || k == r.end)
+	if (k == r.start || k == r.end)
 		k = (r.start + r.end) / 2;
 	return (k);
 }
@@ -56,7 +56,7 @@ static t_bvh_node	*build_node(t_bvh *bvh, t_range r)
 
 	node = &bvh->node[bvh->node_count++];
 	node->bounds = range_bounds(bvh, r);
-	if(r.end - r.start <= LEAF_MID)
+	if(r.end - r.start <= LEAF_HIGH)
 	{
 		node->is_leaf = true;
 		node->leaf.start = r.start;

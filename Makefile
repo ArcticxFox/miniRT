@@ -46,12 +46,12 @@ SRC := $(addprefix src/, $(SRC))
 OBJ := $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 CC := cc
-SPEED_FLAGS := -O2 -march=native
+SPEED_FLAGS := -O3 -march=native
+LDFLAGS := -fsanitize=address,undefined -fno-omit-frame-pointer
 CFLAGS := -Wall -Wextra -Werror -Wunused-function \
 	-I$(INC_DIR) -Isrc/my_libft/headers \
 	$(SPEED_FLAGS) -g \
 
-LDFLAGS := -fsanitize=address,undefined -fno-omit-frame-pointer
 
 NAME := miniRT
 

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 13:06:55 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/17 20:12:16 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:38:31 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	rotation_v2(t_mlx *mlx, int mouse_x, int mouse_y)
 	double	sensitivity;
 
 	sensitivity = 0.005;
-	yaw = (mouse_x - mlx->prev_mouse_pos.x) * sensitivity;
-	pitch = (mouse_y - mlx->prev_mouse_pos.y) * sensitivity;
+	yaw = (mouse_x - mlx->old_mouse_pos.x) * sensitivity;
+	pitch = (mouse_y - mlx->old_mouse_pos.y) * sensitivity;
 	if (mlx->keys.left_click)
 	{
 		if (mlx->selected.type != OBJ_SPHERE)
 			rotate(mlx, yaw, pitch);
-		mlx->prev_mouse_pos.x = mouse_x;
-		mlx->prev_mouse_pos.y = mouse_y;
+		mlx->old_mouse_pos.x = mouse_x;
+		mlx->old_mouse_pos.y = mouse_y;
 	}
 }
 

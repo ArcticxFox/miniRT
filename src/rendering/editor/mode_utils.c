@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 16:32:45 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 17:52:01 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:38:31 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ bool	find_objects(t_mlx *mlx)
 	items = mlx->scene.items.objects;
 	query.iv = (t_interval){0.001, INFINITY};
 	mlx->selected.valid = false;
-	query.ray = camera_ray(mlx, mlx->scene.camera,
-		mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
+	query.ray = camera_ray(mlx, &mlx->scene.camera,
+		mlx->old_mouse_pos.x, mlx->old_mouse_pos.y);
 	query.hit = &hit;
 	while (i < mlx->scene.items.count)
 	{

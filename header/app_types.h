@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:35:09 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/16 17:00:48 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:38:31 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_mlx
 	t_data					scene;
 	t_render				render;
 
-	t_mouse_pos				prev_mouse_pos;
+	t_mouse_pos				old_mouse_pos;
 	t_keys					keys;
 	double					last_time;
 	int						needs_redraw;
