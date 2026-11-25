@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 18:15:41 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 15:57:05 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 	int			x;
 	int			y;
 	t_ray		ray;
-	mlx_color	tab_col[25];
+	mlx_color	tab_col[16];
 
 	y = 0;
 	while (y < mlx->info.height)
@@ -25,12 +25,12 @@ void	render_moving_scene(t_mlx *mlx, t_camera camera)
 		x = 0;
 		while (x < mlx->info.width)
 		{
-			ray = camera_ray(mlx, camera, x, y);
-			fill_tab(mlx, &ray, tab_col, 36);
-			mlx_set_image_region(mlx->mlx, mlx->img, x, y, 6, 6, tab_col);
-			x = x + 6;
+			ray = camera_ray(mlx, camera, x + 2, y + 2);
+			fill_tab(mlx, &ray, tab_col, 16);
+			mlx_set_image_region(mlx->mlx, mlx->img, x, y, 4, 4, tab_col);
+			x = x + 4;
 		}
-		y += 5;
+		y += 4;
 	}
 }
 
@@ -140,6 +140,7 @@ void	render_loop(void *param)
 		delta_time = 0.05;
 	if (!mlx->needs_redraw)
 	{
+		camera_init(&mlx->scene.camera, mlx->info.width, mlx->info.height);
 		render_mode(mlx, delta_time);
 		render_moving_scene(mlx, mlx->scene.camera);
 		mlx->render.x = 0;
@@ -148,6 +149,6 @@ void	render_loop(void *param)
 	else
 		render_scene(mlx, mlx->scene.camera);
 	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){{0, 0, 0, 0}});
-	mlx_put_image_to_window(mlx->mlx, mlx->win,  mlx->img, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	print_camera_coords(mlx);
 }

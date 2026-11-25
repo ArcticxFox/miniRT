@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:44:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/20 14:27:14 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 16:26:23 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	init_window(t_mlx *mlx)
 	mlx->prev_mouse_pos.y = 0;
 	mlx->mode = MODE_CAMERA;
 	mlx->render.samples = 4;
+	camera_init(&mlx->scene.camera, mlx->info.width, mlx->info.height);
 	init_mlx_events(mlx);
 }

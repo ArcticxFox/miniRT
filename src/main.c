@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 10:09:03 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 14:40:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,52 +49,12 @@ void	add_radius(t_tmp_data *scene)
 	}
 }
 
-int	init_scene(t_tmp_data *tmp, t_data *scene)
-{
-	int	i;
-	int	n;
-
-	i = 0;
-	n = 0;
-	scene->ambient_light = tmp->ambient_light;
-	scene->light = tmp->light;
-	scene->camera = tmp->camera;
-	scene->items.capacity = tmp->cyl_cap + tmp->pl_cap + tmp->sph_cap;
-	scene->items.count = tmp->pl_count + tmp->sph_count + tmp->cyl_count;
-	scene->items.objects = ft_calloc(scene->items.count, sizeof(t_object));
-	while (n < tmp->sph_count)
-	{
-		scene->items.objects[n].data.sphere = tmp->sphere[n];
-		scene->items.objects[n++].type = OBJ_SPHERE;
-	}
-	while (i < tmp->cyl_count)
-	{
-		scene->items.objects[n].data.cylinder = tmp->cylinder[i++];
-		scene->items.objects[n++].type = OBJ_CYLINDER;
-	}
-	i = 0;
-	while (i < tmp->pl_count)
-	{
-		scene->items.objects[n].data.plane = tmp->plane[i++];
-		scene->items.objects[n++].type = OBJ_PLANE;
-	}
-	scene->items.pl_count = tmp->pl_count;
-	if (init_bvh(&scene->items.bvh, &scene->items))
-	{
-		free_bvh(&scene->items.bvh);
-		free(scene->items.objects);
-		return (MRT_MALLOC);
-	}
-	free_tmp_data(tmp);
-	return (MRT_OK);
-}
-
 int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 	t_tmp_data	tmp_scene;
 
-	mlx = (t_mlx){0};
+	ft_bzero(&mlx, sizeof(t_mlx));
 	if (program_setup(ac, av, &tmp_scene) != MRT_OK)
 	{
 		free_tmp_data(&tmp_scene);
@@ -102,9 +62,11 @@ int	main(int ac, char **av)
 	}
 	add_radius(&tmp_scene);
 	if (init_scene(&tmp_scene, &mlx.scene) == MRT_MALLOC)
+	{
+		free_tmp_data(&tmp_scene);
 		return (MRT_MALLOC);
+	}
 	init_window(&mlx);
-
 	render_moving_scene(&mlx, mlx.scene.camera);
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
 	mlx_loop(mlx.mlx);

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:02:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 19:41:46 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 15:49:02 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 bool	hit_object(t_object *obj, t_query *query)
 {
 	if (obj->type == OBJ_SPHERE)
-		return (hit_sphere(obj->data.sphere, query));
+		return (hit_sphere(&obj->data.sphere, query));
 	else if (obj->type == OBJ_CYLINDER)
-		return (hit_cylinder(obj->data.cylinder, query));
+		return (hit_cylinder(&obj->data.cylinder, query));
 	else if (obj->type == OBJ_PLANE)
-		return (hit_plane(obj->data.plane, query));
+		return (hit_plane(&obj->data.plane, query));
 	return (false);
 }
 
@@ -115,7 +115,7 @@ mlx_color	ray_color(t_mlx *mlx, t_ray ray)
 	});
 }
 
-void	fill_tab(t_mlx *mlx, t_ray *ray, mlx_color	*tab_col, int size)
+void	fill_tab(t_mlx *mlx, t_ray *ray, mlx_color *tab_col, int size)
 {
 	mlx_color	color;
 	int			i;
@@ -127,28 +127,4 @@ void	fill_tab(t_mlx *mlx, t_ray *ray, mlx_color	*tab_col, int size)
 		tab_col[i] = color;
 		++i;
 	}
-}
-
-t_ray	camera_ray(t_mlx *mlx, t_camera camera, double x, double y)
-{
-	t_ray	ray;
-	double	viewport_x;
-	double	viewport_y;
-	double	aspect;
-	double	fov_scale;
-
-	aspect = (double)mlx->info.width / mlx->info.height;
-	fov_scale = tan(camera.fov * 0.5 * M_PI / 180);
-	viewport_x = (2.0 * (x + 0.5) / mlx->info.width - 1.0)
-		* aspect * fov_scale;
-	viewport_y = (1.0 - 2.0 * (y + 0.5) / mlx->info.height)
-		* fov_scale;
-	ray.origin = camera.origin;
-	ray.dir = add(camera.forward, add(
-				multiply_scalar(camera.right, viewport_x),
-				multiply_scalar(camera.up, viewport_y)
-				)
-			);
-	ray.dir = normalize(ray.dir);
-	return (ray);
 }

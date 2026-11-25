@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 10:06:47 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 16:32:20 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	set_movement_key(t_mlx *mlx, int key, bool pressed)
 
 static void	handle_camera_key(t_mlx *mlx, int key)
 {
-	if (key == 45)
+	if (key == 45 && mlx->scene.camera.fov > 0.001)
 		mlx->scene.camera.fov *= 0.98f;
 	else if (key == 46 && mlx->scene.camera.fov < 180)
 		mlx->scene.camera.fov *= 1.05f;
@@ -149,6 +149,10 @@ void	mouse_up(int click, void *param)
 
 void	window_hook(int event, void *param)
 {
+	t_mlx	*mlx;
+
+	mlx = (t_mlx *)param;
+	// printf("window event %d\n", event);
 	if (event == 0)
 		mlx_loop_end(((t_mlx *)param)->mlx);
 }

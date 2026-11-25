@@ -6,28 +6,30 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:44:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 10:12:03 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 14:05:45 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	hit_plane(t_pl pl, t_query *query)
+bool	hit_plane(t_pl *pl, t_query *query)
 {
 	double	denom;
 	double	t;
-	t_vec	oc;
 
-	oc = sub(pl.point_in_py, query->ray.origin);
-	denom = dot(query->ray.dir, pl.direction);
+	denom = dot(query->ray.dir, pl->direction);
 	if (fabs(denom) < 1e-8)
 		return (false);
-	t = dot(oc, pl.direction) / denom;
+	;
+	t = dot(sub(pl->point_in_py, query->ray.origin), pl->direction) / denom;
 	if (t <= query->iv.min || query->iv.max <= t)
 		return (false);
 	query->hit->t = t;
 	query->hit->point = ray_at(query->ray, t);
-	query->hit->normal = multiply_scalar(pl.direction, 1);
-	query->hit->color = pl.rgb;
+	query->hit->normal = pl->direction;
+	if (denom > 0)
+		query->hit->normal = multiply_scalar(pl->direction, -1);
+	query->hit->color = pl->rgb;
+	query->iv.max = t;
 	return (true);
 }

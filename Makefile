@@ -9,6 +9,8 @@ INC_DIR := header
 
 SRC := \
 	main.c \
+	objects.c \
+	camera.c \
 	math/vector_arithmetic.c \
 	math/quaternions.c \
 	window/init_window.c \
@@ -16,7 +18,6 @@ SRC := \
 	rendering/intersections/sphere.c \
 	rendering/intersections/plane.c \
 	rendering/intersections/cylinder.c \
-	rendering/intersections/cylinder_utils.c \
 	rendering/editor/mode_utils.c \
 	rendering/editor/mode_camera.c \
 	rendering/editor/mode_move.c \
@@ -44,14 +45,21 @@ SRC := $(addprefix src/, $(SRC))
 OBJ := $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -Wunused-function -I$(INC_DIR) -Isrc/my_libft/headers -g
+SPEED_FLAGS := -O3 -march=native -ffast-math
+CFLAGS := -Wall -Wextra -Werror -Wunused-function \
+	-I$(INC_DIR) -Isrc/my_libft/headers \
+	$(SPEED_FLAGS) -g \
+
+LDFLAGS := -fsanitize=address,undefined -fno-omit-frame-pointer
 
 NAME := miniRT
 
 all: $(NAME)
-
+# -Isrc/my_libft/headers
 $(NAME): $(LIBFT) $(OBJ) $(MLX_DIR)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -Isrc/my_libft/headers $(MLX_LIB) -Imlx -lm -lSDL2 -I$(MLX_DIR)/includes -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LIB) \
+	-Imlx -I$(MLX_DIR)/includes \
+	-lm -lSDL2 -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) bonus -C src/my_libft
@@ -62,6 +70,9 @@ $(OBJ_DIR)/%.o: src/%.c
 
 $(MLX_DIR):
 	@git clone $(MLX_REPO) $(MLX_DIR)
+
+# debug:  $(LIBFT) $(OBJ) $(MLX_DIR)
+# 	$(CC) $(DEBUG_FLAGS) $(OBJ) $(LIBFT) -Isrc/my_libft/headers $(MLX_LIB) -Imlx -lm -lSDL2 -I$(MLX_DIR)/includes -o $(NAME)
 
 clean:
 	@$(MAKE) clean -C src/my_libft

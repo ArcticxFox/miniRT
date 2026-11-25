@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 18:14:24 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 15:50:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,19 @@
 # include "input_types.h"
 # include "../MacroLibX/includes/mlx.h"
 
+int		init_scene(t_tmp_data *tmp, t_data *scene);
+void	free_tmp_data(t_tmp_data *minirt);
+
 //Intersections
-bool		hit_sphere(t_sphere sp, t_query *query);
-
-bool		hit_plane(t_pl pl, t_query *query);
-
-bool		check_top_cap(t_cy cy, t_query *query);
-bool		check_bottom_cap(t_cy cy, t_query *query);
-bool		check_cylinder_root(t_cy cy, t_query *query, double root);
-
-bool		hit_cylinder(t_cy cy, t_query *query);
+bool		hit_sphere(t_sphere *sp, t_query *query);
+bool		hit_plane(t_pl *pl, t_query *query);
+bool		hit_cylinder(t_cy *cy, t_query *query);
 
 
 //Raytracing
 mlx_color	ssaa(t_mlx *mlx, int x, int y);
 mlx_color	ray_color(t_mlx *mlx, t_ray ray);
+void		camera_init(t_camera *cam, int width, int height);
 t_ray		camera_ray(t_mlx *mlx, t_camera camera, double x, double y);
 
 //Rendering
@@ -43,7 +41,7 @@ void		render_moving_scene(t_mlx *mlx, t_camera camera);
 
 //Object interactions
 bool		hit_object(t_object *obj, t_query *query);
-bool	hit_objects(t_objects *items, t_query *query);
+bool		hit_objects(t_objects *items, t_query *query);
 bool		find_objects(t_mlx *mlx);
 void		move_object(t_mlx *mlx);
 void		scale_object(t_mlx *mlx);

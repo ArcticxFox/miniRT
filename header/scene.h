@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 18:14:43 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 14:11:05 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct s_camera
 	t_vec	forward;
 	t_vec	right;
 	t_vec	up;
+	double	half_h;
+	double	half_w;
 	double	fov;
 }	t_camera;
 
