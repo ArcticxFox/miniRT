@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 11:48:07 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 14:16:28 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:05:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	parse_nov(char *str, t_vec *NOV)
 	return (ret);
 }
 
-t_errors	plane_parse(char **split, t_data *minirt)
+t_errors	plane_parse(char **split, t_tmp_data *minirt)
 {
 	int			i;
 	t_errors	ret;

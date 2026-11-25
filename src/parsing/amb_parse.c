@@ -6,13 +6,13 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 11:35:17 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 10:26:18 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:33:58 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_errors	amb_parse(char **split, t_data *minirt)
+t_errors	amb_parse(char **split, t_tmp_data *minirt)
 {
 	int			i;
 	t_errors	ret;

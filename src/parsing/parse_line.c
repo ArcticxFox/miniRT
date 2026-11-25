@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/02 16:09:52 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:05:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static t_parse_func	get_parse_func(char **split)
 }
 
 //parses the line
-t_errors	parse_line(char *line, t_data *minirt)
+t_errors	parse_line(char *line, t_tmp_data *minirt)
 {
 	char			**split;
 	t_parse_func	func;

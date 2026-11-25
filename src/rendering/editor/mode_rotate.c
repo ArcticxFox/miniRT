@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 13:06:55 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/30 16:31:53 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/17 20:12:16 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	rotate(t_mlx *mlx, double yaw, double pitch)
 	t_quat	q_yaw;
 	t_quat	q_pitch;
 	t_cy	*cy;
+	t_object	*obj;
 
-	cy = &mlx->scene.cylinder[mlx->selected.index];
+	obj = mlx->scene.items.objects;
+	cy = &obj[mlx->selected.index].data.cylinder;
 	q_yaw = quat_from_axis_angle(mlx->scene.camera.up, yaw);
 	q_pitch = quat_from_axis_angle(mlx->scene.camera.right, pitch);
 	*mlx->object_dir = quat_rotate_vec(q_yaw, *mlx->object_dir);
@@ -48,7 +50,7 @@ void	rotate_objects(t_mlx *mlx)
 {
 	int	mouse_x;
 	int	mouse_y;
-	
+
 	mlx_mouse_get_pos(mlx->mlx, &mouse_x, &mouse_y);
 	rotation_v2(mlx, mouse_x, mouse_y);
 }

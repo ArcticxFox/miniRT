@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   program_setup_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 15:15:26 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/02 15:10:13 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:05:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "parerrors.h"
 
 static void	cleanup_rest_of_file(char **res, int fd)
 {
@@ -24,7 +23,7 @@ static void	cleanup_rest_of_file(char **res, int fd)
 	}
 }
 
-t_errors	lsi_loop(char **res, t_data *minirt, int fd)
+t_errors	lsi_loop(char **res, t_tmp_data *minirt, int fd)
 {
 	t_errors	err;
 

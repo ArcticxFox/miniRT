@@ -3,38 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 15:48:10 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 15:31:33 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/23 18:14:43 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 
-# include "mini_rt.h"
 
-# define HEIGHT 60
-# define WIDTH 148
+# include <stdbool.h>
+# include "math_types.h"
+# include "editor_types.h"
+# include "bvh_types.h"
+# include "../MacroLibX/includes/mlx.h"
 
-//============================================================================//
-//									OBJECTS									  //
-//============================================================================//
-
-typedef struct s_amb_light
+typedef struct	s_amb_light
 {
 	double		ratio;
 	mlx_color	rgb;
 }	t_amb_light;
 
-typedef struct s_light
+typedef struct	s_light
 {
 	t_vec	lightpoint;
 	double	brightness;
 }	t_light;
 
-typedef struct s_sphere
+typedef struct	s_sphere
 {
 	t_vec		center;
 	double		r;
@@ -42,14 +40,14 @@ typedef struct s_sphere
 	mlx_color	rgb;
 }	t_sphere;
 
-typedef struct s_plane
+typedef struct	s_plane
 {
 	t_vec		point_in_py;
 	t_vec		direction;
 	mlx_color	rgb;
 }	t_pl;
 
-typedef struct s_cylinder
+typedef struct	s_cylinder
 {
 	t_vec		center;
 	t_vec		axis_dir;
@@ -59,60 +57,25 @@ typedef struct s_cylinder
 	double		r;
 }	t_cy;
 
-typedef enum e_obj_type
-{
-	OBJ_NONE,
-	OBJ_SPHERE,
-	OBJ_PLANE,
-	OBJ_CYLINDER
-}	t_obj_type;
-
-//============================================================================//
-//								HELPER
-//============================================================================//
-
-typedef struct s_selection
+typedef struct	s_object
 {
 	t_obj_type	type;
-	int			index;
-	bool		valid;
-	double		r;
-	double		h;
-}	t_selection;
+	union
+	{
+		t_sphere	sphere;
+		t_pl		plane;
+		t_cy		cylinder;
+	}	data;
+}	t_object;
 
-typedef struct s_hit
+typedef struct	s_objects
 {
-	double		t;
-	t_vec		point;
-	t_vec		normal;
-	mlx_color	color;
-}	t_hit;
-
-typedef struct s_interval
-{
-	double	min;
-	double	max;
-}	t_interval;
-
-typedef struct s_mouse_pos
-{
-	int	x;
-	int	y;
-}	t_mouse_pos;
-
-//============================================================================//
-
-typedef struct s_keys
-{
-	bool	up;
-	bool	down;
-	bool	right;
-	bool	left;
-	bool	backwards;
-	bool	forwards;
-	bool	left_click;
-	bool	right_click;
-}	t_keys;
+	t_object	*objects;
+	t_bvh		bvh;
+	int			count;
+	int			pl_count;
+	int			capacity;
+}	t_objects;
 
 typedef struct s_camera
 {
@@ -124,7 +87,7 @@ typedef struct s_camera
 	double	fov;
 }	t_camera;
 
-typedef struct s_data
+typedef struct	s_tmp_data
 {
 	t_amb_light	ambient_light;
 	t_camera	camera;
@@ -138,28 +101,17 @@ typedef struct s_data
 	t_cy		*cylinder;
 	int			cyl_cap;
 	int			cyl_count;
+}	t_tmp_data;
+
+typedef	struct	s_data
+{
+	t_amb_light	ambient_light;
+	t_camera	camera;
+	t_light		light;
+	t_objects	items;
 }	t_data;
 
-typedef struct s_mlx
-{
-	mlx_context				mlx;
-	mlx_window				win;
-	mlx_image				img;
-	mlx_window_create_info	info;
 
-	t_data					scene;
 
-	t_mouse_pos				prev_mouse_pos;
-	t_keys					keys;
-	double					last_time;
-	int						needs_redraw;
-
-	t_mode					mode;
-	t_selection				selected;
-	t_mouse_pos				drag_start;
-	t_vec					object_start;
-	t_vec					*object_dir;
-	double					value_start;
-}	t_mlx;
 
 #endif

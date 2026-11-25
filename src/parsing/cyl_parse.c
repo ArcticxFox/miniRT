@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cyl_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 13:02:42 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/02 16:08:48 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:05:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_errors	parse_cyl_data(char **split, t_cy *cyl)
 	return (ret);
 }
 
-t_errors	cylinder_parse(char **split, t_data *minirt)
+t_errors	cylinder_parse(char **split, t_tmp_data *minirt)
 {
 	t_errors	ret;
 	t_cy		*current_cyl;

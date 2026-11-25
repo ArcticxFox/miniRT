@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   number_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 15:35:08 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/10/07 12:35:05 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:01:30 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 14:43:42 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/27 13:52:00 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/17 20:06:28 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ void	move_object(t_mlx *mlx)
 {
 	int		mouse_x;
 	int		mouse_y;
-	int		index;
-	t_data	*scene;
+	int		i;
+	t_object	*obj;
 
-	index = mlx->selected.index;
-	scene = &mlx->scene;
+	i = mlx->selected.index;
+	obj = mlx->scene.items.objects;
 	mlx_mouse_get_pos(mlx->mlx, &mouse_x, &mouse_y);
 	if (mlx->selected.type == OBJ_SPHERE)
-		scene->sphere[index].center = move_position(mlx, mouse_x, mouse_y);
+		obj[i].data.sphere.center = move_position(mlx, mouse_x, mouse_y);
 	if (mlx->selected.type == OBJ_CYLINDER)
-		scene->cylinder[index].center = move_position(mlx, mouse_x, mouse_y);
+		obj[i].data.cylinder.center = move_position(mlx, mouse_x, mouse_y);
 	if (mlx->selected.type == OBJ_PLANE)
-		scene->plane[index].point_in_py = move_position(mlx, mouse_x, mouse_y);
+		obj[i].data.plane.point_in_py = move_position(mlx, mouse_x, mouse_y);
 }

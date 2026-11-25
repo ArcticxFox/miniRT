@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/29 16:40:15 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/21 19:22:27 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
 
-# include "arithmetics.h"
-# include "editor.h"
+# include "math_types.h"
 # include "scene.h"
-# include "window.h"
+# include "render_types.h"
+# include "input_types.h"
+# include "app_types.h"
+# include "bvh.h"
+# include "bvh_types.h"
+
+# include "arithmetics.h"
 # include "render_utils.h"
+# include "window.h"
 # include "parsing.h"
 # include "parerrors.h"
 
@@ -40,6 +46,10 @@
 # define KEY_LEFT		80
 # define KEY_RIGHT		79
 
-void	render_scene(t_mlx *mlx, t_camera camera);
+# define KEY_M			16
+# define KEY_C			6
+# define KEY_R			21
+# define KEY_S			22
+
 
 #endif

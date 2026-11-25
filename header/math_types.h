@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   editor.h                                           :+:      :+:    :+:   */
+/*   math_types.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/22 15:32:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/02 15:30:22 by dlanehar         ###   ########.fr       */
+/*   Created: 2026/11/06 18:37:06 by ejones            #+#    #+#             */
+/*   Updated: 2026/11/14 15:58:07 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EDITOR_H
-# define EDITOR_H
+#ifndef MATH_TYPES_H
+# define MATH_TYPES_H
 
-# include "mini_rt.h"
-
-# define KEY_M	16
-# define KEY_C	6
-# define KEY_R	21
-# define KEY_S	22
-
-typedef enum e_mode
+typedef struct	s_vec
 {
-	MODE_CAMERA,
-	MODE_MOVE,
-	MODE_SCALE,
-	MODE_ROTATE
-}	t_mode;
+	double	x;
+	double	y;
+	double	z;
+}	t_vec;
+
+typedef struct	s_ray
+{
+	t_vec	origin;
+	t_vec	dir;
+}	t_ray;
+
+typedef struct	s_quaternions
+{
+	double	w;
+	double	x;
+	double	y;
+	double	z;
+}	t_quat;
 
 #endif

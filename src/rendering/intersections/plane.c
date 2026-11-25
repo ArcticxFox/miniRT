@@ -3,54 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:44:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/10/28 16:47:18 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/25 10:12:03 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-bool	hit_plane(t_pl pl, t_ray ray, t_hit *hit, t_interval range)
+bool	hit_plane(t_pl pl, t_query *query)
 {
 	double	denom;
 	double	t;
 	t_vec	oc;
 
-	oc = sub(pl.point_in_py, ray.origin);
-	denom = dot(ray.dir, pl.direction);
+	oc = sub(pl.point_in_py, query->ray.origin);
+	denom = dot(query->ray.dir, pl.direction);
 	if (fabs(denom) < 1e-8)
 		return (false);
 	t = dot(oc, pl.direction) / denom;
-	if (t <= range.min || range.max <= t)
+	if (t <= query->iv.min || query->iv.max <= t)
 		return (false);
-	hit->t = t;
-	hit->point = ray_at(ray, t);
-	hit->normal = multiply_scalar(pl.direction, 1);
-	hit->color = pl.rgb;
+	query->hit->t = t;
+	query->hit->point = ray_at(query->ray, t);
+	query->hit->normal = multiply_scalar(pl.direction, 1);
+	query->hit->color = pl.rgb;
 	return (true);
-}
-
-bool	hit_planes(t_data *scene, t_ray ray, t_hit *hit, t_interval range)
-{
-	int		i;
-	t_hit	hit_tmp;
-	bool	hit_anything;
-
-	i = 0;
-	hit_anything = false;
-	while (i < scene->pl_count)
-	{
-		if (hit_plane(scene->plane[i], ray, &hit_tmp, range))
-		{
-			hit_anything = true;
-			range.max = hit_tmp.t;
-			*hit = hit_tmp;
-		}
-		++i;
-	}
-	if (hit_anything)
-		return (true);
-	return (false);
 }
