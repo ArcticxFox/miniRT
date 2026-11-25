@@ -1,0 +1,20 @@
+#Executables
+./miniRT
+a.out
+
+#From Compilation
+*.o
+*.d
+*.a
+obj/
+libft/build/*.d
+
+# Editor files
+*~
+*.swp
+*.swo
+
+#text files
+*.txt
+
+MacroLibX-master.zip
