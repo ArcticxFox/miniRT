@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 18:01:03 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 15:57:05 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 17:14:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 
 	(void)camera;
 	y = mlx->render.y;
-	if (mlx->render.y == 0)
+	if (mlx->render.y == 0 && mlx->render.x == 0)
+	{
 		time = get_time();
+		mlx->scene.items.bvh.stats.object_tests = 0;
+		mlx->scene.items.bvh.stats.node_visits = 0;
+	}
 	while (y < mlx->render.y + 8)
 	{
 		x = mlx->render.x;
@@ -57,12 +61,12 @@ void	render_scene(t_mlx *mlx, t_camera camera)
 		++y;
 	}
 	mlx->render.x += 8;
-	if (mlx->render.x > mlx->info.width)
+	if (mlx->render.x >= mlx->info.width)
 	{
 		mlx->render.x = 0;
 		mlx->render.y += 8;
 	}
-	if (mlx->render.y > mlx->info.height)
+	if (mlx->render.y >= mlx->info.height)
 	{
 		mlx->render.y = 0;
 		printf("\nobject test : %ld\n", mlx->scene.items.bvh.stats.object_tests);

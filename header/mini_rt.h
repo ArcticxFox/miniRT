@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 19:22:27 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 17:35:35 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "app_types.h"
 # include "bvh.h"
 # include "bvh_types.h"
+# include "supersampling.h"
 
 # include "arithmetics.h"
 # include "render_utils.h"

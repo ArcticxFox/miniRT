@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 17:12:04 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 16:00:32 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 18:18:59 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,61 @@ static mlx_color	divide_colour(int colour1[], int denom)
 	return (tmp);
 }
 
+static void	probe(t_mlx *mlx, int pix[2], int colour[3], mlx_color out[4])
+{
+	int	n;
+	int	i;
+	int sub[2];
+
+	n = mlx->render.samples;
+	i = 0;
+	while (i < 4)
+	{
+		sub[0] = (i % 2) * (n - 1);
+		sub[1] = (i / 2) * (n - 1);
+		out[i] = ray_color(mlx, sub_ray(mlx, pix, sub));
+		add_colour(colour, out[i]);
+		++i;
+	}
+}
+
+static void	grid_sample(t_mlx *mlx, int pix[2], int colour[3], int skip)
+{
+	int	sub[2];
+	int	n;
+
+	n = mlx->render.samples;
+	sub[1] = 0;
+	while (sub[1] < n)
+	{
+		sub[0] = 0;
+		while (sub[0] < n)
+		{
+			if (!skip || !is_corner(sub, n))
+				add_colour(colour, ray_color(mlx, sub_ray(mlx, pix, sub)));
+			++sub[0];
+		}
+		++sub[1];
+	}
+}
+
 mlx_color	ssaa(t_mlx *mlx, int x, int y)
 {
-	int			sub_x;
-	int			sub_y;
-	mlx_color	color;
+	int			pix[2];
 	int			colour[3];
-	t_ray		ray;
+	mlx_color	probes[4];
+	int			skip;
 
-	sub_y = 0;
+	pix[0] = x;
+	pix[1] = y;
 	ft_bzero(colour, sizeof(colour));
-	while (sub_y < mlx->render.samples)
+	skip = (mlx->render.samples > 2);
+	if (skip)
 	{
-		sub_x = 0;
-		while (sub_x < mlx->render.samples)
-		{
-			ray = camera_ray(mlx, mlx->scene.camera,
-				x + ((double)sub_x + 0.5) / mlx->render.samples,
-				y + ((double)sub_y + 0.5) /mlx->render.samples
-				);
-			add_colour(colour, ray_color(mlx, ray));
-			++sub_x;
-		}
-		++sub_y;
+		probe(mlx, pix, colour, probes);
+		if (!needs_refine(probes))
+			return (divide_colour(colour, 4));
 	}
-	color = divide_colour(colour, mlx->render.samples * mlx->render.samples);
-	return (color);
+	grid_sample(mlx, pix, colour, skip);
+	return (divide_colour(colour, mlx->render.samples * mlx->render.samples));
 }

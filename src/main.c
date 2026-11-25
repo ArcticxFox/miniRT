@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 14:40:22 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 18:24:47 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,21 @@ void	free_tmp_data(t_tmp_data *minirt)
 		free(minirt->plane);
 	return ;
 }
-
+#include <time.h>
 double	get_time(void)
 {
-	struct timeval	tv;
+	struct timespec	ts;
 
-	gettimeofday(&tv, NULL);
-	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return ((double)ts.tv_sec + (double)ts.tv_nsec / 1e9);
 }
+// double	get_time(void)
+// {
+// 	struct timeval	tv;
+
+// 	gettimeofday(&tv, NULL);
+// 	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
+// }
 
 void	add_radius(t_tmp_data *scene)
 {
