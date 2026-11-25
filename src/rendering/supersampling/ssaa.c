@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 17:12:04 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 18:43:17 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 20:04:14 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ static void	grid_sample(t_mlx *mlx, int pix[2], int colour[3], int skip)
 		sub[0] = 0;
 		while (sub[0] < n)
 		{
-			if (!skip || (!is_corner(sub, n)
-					&& !(n % 2 && sub[0] == n / 2
-						&& sub[1] == n / 2)))
+			if (!skip || !is_probed(sub, n)) 	
 				add_colour(colour, ray_color(mlx, sub_ray(mlx, pix, sub)));
 			++sub[0];
 		}
