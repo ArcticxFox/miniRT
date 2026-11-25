@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/16 14:04:46 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 10:09:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef t_errors	(*t_parse_func)(char **split, t_tmp_data *minirt);
 
-typedef struct	s_parser
+typedef struct s_parser
 {
 	char			*string;
 	t_parse_func	func;
@@ -50,6 +50,7 @@ t_errors	parse_float_array(char **input, t_vec *coords, double lower,
 t_errors	parse_int_array(char **input, mlx_color *rgb, int lower, int upper);
 t_errors	parse_coords(char *str, t_vec *coords, double lower, double upper);
 void		*ft_realloc(void *ptr, int old_size, int new_size);
+t_errors	parse_positive_float(char *input, double *value);
 
 t_errors	amb_parse(char **split, t_tmp_data *minirt);
 t_errors	cam_parse(char **split, t_tmp_data *minirt);

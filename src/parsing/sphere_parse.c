@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 08:50:45 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/16 14:04:46 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 10:05:24 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ t_errors	sphere_parse(char **split, t_tmp_data *minirt)
 	if (ret != MRT_OK)
 		return (ret);
 	i++;
-	if (!valid_float_number(split[i]))
-		return (MRT_INVALID_NUM);
-	minirt->sphere[minirt->sph_count].d = ft_atof(split[i]);
-	if (minirt->sphere[minirt->sph_count].d <= 0)
-		return (MRT_NEGATIVE_VALUE);
+	ret = parse_positive_float(split[i], &minirt->sphere[minirt->sph_count].d);
+	if (ret != MRT_OK)
+		return (ret);
 	i++;
 	ret = parse_colours(split[i], &minirt->sphere[minirt->sph_count].rgb);
 	if (split[i + 1] != NULL)

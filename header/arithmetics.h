@@ -6,14 +6,14 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:33:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/14 14:31:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/23 18:10:57 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARITHMETICS_H
 # define ARITHMETICS_H
 
-# include "math_types.h"
+# include "mini_rt.h"
 
 typedef struct	s_get_root
 {
@@ -22,8 +22,6 @@ typedef struct	s_get_root
 	double	c;
 	double	delta;
 }	t_get_root;
-
-
 
 double	dot(t_vec a, t_vec b);
 t_vec	add(t_vec a, t_vec b);

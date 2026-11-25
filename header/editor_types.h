@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/12 14:37:48 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/12 14:47:32 by ejones           ###   ########.fr       */
+/*   Created: 2026/10/22 15:32:46 by ejones            #+#    #+#             */
+/*   Updated: 2026/11/23 18:08:30 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 
-typedef enum	e_mode
+typedef enum e_mode
 {
 	MODE_CAMERA,
 	MODE_MOVE,
