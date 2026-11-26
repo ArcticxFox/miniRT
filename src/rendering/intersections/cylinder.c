@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:51:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 17:23:52 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 16:13:05 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	check_cylinder_root(t_cy cy, t_query *query, double root)
 	query->hit->t = root;
 	query->hit->point = ray_at(query->ray, root);
 	radial = sub(sub(query->hit->point, cy.center),
-		multiply_scalar(cy.axis_dir, m));
+			multiply_scalar(cy.axis_dir, m));
 	query->hit->normal = normalize(radial);
 	return (true);
 }

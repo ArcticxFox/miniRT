@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   input_types.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 18:41:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/12 14:47:22 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:22:00 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_TYPE_H
-# define INPUT_TYPE_H
+#ifndef INPUT_TYPES_H
+# define INPUT_TYPES_H
 
 # include <stdbool.h>
 
-typedef struct	s_mouse_pos
+typedef struct s_mouse_pos
 {
 	int	x;
 	int	y;
 }	t_mouse_pos;
 
-typedef struct	s_keys
+typedef struct s_keys
 {
 	bool	up;
 	bool	down;

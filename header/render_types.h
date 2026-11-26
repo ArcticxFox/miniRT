@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 18:40:20 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/14 14:31:36 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:23:08 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "scene.h"
 # include "../MacroLibX/includes/mlx.h"
 
-typedef struct	s_hit
+typedef struct s_hit
 {
 	double		t;
 	t_vec		point;
@@ -26,13 +26,13 @@ typedef struct	s_hit
 	mlx_color	color;
 }	t_hit;
 
-typedef struct	s_interval
+typedef struct s_interval
 {
 	double	min;
 	double	max;
 }	t_interval;
 
-typedef struct	s_render
+typedef struct s_render
 {
 	int		x;
 	int		y;

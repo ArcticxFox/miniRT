@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 14:41:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/16 17:03:54 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:42:09 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,3 @@ void	update_camera(t_mlx *mlx, double dt)
 	camera_movement(mlx, dt);
 	rotations(mlx, mouse_x, mouse_y);
 }
-

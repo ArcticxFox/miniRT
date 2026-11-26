@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 13:06:55 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/17 20:12:16 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:44:40 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	rotate(t_mlx *mlx, double yaw, double pitch)
 {
-	t_quat	q_yaw;
-	t_quat	q_pitch;
-	t_cy	*cy;
+	t_quat		q_yaw;
+	t_quat		q_pitch;
+	t_cy		*cy;
 	t_object	*obj;
 
 	obj = mlx->scene.items.objects;

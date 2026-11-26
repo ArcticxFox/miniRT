@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:42:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 18:14:24 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:23:19 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ bool		check_cylinder_root(t_cy cy, t_query *query, double root);
 
 bool		hit_cylinder(t_cy cy, t_query *query);
 
-
 //Raytracing
 mlx_color	ssaa(t_mlx *mlx, int x, int y);
 mlx_color	ray_color(t_mlx *mlx, t_ray ray);
@@ -43,7 +42,7 @@ void		render_moving_scene(t_mlx *mlx, t_camera camera);
 
 //Object interactions
 bool		hit_object(t_object *obj, t_query *query);
-bool	hit_objects(t_objects *items, t_query *query);
+bool		hit_objects(t_objects *items, t_query *query);
 bool		find_objects(t_mlx *mlx);
 void		move_object(t_mlx *mlx);
 void		scale_object(t_mlx *mlx);

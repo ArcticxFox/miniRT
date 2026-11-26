@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ssaa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 17:12:04 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/20 14:15:18 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:37:01 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ mlx_color	ssaa(t_mlx *mlx, int x, int y)
 	int			sub_x;
 	int			sub_y;
 	mlx_color	color;
-	int	colour[3] = {0};
-	t_ray	ray;
+	int			colour[3] = {0};
+	t_ray		ray;
 
 	sub_y = 0;
 	while (sub_y < mlx->render.samples)
@@ -44,9 +44,8 @@ mlx_color	ssaa(t_mlx *mlx, int x, int y)
 		while (sub_x < mlx->render.samples)
 		{
 			ray = camera_ray(mlx, mlx->scene.camera,
-				x + (double)sub_x / mlx->render.samples,
-				y + (double)sub_y /mlx->render.samples
-				);
+					x + (double)sub_x / mlx->render.samples,
+					y + (double)sub_y / mlx->render.samples);
 			add_colour(colour, ray_color(mlx, ray));
 			++sub_x;
 		}

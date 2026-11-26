@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor_types.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 15:32:46 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 18:08:30 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:21:18 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef enum e_mode
 	MODE_ROTATE
 }	t_mode;
 
-typedef enum	e_obj_type
+typedef enum e_obj_type
 {
 	OBJ_NONE,
 	OBJ_SPHERE,
@@ -31,7 +31,7 @@ typedef enum	e_obj_type
 	OBJ_CYLINDER
 }	t_obj_type;
 
-typedef struct	s_selection
+typedef struct s_selection
 {
 	t_obj_type	type;
 	int			index;

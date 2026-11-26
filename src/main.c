@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 10:09:03 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:27:41 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	add_radius(t_tmp_data *scene)
 	int	i;
 
 	i = 0;
-	while(i < scene->sph_count)
+	while (i < scene->sph_count)
 	{
 		scene->sphere[i].r = scene->sphere[i].d / 2;
 		++i;
 	}
 	i = 0;
-	while(i < scene->cyl_count)
+	while (i < scene->cyl_count)
 	{
 		scene->cylinder[i].r = scene->cylinder[i].d / 2;
 		++i;
@@ -91,7 +91,7 @@ int	init_scene(t_tmp_data *tmp, t_data *scene)
 
 int	main(int ac, char **av)
 {
-	t_mlx	mlx;
+	t_mlx		mlx;
 	t_tmp_data	tmp_scene;
 
 	mlx = (t_mlx){0};
@@ -104,7 +104,6 @@ int	main(int ac, char **av)
 	if (init_scene(&tmp_scene, &mlx.scene) == MRT_MALLOC)
 		return (MRT_MALLOC);
 	init_window(&mlx);
-
 	render_moving_scene(&mlx, mlx.scene.camera);
 	mlx_add_loop_hook(mlx.mlx, render_loop, &mlx);
 	mlx_loop(mlx.mlx);

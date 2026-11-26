@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 16:32:45 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 17:52:01 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 16:12:39 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	find_objects(t_mlx *mlx)
 	query.iv = (t_interval){0.001, INFINITY};
 	mlx->selected.valid = false;
 	query.ray = camera_ray(mlx, mlx->scene.camera,
-		mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
+			mlx->prev_mouse_pos.x, mlx->prev_mouse_pos.y);
 	query.hit = &hit;
 	while (i < mlx->scene.items.count)
 	{

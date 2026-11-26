@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bvh_builds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 16:06:19 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 17:23:39 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:39:59 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	split_range(t_bvh *bvh, t_range r, t_aabb bounds)
 
 	axis = longest_axis(bounds);
 	mid = 0.5 * (vec_axis(bounds.min, axis) + vec_axis(bounds.max, axis));
-	k =  partition(bvh, r, axis, mid);
+	k = partition(bvh, r, axis, mid);
 	if (k == mid || k == r.end)
 		k = (r.start + r.end) / 2;
 	return (k);
@@ -56,7 +56,7 @@ static t_bvh_node	*build_node(t_bvh *bvh, t_range r)
 
 	node = &bvh->node[bvh->node_count++];
 	node->bounds = range_bounds(bvh, r);
-	if(r.end - r.start <= LEAF_HIGH)
+	if (r.end - r.start <= LEAF_HIGH)
 	{
 		node->is_leaf = true;
 		node->leaf.start = r.start;
@@ -100,7 +100,6 @@ void	free_bvh(t_bvh *bvh)
 
 int	init_bvh(t_bvh *bvh, t_objects *objs)
 {
-
 	bvh->scene = objs->objects;
 	bvh->object_count = objs->count - objs->pl_count;
 	bvh->node_count = 0;
@@ -116,8 +115,8 @@ int	init_bvh(t_bvh *bvh, t_objects *objs)
 		return (MRT_MALLOC);
 	}
 	fill_ref(bvh, objs);
-	bvh->root = build_node(bvh, (t_range) {0, bvh->object_count});
-	bvh->stats = (t_bvh_stats) {0};
+	bvh->root = build_node (bvh, (t_range) {0, bvh->object_count});
+	bvh->stats = (t_bvh_stats){0};
 	return (0);
 }
 
@@ -127,6 +126,6 @@ void	rebuild_bvh(t_bvh *bvh, t_objects *objs)
 		return ;
 	bvh->node_count = 0;
 	fill_ref(bvh, objs);
-	bvh->root = build_node(bvh, (t_range) {0, bvh->object_count});
-	bvh->stats = (t_bvh_stats) {0};
+	bvh->root = build_node(bvh, (t_range){0, bvh->object_count});
+	bvh->stats = (t_bvh_stats){0};
 }

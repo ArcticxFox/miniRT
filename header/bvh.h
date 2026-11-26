@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bvh.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:51:35 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 19:48:23 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:17:45 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_aabb	surrounding_box(t_aabb a, t_aabb b);
 t_aabb	sphere_aabb(t_sphere sphere);
 t_aabb	cylinder_aabb(t_cy cy);
 t_aabb	object_aabb(t_object *obj);
-
 
 int		init_bvh(t_bvh *bvh, t_objects *objs);
 void	free_bvh(t_bvh *bvh);

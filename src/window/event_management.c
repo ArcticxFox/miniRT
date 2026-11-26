@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   event_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 10:06:47 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 16:13:33 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static bool handle_mode_key(t_mlx *mlx, int key)
+static bool	handle_mode_key(t_mlx *mlx, int key)
 {
 	if (key == KEY_M)
 		mlx->mode = MODE_MOVE;

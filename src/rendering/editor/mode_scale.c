@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode_scale.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 13:16:58 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 10:07:14 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 16:12:22 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	get_distance(t_mlx *mlx, int mouse_x, int mouse_y)
 
 	ray = camera_ray(mlx, mlx->scene.camera, mouse_x, mouse_y);
 	depth = dot(sub(mlx->object_start, mlx->scene.camera.origin),
-		 mlx->scene.camera.forward);
+			mlx->scene.camera.forward);
 	t = depth / dot(ray.dir, mlx->scene.camera.forward);
 	mouse_world = add(ray.origin, multiply_scalar(ray.dir, t));
 	diff = sub(mouse_world, mlx->object_start);
@@ -31,17 +31,20 @@ double	get_distance(t_mlx *mlx, int mouse_x, int mouse_y)
 
 void	scale_objects(t_mlx *mlx, t_data *scene, int mouse_x, int mouse_y)
 {
-	double	distance;
+	double		distance;
 	t_object	*obj;
 
 	obj = scene->items.objects;
 	distance = get_distance(mlx, mouse_x, mouse_y);
 	if (mlx->selected.type == OBJ_SPHERE)
-		obj[mlx->selected.index].data.sphere.r = mlx->selected.r * distance / mlx->value_start;
+		obj[mlx->selected.index].data.sphere.r = mlx->selected.r
+			* distance / mlx->value_start;
 	if (mlx->selected.type == OBJ_CYLINDER)
 	{
-		obj[mlx->selected.index].data.cylinder.r = mlx->selected.r * distance / mlx->value_start;
-		obj[mlx->selected.index].data.cylinder.h = mlx->selected.h * distance / mlx->value_start;
+		obj[mlx->selected.index].data.cylinder.r = mlx->selected.r
+			* distance / mlx->value_start;
+		obj[mlx->selected.index].data.cylinder.h = mlx->selected.h
+			* distance / mlx->value_start;
 	}
 }
 

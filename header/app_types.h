@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   app_types.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:35:09 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/16 17:00:48 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:16:38 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	mlx_context				mlx;
 	mlx_window				win;
