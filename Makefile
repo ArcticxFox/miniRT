@@ -16,6 +16,7 @@ SRC := \
 	math/quaternions.c \
 	window/init_window.c \
 	window/event_management.c \
+	window/handle_keys.c \
 	rendering/intersections/sphere.c \
 	rendering/intersections/plane.c \
 	rendering/intersections/cylinder.c \
@@ -33,11 +34,12 @@ SRC := \
 	parsing/cyl_parse.c \
 	parsing/number_parsing.c \
 	error_handling/errors.c \
-	print_all.c \
 	rendering/scene.c \
 	rendering/scene_utils.c \
+	rendering/render_scene.c \
 	rendering/acceleration/bvh_aabb.c \
 	rendering/acceleration/bvh_builds.c \
+	rendering/acceleration/bvh_builds_utils.c \
 	rendering/acceleration/bvh_hit_aabb.c \
 	rendering/acceleration/bvh_hit.c \
 	rendering/acceleration/bvh_range.c \

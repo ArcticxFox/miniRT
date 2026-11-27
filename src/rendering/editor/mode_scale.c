@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode_scale.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 13:16:58 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/27 15:47:27 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:45:29 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	get_distance(t_mlx *mlx, int mouse_x, int mouse_y)
 
 	ray = camera_ray(mlx, &mlx->scene.camera, mouse_x, mouse_y);
 	depth = dot(sub(mlx->object_start, mlx->scene.camera.origin),
-		 mlx->scene.camera.forward);
+			mlx->scene.camera.forward);
 	denom = dot(ray.dir, mlx->scene.camera.forward);
 	if (fabs(denom) < 1e-6)
 		return (mlx->value_start);

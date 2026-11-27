@@ -6,7 +6,7 @@
 /*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:51:35 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/26 15:17:45 by dlanehar         ###   ########.fr       */
+/*   Updated: 2026/11/27 16:57:48 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		longest_axis(t_aabb bounds);
 t_aabb	ref_aabb(t_bvh *bvh, int i);
 t_aabb	range_bounds(t_bvh *bvh, t_range r);
 double	centroid(t_bvh *bvh, int i, t_axis axis);
+int		split_range(t_bvh *bvh, t_range r, t_aabb bounds);
 
 /*========= bvh_hit_aabb.c ===========*/
 

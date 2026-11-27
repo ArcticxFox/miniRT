@@ -3,51 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bvh_builds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 16:06:19 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/27 15:51:23 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:55:03 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
-static int	partition(t_bvh *bvh, t_range r, t_axis axis, double mid)
-{
-	t_object_ref	tmp;
-	int				i;
-	int				j;
-
-	i = r.start;
-	j = r.end - 1;
-	while (i <= j)
-	{
-		if (centroid(bvh, i, axis) < mid)
-			++i;
-		else
-		{
-			tmp = bvh->objects[i];
-			bvh->objects[i] = bvh->objects[j];
-			bvh->objects[j] = tmp;
-			--j;
-		}
-	}
-	return (i);
-}
-
-static int	split_range(t_bvh *bvh, t_range r, t_aabb bounds)
-{
-	t_axis	axis;
-	double	mid;
-	int		k;
-
-	axis = longest_axis(bounds);
-	mid = 0.5 * (vec_axis(bounds.min, axis) + vec_axis(bounds.max, axis));
-	k =  partition(bvh, r, axis, mid);
-	if (k == r.start || k == r.end)
-		k = (r.start + r.end) / 2;
-	return (k);
-}
 
 static t_bvh_node	*build_node(t_bvh *bvh, t_range r)
 {
@@ -115,7 +78,7 @@ int	init_bvh(t_bvh *bvh, t_objects *objs)
 		return (MRT_MALLOC);
 	}
 	fill_ref(bvh, objs);
-	bvh->root = build_node (bvh, (t_range) {0, bvh->object_count});
+	bvh->root = build_node(bvh, (t_range){0, bvh->object_count});
 	bvh->stats = (t_bvh_stats){0};
 	return (0);
 }
