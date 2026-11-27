@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 21:42:19 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/25 21:58:44 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ void	mouse_down(int click, void *param)
 		if (mlx->mode == MODE_SCALE)
 		{
 			mlx->value_start = get_distance(mlx, mlx->old_mouse_pos.x, mlx->old_mouse_pos.y);
-			if (mlx->value_start < mlx->selected.r)
-				mlx->value_start = mlx->selected.r;
+			// if (mlx->value_start < mlx->selected.r)
+			// 	mlx->value_start = mlx->selected.r;
 		}
 		mlx->needs_redraw = 0;
 	}
