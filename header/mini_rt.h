@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/31 17:29:14 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 17:35:35 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 15:45:23 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,5 @@
 # define KEY_C			6
 # define KEY_R			21
 # define KEY_S			22
-
 
 #endif

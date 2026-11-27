@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 09:26:06 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 10:09:22 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:22:49 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <float.h>
 # include <math.h>
 # include "parerrors.h"
-
 
 typedef t_errors	(*t_parse_func)(char **split, t_tmp_data *minirt);
 

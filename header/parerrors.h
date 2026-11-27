@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parerrors.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 10:14:39 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/12 15:50:28 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:22:38 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARERRORS_H
 # define PARERRORS_H
 
-typedef enum	e_errors
+typedef enum e_errors
 {
 	MRT_BAD_ARGS,
 	MRT_FILENAME,

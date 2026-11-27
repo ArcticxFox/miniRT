@@ -11,7 +11,8 @@ SRC := \
 	main.c \
 	objects.c \
 	camera.c \
-	math/vector_arithmetic.c \
+	math/vector.c \
+	math/vector_utils.c \
 	math/quaternions.c \
 	window/init_window.c \
 	window/event_management.c \

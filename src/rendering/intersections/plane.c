@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 15:44:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 14:05:45 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:12:04 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ bool	hit_plane(t_pl *pl, t_query *query)
 	denom = dot(query->ray.dir, pl->direction);
 	if (fabs(denom) < 1e-8)
 		return (false);
-	;
 	t = dot(sub(pl->point_in_py, query->ray.origin), pl->direction) / denom;
 	if (t <= query->iv.min || query->iv.max <= t)
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 14:41:26 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 21:38:31 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 15:46:40 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,3 @@ void	update_camera(t_mlx *mlx, double dt)
 	camera_movement(mlx, dt);
 	rotations(mlx, mouse_x, mouse_y);
 }
-

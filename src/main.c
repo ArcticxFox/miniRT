@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 15:08:30 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 20:21:04 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:08:03 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	add_radius(t_tmp_data *scene)
 	int	i;
 
 	i = 0;
-	while(i < scene->sph_count)
+	while (i < scene->sph_count)
 	{
 		scene->sphere[i].r = scene->sphere[i].d / 2;
 		++i;
 	}
 	i = 0;
-	while(i < scene->cyl_count)
+	while (i < scene->cyl_count)
 	{
 		scene->cylinder[i].r = scene->cylinder[i].d / 2;
 		++i;
@@ -58,7 +58,7 @@ void	add_radius(t_tmp_data *scene)
 
 int	main(int ac, char **av)
 {
-	t_mlx	mlx;
+	t_mlx		mlx;
 	t_tmp_data	tmp_scene;
 
 	ft_bzero(&mlx, sizeof(t_mlx));

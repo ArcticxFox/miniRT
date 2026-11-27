@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 13:06:55 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 21:38:31 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 15:46:51 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	rotate(t_mlx *mlx, double yaw, double pitch)
 {
-	t_quat	q_yaw;
-	t_quat	q_pitch;
-	t_cy	*cy;
+	t_quat		q_yaw;
+	t_quat		q_pitch;
+	t_cy		*cy;
 	t_object	*obj;
 
 	obj = mlx->scene.items.objects;

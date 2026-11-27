@@ -6,12 +6,11 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:51:43 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 17:10:25 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:11:53 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
 
 bool	check_cap(t_cy *cy, t_query *query, double sign, double denom)
 {
@@ -107,4 +106,3 @@ bool	hit_cylinder(t_cy *cy, t_query *query)
 	hit |= check_cap(cy, query, 1, denom);
 	return (hit);
 }
-

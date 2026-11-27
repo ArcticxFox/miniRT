@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arithmetics.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:33:05 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/23 18:10:57 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:17:33 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "mini_rt.h"
 
-typedef struct	s_get_root
+typedef struct s_get_root
 {
 	double	a;
 	double	b;

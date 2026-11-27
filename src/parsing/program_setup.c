@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:21:48 by dlanehar          #+#    #+#             */
-/*   Updated: 2026/11/25 21:11:29 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:04:29 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,5 @@ t_errors	program_setup(int ac, char **av, t_tmp_data *scene)
 		print_error(err);
 		return (err);
 	}
-	// print_everything(scene);
 	return (err);
 }

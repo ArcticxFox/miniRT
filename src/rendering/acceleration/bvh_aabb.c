@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bvh_aabb.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*   By: dlanehar <dlanehar@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 16:39:42 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/21 19:44:01 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/26 15:38:06 by dlanehar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_aabb	sphere_aabb(t_sphere sphere)
 	box.max = add(sphere.center, radius);
 	return (box);
 }
+
 static double	cy_half(t_cy cy, double axis_comp)
 {
 	double	k;
@@ -42,7 +43,7 @@ static double	cy_half(t_cy cy, double axis_comp)
 	k = 1.0 - axis_comp * axis_comp;
 	if (k < 0.0)
 		k = 0.0;
-	return (cy.r *sqrt(k) + 0.5 * cy.h * fabs(axis_comp));
+	return (cy.r * sqrt(k) + 0.5 * cy.h * fabs(axis_comp));
 }
 
 t_aabb	cylinder_aabb(t_cy cy)
@@ -64,7 +65,3 @@ t_aabb	object_aabb(t_object *obj)
 		return (sphere_aabb(obj->data.sphere));
 	return (cylinder_aabb(obj->data.cylinder));
 }
-
-
-
-

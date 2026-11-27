@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:59:59 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 14:05:05 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:12:22 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ bool	hit_sphere(t_sphere *sp, t_query *query)
 	query->hit->t = t;
 	query->hit->point = ray_at(query->ray, t);
 	query->hit->normal = multiply_scalar(
-		sub(query->hit->point, sp->center), 1.0 / sp->r);
+			sub(query->hit->point, sp->center), 1.0 / sp->r);
 	if (dot(query->hit->normal, query->ray.dir) > 0)
 		query->hit->normal = multiply_scalar(query->hit->normal, -1);
 	query->hit->color = sp->rgb;
 	query->iv.max = t;
 	return (true);
 }
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_all.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/27 15:57:14 by ejones            #+#    #+#             */
+/*   Updated: 2026/11/27 15:58:42 by ejones           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	print_spheres(t_tmp_data *minirt)
@@ -33,7 +45,6 @@ void	print_planes(t_tmp_data *minirt)
 	printf("\n========== PLANES ==========\n");
 	printf("Count: %d / Capacity: %d\n",
 		minirt->pl_count, minirt->pl_cap);
-
 	i = 0;
 	while (i < minirt->pl_count)
 	{
@@ -61,7 +72,6 @@ void	print_cylinders(t_tmp_data *minirt)
 	printf("\n========== CYLINDERS ==========\n");
 	printf("Count: %d / Capacity: %d\n",
 		minirt->cyl_count, minirt->cyl_cap);
-
 	i = 0;
 	while (i < minirt->cyl_count)
 	{

@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:19:06 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 20:21:45 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:11:07 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 t_ray	sub_ray(t_mlx *mlx, int pix[2], int sub[2])
 {
 	return (camera_ray(mlx, &mlx->scene.camera,
-		pix[0] + (sub[0] + 0.5) / mlx->render.samples,
-		pix[1] + (sub[1] + 0.5) / mlx->render.samples));
+			pix[0] + (sub[0] + 0.5) / mlx->render.samples,
+			pix[1] + (sub[1] + 0.5) / mlx->render.samples));
 }
+
 // use int because otherwise if diff negative wrap around to a big number
 static int	diff_colour(mlx_color a, mlx_color b)
 {
@@ -38,6 +39,7 @@ int	is_probed(int sub[2], int n)
 	return (((sub[0] == 0) || (sub[0] == n - 1))
 		&& ((sub[1] == 0) || (sub[1] == n - 1)));
 }
+
 int	needs_refine(mlx_color c[5])
 {
 	int	i;

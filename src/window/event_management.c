@@ -6,13 +6,13 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:50:36 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 21:58:44 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:18:52 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static bool handle_mode_key(t_mlx *mlx, int key)
+static bool	handle_mode_key(t_mlx *mlx, int key)
 {
 	if (key == KEY_M)
 		mlx->mode = MODE_MOVE;
@@ -128,11 +128,7 @@ void	mouse_down(int click, void *param)
 		if (find_objects(mlx))
 			drag_start(mlx, mlx->old_mouse_pos.x, mlx->old_mouse_pos.y);
 		if (mlx->mode == MODE_SCALE)
-		{
 			mlx->value_start = get_distance(mlx, mlx->old_mouse_pos.x, mlx->old_mouse_pos.y);
-			// if (mlx->value_start < mlx->selected.r)
-			// 	mlx->value_start = mlx->selected.r;
-		}
 		mlx->needs_redraw = 0;
 	}
 }

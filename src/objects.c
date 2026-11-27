@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 14:22:17 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 16:25:34 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 16:00:18 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static int	fill_planes(t_tmp_data *tmp, t_object *obj)
 static void	fill_objects(t_tmp_data *tmp, t_object *obj)
 {
 	int	n;
+
 	n = fill_spheres(tmp, obj);
 	n += fill_cylinders(tmp, obj + n);
 	fill_planes(tmp, obj + n);
@@ -74,7 +75,7 @@ int	init_scene(t_tmp_data *tmp, t_data *scene)
 		return (MRT_MALLOC);
 	fill_objects(tmp, scene->items.objects);
 	scene->items.pl_count = tmp->pl_count;
-		if (init_bvh(&scene->items.bvh, &scene->items))
+	if (init_bvh(&scene->items.bvh, &scene->items))
 	{
 		free_bvh(&scene->items.bvh);
 		free(scene->items.objects);

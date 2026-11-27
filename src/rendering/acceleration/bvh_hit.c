@@ -6,7 +6,7 @@
 /*   By: ejones <ejones.42angouleme@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 16:47:15 by ejones            #+#    #+#             */
-/*   Updated: 2026/11/25 20:33:43 by ejones           ###   ########.fr       */
+/*   Updated: 2026/11/27 15:51:33 by ejones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static bool	hit_leaf(t_bvh *bvh, t_bvh_node *node, t_query *q)
 {
 	bool	hit_anything;
 	int		i;
-	t_hit		tmp;
-	t_query		test;
+	t_hit	tmp;
+	t_query	test;
 
 	hit_anything = false;
 	i = node->leaf.start;
@@ -26,7 +26,6 @@ static bool	hit_leaf(t_bvh *bvh, t_bvh_node *node, t_query *q)
 	test.iv = q->iv;
 	while (i < node->leaf.start + node->leaf.count)
 	{
-
 		bvh->stats.object_tests++;
 		if (hit_object(&bvh->scene[bvh->objects[i].index], &test))
 		{
