@@ -18,3 +18,5 @@ libft/build/*.d
 *.txt
 
 MacroLibX-master.zip
+MacroLibX/
+.vscode/
